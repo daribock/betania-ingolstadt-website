@@ -16,9 +16,9 @@ const Page: Collection = {
   ui: {
     router: ({ document }) => {
       const filepath = document._sys.breadcrumbs.join('/');
-      if (filepath === 'home') {
-        return '/';
-      }
+      // if (filepath === 'home') {
+      //   return '/';
+      // }
       return `/${filepath}`;
     },
   },

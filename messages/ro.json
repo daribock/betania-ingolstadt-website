@@ -1,0 +1,15 @@
+{
+  "NotFound": {
+    "title": "Pagină negăsită",
+    "description": "Pierdută, această pagină este. În alt sistem ar putea fi.",
+    "link": "Înapoi la pagina principală"
+  },
+  "LocaleSwitcher": {
+    "label": "Schimbă limba",
+    "locale": "{locale, select, de {🇩🇪 Germană} ro {🇷🇴 Română} other {Necunoscut}}"
+  },
+  "PostsList": {
+    "title": "Articole Blog",
+    "description": "Descoperiți cele mai recente perspective și tutoriale despre dezvoltarea web modernă, design UI și arhitecturi bazate pe componente."
+  }
+}
