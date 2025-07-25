@@ -38,5 +38,5 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ]
+, ".draft/page.tsx"  ]
 }

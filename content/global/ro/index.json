@@ -10,11 +10,11 @@
     "nav": [
       {
         "href": "/",
-        "label": "Home"
+        "label": "Acasă"
       },
       {
         "href": "/about",
-        "label": "About"
+        "label": "Despre"
       },
       {
         "href": "/posts",
