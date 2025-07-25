@@ -9,15 +9,15 @@
     "color": "default",
     "nav": [
       {
-        "href": "/",
+        "href": "/ro",
         "label": "Acasă"
       },
       {
-        "href": "/about",
+        "href": "/ro/about",
         "label": "Despre"
       },
       {
-        "href": "/posts",
+        "href": "/ro/posts",
         "label": "Blog"
       }
     ]

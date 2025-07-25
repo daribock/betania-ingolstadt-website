@@ -9,15 +9,15 @@
     "color": "default",
     "nav": [
       {
-        "href": "/",
+        "href": "/de",
         "label": "Startseite"
       },
       {
-        "href": "/about",
+        "href": "/de/about",
         "label": "Über uns"
       },
       {
-        "href": "/posts",
+        "href": "/de/posts",
         "label": "Blog"
       }
     ]

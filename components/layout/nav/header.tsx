@@ -9,7 +9,7 @@ import { Menu, X } from 'lucide-react';
 import LocaleSwitcher from './locale-switcher';
 
 export const Header = () => {
-  const { globalSettings, theme } = useLayout();
+  const { globalSettings } = useLayout();
   const header = globalSettings!.header!;
 
   const [menuState, setMenuState] = React.useState(false);
