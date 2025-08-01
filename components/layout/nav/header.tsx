@@ -17,7 +17,7 @@ export const Header = () => {
     <header>
       <nav
         data-state={menuState && 'active'}
-        className="bg-background/50 fixed z-20 w-full border-b backdrop-blur-3xl h-16"
+        className="bg-white/95 backdrop-blur-md border-b fixed z-20 w-full  h-16"
       >
         <div className="mx-auto max-w-6xl px-6 h-full">
           <div className="relative flex items-center justify-between h-full">

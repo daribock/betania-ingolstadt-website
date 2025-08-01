@@ -60,7 +60,7 @@ export default async function Layout({ children, rawPageData }: LayoutProps) {
       pageData={rawPageData}
     >
       <Header />
-      <main className="overflow-x-hidden pt-20">{children}</main>
+      <main className="overflow-x-hidden">{children}</main>
       <Footer />
     </LayoutProvider>
   );
