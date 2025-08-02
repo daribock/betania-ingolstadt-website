@@ -16,6 +16,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - name: Install dependencies
-        run: npm install
-      - name: Run eslint lint
-        run: npm run lint
+        run: pnpm install
+      - name: Run next lint
+        run: pnpm lint
