@@ -10,7 +10,10 @@ const Post: Collection = {
   format: 'mdx',
   ui: {
     router: ({ document }) => {
-      return `/posts/${document._sys.breadcrumbs.join('/')}`;
+      // Custom router to prevent double locale
+      const locale = document._sys.breadcrumbs[0];
+      const path = document._sys.breadcrumbs.slice(1).join('/');
+      return `${locale}/posts/${path}`;
     },
   },
   fields: [
@@ -54,7 +57,7 @@ const Post: Collection = {
           if (!name) return _internalSys.path;
 
           return (
-            <p className='flex min-h-8 items-center gap-4'>
+            <p className="flex min-h-8 items-center gap-4">
               <Avatar>
                 {avatar && <AvatarImage src={avatar} alt={`${name} Profile`} />}
                 <AvatarFallback>
