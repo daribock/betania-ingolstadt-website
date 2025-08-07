@@ -24,6 +24,7 @@ export default async function Home({
       data = await client.queries.page({
         relativePath: `home.mdx`,
       });
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (fallbackError) {
       throw error; // Re-throw original error
     }

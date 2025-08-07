@@ -28,7 +28,7 @@ const Post: Collection = {
       type: 'image',
       name: 'heroImg',
       label: 'Hero Image',
-      // @ts-ignore
+      // @ts-expect-error FIXME: type mismatch
       uploadDir: () => 'posts',
     },
     {
@@ -45,7 +45,7 @@ const Post: Collection = {
       name: 'author',
       collections: ['author'],
       ui: {
-        //@ts-ignore
+        // @ts-expect-error FIXME: type mismatch
         optionComponent: (
           props: {
             name?: string;

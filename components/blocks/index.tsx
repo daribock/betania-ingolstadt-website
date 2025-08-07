@@ -9,7 +9,7 @@ import { Callout } from "./callout";
 import { Stats } from "./stats";
 import { CallToAction } from "./call-to-action";
 
-export const Blocks = (props: Omit<Page, "id" | "_sys" | "_values">) => {
+export const Blocks = (props: Omit<Page, 'id' | '_sys' | '_values'>) => {
   if (!props.blocks) return null;
   return (
     <>
@@ -26,17 +26,17 @@ export const Blocks = (props: Omit<Page, "id" | "_sys" | "_values">) => {
 
 const Block = (block: PageBlocks) => {
   switch (block.__typename) {
-    case "PageBlocksVideo":
+    case 'PageBlocksVideo':
       return <Video data={block} />;
-    case "PageBlocksHero":
+    case 'PageBlocksHero':
       return <Hero data={block} />;
-    case "PageBlocksCallout":
+    case 'PageBlocksCallout':
       return <Callout data={block} />;
-    case "PageBlocksStats":
+    case 'PageBlocksStats':
       return <Stats data={block} />;
-    case "PageBlocksContent":
+    case 'PageBlocksContent':
       return <Content data={block} />;
-    case "PageBlocksFeatures":
+    case 'PageBlocksFeatures':
       return <Features data={block} />;
     case "PageBlocksTestimonial":
       return <Testimonial data={block} />;
