@@ -38,7 +38,7 @@ export const ColorPickerInput = wrapFieldsWithMeta(({ input }) => {
           return (
             <button
               key={color}
-              //@ts-ignore
+              
               className={`w-9 h-9 rounded-full shadow border ${
                 inputClasses[color]
               } ${
