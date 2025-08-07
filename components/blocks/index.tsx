@@ -2,10 +2,10 @@ import { tinaField } from 'tinacms/dist/react';
 import { Page, PageBlocks } from '../../tina/__generated__/types';
 import { Hero } from './hero';
 import { Content } from './content';
-import { Features } from './features';
+import { Events } from './events';
 import { Video } from './video';
 import { Callout } from './callout';
-import { Stats } from './stats';
+import { Services } from './services';
 import { CallToAction } from './call-to-action';
 
 export const Blocks = (props: Omit<Page, 'id' | '_sys' | '_values'>) => {
@@ -31,12 +31,12 @@ const Block = (block: PageBlocks) => {
       return <Hero data={block} />;
     case 'PageBlocksCallout':
       return <Callout data={block} />;
-    case 'PageBlocksStats':
-      return <Stats data={block} />;
+    case 'PageBlocksServices':
+      return <Services data={block} />;
     case 'PageBlocksContent':
       return <Content data={block} />;
-    case 'PageBlocksFeatures':
-      return <Features data={block} />;
+    case 'PageBlocksEvents':
+      return <Events data={block} />;
     case 'PageBlocksCta':
       return <CallToAction data={block} />;
     default:

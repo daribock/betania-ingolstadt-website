@@ -9,10 +9,6 @@ import {
   PageBlocksHero,
   PageBlocksHeroImage,
 } from '../../tina/__generated__/types';
-import {
-  PageBlocksHero,
-  PageBlocksHeroImage,
-} from '../../tina/__generated__/types';
 import { Icon } from '../icon';
 import { Section, sectionBlockSchemaField } from '../layout/section';
 import { AnimatedGroup } from '../motion-primitives/animated-group';
@@ -21,6 +17,7 @@ import { TextEffect } from '../motion-primitives/text-effect';
 import { Transition } from 'motion/react';
 import { Button } from '../ui/button';
 import { useEffect, useState } from 'react';
+import { Clock } from 'lucide-react';
 
 const transitionVariants = {
   container: {
@@ -245,8 +242,6 @@ export const heroBlockSchema: Template = {
           name: 'videoUrl',
           label: 'Video URL',
           type: 'string',
-          description:
-            'If using a YouTube video, make sure to use the embed version of the video URL',
           description:
             'If using a YouTube video, make sure to use the embed version of the video URL',
         },

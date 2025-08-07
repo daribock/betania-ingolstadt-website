@@ -1,14 +1,6 @@
 'use client';
 
-
 import * as BoxIcons from 'react-icons/bi';
-import {
-  FaFacebookF,
-  FaGithub,
-  FaLinkedin,
-  FaXTwitter,
-  FaYoutube,
-} from 'react-icons/fa6';
 import {
   FaFacebookF,
   FaGithub,
@@ -79,10 +71,6 @@ const iconColorClass: Record<IconColor, { regular: string; circle: string }> = {
   yellow: {
     regular: 'text-yellow-400',
     circle: 'bg-yellow-400 dark:bg-yellow-500 text-yellow-50',
-  },
-  black: {
-    regular: 'text-black opacity-80',
-    circle: 'bg-black-400 dark:bg-black-500 text-black-50',
   },
   black: {
     regular: 'text-black opacity-80',
