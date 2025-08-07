@@ -17,5 +17,5 @@ jobs:
           cache: 'npm'
       - name: Install dependencies
         run: npm install
-      - name: Run biome lint
+      - name: Run eslint lint
         run: npm run lint
