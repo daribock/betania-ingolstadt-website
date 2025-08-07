@@ -11,17 +11,17 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
-type Props = {
-  children: ReactNode;
+interface LocaleSwitcherSelectProps {
+  options: { key: string; label: ReactNode; value: string }[];
   defaultValue: string;
   label: string;
-};
+}
 
 export default function LocaleSwitcherSelect({
-  children,
+  options,
   defaultValue,
   label,
-}: Props) {
+}: LocaleSwitcherSelectProps) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const pathname = usePathname();
@@ -30,17 +30,12 @@ export default function LocaleSwitcherSelect({
   function onValueChange(nextLocale: string) {
     startTransition(() => {
       router.replace(
-        // @ts-expect-error
+        // @ts-expect-error FIXME: fix later
         { pathname, params },
         { locale: nextLocale }
       );
     });
   }
-
-  // Extract options from children (option elements)
-  const options = Array.isArray(children) 
-    ? children 
-    : [children];
 
   return (
     <div className="relative">
@@ -54,11 +49,11 @@ export default function LocaleSwitcherSelect({
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
-          {options.map((option: any) => {
-            if (option?.props) {
+          {options.map((option) => {
+            if (option) {
               return (
-                <SelectItem key={option.props.value} value={option.props.value}>
-                  {option.props.children}
+                <SelectItem key={option.value} value={option.value}>
+                  {option.label}
                 </SelectItem>
               );
             }
