@@ -1,6 +1,4 @@
 import { defineConfig } from 'tinacms';
-import nextConfig from '../next.config';
-
 import Post from './collection/post';
 import Global from './collection/global';
 import Author from './collection/author';

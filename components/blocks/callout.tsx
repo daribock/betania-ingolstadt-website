@@ -69,6 +69,7 @@ export const calloutBlockSchema: Template = {
         },
     },
     fields: [
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         sectionBlockSchemaField as any,
         {
             type: 'string',

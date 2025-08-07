@@ -2,11 +2,6 @@ import { Button } from '@/components/ui/button';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 
-interface NotFoundProps {
-  title?: string;
-  description?: string;
-}
-
 export function Illustration(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 362 145" {...props}>
