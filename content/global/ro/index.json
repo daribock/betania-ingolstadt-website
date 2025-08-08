@@ -1,11 +1,12 @@
 {
   "header": {
     "icon": {
-      "name": "Tina",
+      "name": "FaCross",
       "color": "orange",
       "style": "float"
     },
-    "name": "Tina Starter",
+    "name": "Betania Ingolstadt",
+    "tagline": "Gemeinschaft, Leben, Familie = Jesus",
     "color": "default",
     "nav": [
       {
@@ -17,41 +18,59 @@
         "label": "Despre"
       },
       {
-        "href": "/ro/posts",
-        "label": "Blog"
+        "href": "/ro/contact",
+        "label": "Kontakt"
       }
     ]
   },
-  "footer": {
-    "social": [
-      {
-        "icon": {
-          "name": "FaLinkedin"
-        },
-        "url": "https://www.linkedin.com/company/tinacms"
-      },
-      {
-        "icon": {
-          "name": "FaGithub"
-        },
-        "url": "https://github.com/tinacms/tinacms"
-      },
-      {
-        "icon": {
-          "name": "FaYoutube"
-        },
-        "url": "https://www.youtube.com/@TinaCMS"
-      },
-      {
-        "icon": {
-          "name": "FaXTwitter"
-        },
-        "url": "https://x.com/TinaCMS"
-      }
-    ]
+  "services": [
+    {
+      "title": "Serviciul principal",
+      "time": "Duminică 10:00 - 12:30",
+      "description": "Serviciul nostru principal săptămânal cu închinare, predică și comuniune pentru întreaga familie.",
+      "features": [
+        "Prietenos cu familiile",
+        "Traducere disponibilă",
+        "Program pentru copii",
+        "Atmosferă caldă"
+      ]
+    },
+    {
+      "title": "Seara de rugăciune",
+      "time": "Miercuri 18:00 - 19:30",
+      "description": "Un serviciu mai intim în timpul săptămânii cu rugăciune, comuniune și învățătură biblică.",
+      "features": [
+        "Timp de rugăciune",
+        "Învățătură biblică",
+        "Conversații personale",
+        "Comuniune"
+      ]
+    }
+  ],
+  "contact": {
+    "street": "Nürnbergerstraße",
+    "number": "24",
+    "ort": "85049 Ingolstadt",
+    "email": "hello@betania.de",
+    "phone": "+49 841 123456"
   },
+  "social": [
+    {
+      "icon": {
+        "name": "FaInstagram"
+      },
+      "url": "https://www.instagram.com/betaniaingolstadt/"
+    },
+    {
+      "icon": {
+        "name": "FaYoutube"
+      },
+      "url": "https://www.youtube.com/@BetaniaIngolstadt"
+    }
+  ],
+  "footer": "test",
   "theme": {
-    "color": "blue",
+    "color": "orange",
     "font": "sans",
     "darkMode": "light"
   }

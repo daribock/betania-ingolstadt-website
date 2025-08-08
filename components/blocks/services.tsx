@@ -26,19 +26,19 @@ export const Services = ({ data }: { data: PageBlocksServices }) => {
           {data.services?.map((service, index) => (
             <Card
               key={index}
-              className="bg-card border-border hover:shadow-sacred transition-all duration-300 animate-slide-up"
+              className="bg-card border-border transition-all duration-300 animate-slide-up"
               style={{ animationDelay: `${index * 0.2}s` }}
             >
               <CardHeader className="pb-4">
                 <CardTitle
-                  className="font-display text-2xl text-sacred flex items-center gap-3"
+                  className="font-display text-2xl flex items-center gap-3"
                   data-tina-field={tinaField(service, 'title')}
                 >
-                  <Clock className="w-6 h-6 text-sacred-gold" />
+                  <Clock className="w-6 h-6" />
                   {service?.title}
                 </CardTitle>
                 <p
-                  className="text-sacred-gold font-semibold text-lg"
+                  className="font-semibold text-lg"
                   data-tina-field={tinaField(service, 'time')}
                 >
                   {service?.time}
@@ -63,7 +63,7 @@ export const Services = ({ data }: { data: PageBlocksServices }) => {
                           featureIndex
                         )}
                       >
-                        <div className="w-2 h-2 bg-sacred-gold rounded-full"></div>
+                        <div className="w-2 h-2 bg-black rounded-full"></div>
                         {feature}
                       </div>
                     ))}
@@ -76,6 +76,47 @@ export const Services = ({ data }: { data: PageBlocksServices }) => {
       </div>
     </Section>
   );
+};
+
+export const servicesSchema = {
+  type: 'object',
+  label: 'Services',
+  name: 'services',
+  list: true,
+  ui: {
+    defaultItem: {
+      title: 'Gottesdienst',
+      time: 'Sonntag 10:00 Uhr',
+      description: 'Beschreibung des Gottesdienstes',
+      features: ['Feature 1', 'Feature 2'],
+    },
+  },
+  fields: [
+    {
+      type: 'string',
+      label: 'Title',
+      name: 'title',
+    },
+    {
+      type: 'string',
+      label: 'Time',
+      name: 'time',
+    },
+    {
+      type: 'string',
+      label: 'Description',
+      name: 'description',
+      ui: {
+        component: 'textarea',
+      },
+    },
+    {
+      type: 'string',
+      label: 'Features',
+      name: 'features',
+      list: true,
+    },
+  ],
 };
 
 export const servicesBlockSchema: Template = {
@@ -129,53 +170,7 @@ export const servicesBlockSchema: Template = {
       label: 'Description',
       name: 'description',
     },
-    {
-      type: 'object',
-      label: 'Services',
-      name: 'services',
-      list: true,
-      ui: {
-        defaultItem: {
-          title: 'Gottesdienst',
-          time: 'Sonntag 10:00 Uhr',
-          description: 'Beschreibung des Gottesdienstes',
-          features: ['Feature 1', 'Feature 2'],
-        },
-        itemProps: (item) => {
-          return {
-            label: `${item.title} - ${item.time}`,
-          };
-        },
-      },
-      fields: [
-        {
-          type: 'string',
-          label: 'Title',
-          name: 'title',
-        },
-        {
-          type: 'string',
-          label: 'Time',
-          name: 'time',
-        },
-        {
-          type: 'string',
-          label: 'Description',
-          name: 'description',
-          ui: {
-            component: 'textarea',
-          },
-        },
-        {
-          type: 'string',
-          label: 'Events',
-          name: 'features',
-          list: true,
-          ui: {
-            defaultItem: 'Feature',
-          },
-        },
-      ],
-    },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    servicesSchema as any,
   ],
 };

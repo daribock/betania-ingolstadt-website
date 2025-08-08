@@ -1,6 +1,6 @@
 'use client';
 import React, { ChangeEvent } from 'react';
-import { Button, wrapFieldsWithMeta } from 'tinacms';
+import { Button, TinaSchema, wrapFieldsWithMeta } from 'tinacms';
 import { BiChevronRight } from 'react-icons/bi';
 import { GoCircleSlash } from 'react-icons/go';
 import { Icon, IconOptions } from '../../components/icon';

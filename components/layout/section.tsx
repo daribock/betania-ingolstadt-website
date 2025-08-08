@@ -18,7 +18,7 @@ export const Section: React.FC<SectionProps> = ({
     <div className={background || 'bg-default'}>
       <section
         className={cn(
-          fullWidth ? '' : 'py-12 mx-auto max-w-7xl px-6',
+          fullWidth ? '' : 'py-20 mx-auto max-w-7xl px-6',
           className
         )}
         {...props}

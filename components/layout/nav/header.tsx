@@ -70,10 +70,6 @@ export const Header = () => {
             {/* Right side: Language Switcher + Site Name */}
             <div className="hidden lg:flex items-center gap-4 h-full">
               <LocaleSwitcher />
-              <span className="text-sm font-medium text-muted-foreground">
-                |
-              </span>
-              <span className="text-sm font-medium">{header.name}</span>
             </div>
 
             {/* Mobile menu button */}
@@ -106,7 +102,6 @@ export const Header = () => {
                 {/* Mobile Language Switcher & Site Name */}
                 <div className="flex items-center justify-between pt-4 border-t">
                   <LocaleSwitcher />
-                  <span className="text-sm font-medium">{header.name}</span>
                 </div>
               </div>
             </div>
