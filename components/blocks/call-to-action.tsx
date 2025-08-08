@@ -2,15 +2,16 @@ import Link from 'next/link';
 import type { Template } from 'tinacms';
 import { tinaField } from 'tinacms/dist/react';
 import { iconSchema } from '@/tina/fields/icon';
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 import { PageBlocksCta } from '@/tina/__generated__/types';
 import { Icon } from '../icon';
 import { Section } from '../layout/section';
+import { VariantProps } from 'class-variance-authority';
 
 export const CallToAction = ({ data }: { data: PageBlocksCta }) => {
   return (
-    <Section>
-      <div className="text-center">
+    <Section background="bg-orange-400">
+      <div className="@container mx-auto max-w-5xl px-6 text-center text-white">
         <h2
           className="text-balance text-4xl font-semibold lg:text-5xl"
           data-tina-field={tinaField(data, 'title')}
@@ -24,16 +25,25 @@ export const CallToAction = ({ data }: { data: PageBlocksCta }) => {
         <div className="mt-12 flex flex-wrap justify-center gap-4">
           {data.actions &&
             data.actions.map((action) => (
-              <div
-                key={action!.label}
-                data-tina-field={tinaField(action)}
-                className="bg-foreground/10 rounded-[calc(var(--radius-xl)+0.125rem)] border p-0.5"
-              >
+              <div key={action!.label} data-tina-field={tinaField(action)}>
                 <Button
                   asChild
                   size="lg"
-                  variant={action!.type === 'link' ? 'ghost' : 'default'}
-                  className="rounded-xl px-5 text-base"
+                  variant={
+                    [
+                      'default',
+                      'outline',
+                      'link',
+                      'ghost',
+                      'secondary',
+                      'destructive',
+                    ].includes(action!.variant as string)
+                      ? (action!.variant as VariantProps<
+                          typeof buttonVariants
+                        >['variant'])
+                      : 'default'
+                  }
+                  className="text-base"
                 >
                   <Link href={action!.link!}>
                     {action?.icon && <Icon data={action?.icon} />}
@@ -106,12 +116,15 @@ export const ctaBlockSchema: Template = {
           type: 'string',
         },
         {
-          label: 'Type',
-          name: 'type',
+          label: 'Variant',
+          name: 'variant',
           type: 'string',
           options: [
-            { label: 'Button', value: 'button' },
+            { label: 'Default', value: 'default' },
+            { label: 'Outline', value: 'outline' },
             { label: 'Link', value: 'link' },
+            { label: 'Ghost', value: 'ghost' },
+            { label: 'Secondary', value: 'secondary' },
           ],
         },
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
