@@ -4,9 +4,11 @@ import { Hero } from './hero';
 import { Content } from './content';
 import { Events } from './events';
 import { Video } from './video';
-import { Callout } from './callout';
 import { Services } from './services';
 import { CallToAction } from './call-to-action';
+import { PageHeader } from './page-header';
+import { LocationSection } from './location-section';
+import { ContactForm } from './contact-form';
 
 export const Blocks = (props: Omit<Page, 'id' | '_sys' | '_values'>) => {
   if (!props.blocks) return null;
@@ -29,8 +31,8 @@ const Block = (block: PageBlocks) => {
       return <Video data={block} />;
     case 'PageBlocksHero':
       return <Hero data={block} />;
-    case 'PageBlocksCallout':
-      return <Callout data={block} />;
+    case 'PageBlocksPageHeader':
+      return <PageHeader data={block} />;
     case 'PageBlocksServices':
       return <Services data={block} />;
     case 'PageBlocksContent':
@@ -39,6 +41,10 @@ const Block = (block: PageBlocks) => {
       return <Events data={block} />;
     case 'PageBlocksCta':
       return <CallToAction data={block} />;
+    case 'PageBlocksLocation':
+      return <LocationSection data={block} />;
+    case 'PageBlocksContactForm':
+      return <ContactForm data={block} />;
     default:
       return null;
   }

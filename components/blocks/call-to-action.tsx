@@ -5,35 +5,30 @@ import { iconSchema } from '@/tina/fields/icon';
 import { Button } from '@/components/ui/button';
 import { PageBlocksCta } from '@/tina/__generated__/types';
 import { Icon } from '../icon';
-import { Section } from '../layout/section';
+import { Section, sectionBlockSchemaField } from '../layout/section';
+import { Typography } from '../ui/Typography';
 
 export const CallToAction = ({ data }: { data: PageBlocksCta }) => {
   return (
-    <Section>
-      <div className="text-center">
-        <h2
-          className="text-balance text-4xl font-semibold lg:text-5xl"
-          data-tina-field={tinaField(data, 'title')}
-        >
-          {data.title}
-        </h2>
-        <p className="mt-4" data-tina-field={tinaField(data, 'description')}>
-          {data.description}
-        </p>
+    <Section background={data.background!}>
+      <div className=" text-center">
+        <Typography>
+          <h2 data-tina-field={tinaField(data, 'title')}>{data.title}</h2>
+          <p data-tina-field={tinaField(data, 'description')}>
+            {data.description}
+          </p>
+        </Typography>
 
         <div className="mt-12 flex flex-wrap justify-center gap-4">
           {data.actions &&
             data.actions.map((action) => (
-              <div
-                key={action!.label}
-                data-tina-field={tinaField(action)}
-                className="bg-foreground/10 rounded-[calc(var(--radius-xl)+0.125rem)] border p-0.5"
-              >
+              <div key={action!.label} data-tina-field={tinaField(action)}>
                 <Button
                   asChild
                   size="lg"
-                  variant={action!.type === 'link' ? 'ghost' : 'default'}
-                  className="rounded-xl px-5 text-base"
+                  variant={
+                    action?.variant === 'secondary' ? 'outline' : 'default'
+                  }
                 >
                   <Link href={action!.link!}>
                     {action?.icon && <Icon data={action?.icon} />}
@@ -72,6 +67,8 @@ export const ctaBlockSchema: Template = {
     },
   },
   fields: [
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    sectionBlockSchemaField as any,
     {
       type: 'string',
       label: 'Title',
@@ -106,12 +103,12 @@ export const ctaBlockSchema: Template = {
           type: 'string',
         },
         {
-          label: 'Type',
-          name: 'type',
+          label: 'Variant',
+          name: 'variant',
           type: 'string',
           options: [
-            { label: 'Button', value: 'button' },
-            { label: 'Link', value: 'link' },
+            { label: 'Primary', value: 'primary' },
+            { label: 'Secondary', value: 'secondary' },
           ],
         },
         // eslint-disable-next-line @typescript-eslint/no-explicit-any

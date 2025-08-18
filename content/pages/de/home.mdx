@@ -2,29 +2,29 @@
 title: DE
 blocks:
   - background: bg-orange-50/80
-    headline: test
+    headline: Betania Ingolstadt
     tagline: 'Gemeinschaft, Leben, Familie = Jesus'
     actions:
       - label: Nächste Veranstaltung
         type: button
         icon:
           name: BiCalendarAlt
-          color: white
-        link: /about
+          color: black
+        link: '#events'
       - label: Besuche uns
         type: link
         icon:
           name: BiMap
           color: black
           style: ''
-        link: /posts
+        link: '#visit'
     image:
       src: /uploads/church/welcome-team.png
       alt: Getting started with TinaCMS
       videoUrl: ''
     _template: hero
-  - background: bg-zinc-50
-    title: Unsere Gottesdienste
+  - background: bg-orange-50
+    title: Gottesdienste
     description: >-
       Kommen Sie und erleben Sie Gottes Gegenwart in unseren Gottesdiensten. 
       Jeder ist herzlich willkommen!
@@ -54,23 +54,31 @@ blocks:
     description: >-
       Seien Sie dabei und erleben Sie Gemeinschaft bei unseren verschiedenen
       Veranstaltungen. Jeder ist herzlich willkommen!
-    churchToolsLink: ''
+    churchToolsLink: >-
+      https://betania.church.tools/?q=churchcal&category_id=8,2,3&category_select=8,2,3&embedded=true&viewname=calView#CalView/
     _template: events
-  - title: Start Building
-    description: >-
-      Get started with TinaCMS today and take your content management to the
-      next level.
+  - title: Besuchen Sie uns
+    Image: /uploads/church/church-building.jpg
+    _template: location
+  - background: bg-orange-50
+    title: Mehr von Betania?
+    description: |
+      Dann Folge uns auf Instagram oder Kontaktiere uns per mail!
     actions:
-      - label: Get Started
-        type: button
+      - label: Instagram
+        variant: primary
         icon:
-          name: Tina
-          color: white
-          style: ''
-        link: /
-      - label: Book Demo
-        type: link
-        link: 'https://tina.io'
+          name: BiLogoInstagram
+          color: black
+          style: float
+        link: 'https://www.instagram.com/betaniaingolstadt/'
+      - label: Kontakt
+        variant: secondary
+        icon:
+          name: BiMailSend
+          color: black
+          style: float
+        link: /de/contact
     _template: cta
 ---
 

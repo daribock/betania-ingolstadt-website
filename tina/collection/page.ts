@@ -3,9 +3,11 @@ import { heroBlockSchema } from '@/components/blocks/hero';
 import { contentBlockSchema } from '@/components/blocks/content';
 import { eventsBlockSchema } from '@/components/blocks/events';
 import { videoBlockSchema } from '@/components/blocks/video';
-import { calloutBlockSchema } from '@/components/blocks/callout';
 import { servicesBlockSchema } from '@/components/blocks/services';
 import { ctaBlockSchema } from '@/components/blocks/call-to-action';
+import { pageHeaderBlockSchema } from '@/components/blocks/page-header';
+import { locationSectionBlockSchema } from '@/components/blocks/location-section';
+import { contactFormBlockSchema } from '@/components/blocks/contact-form';
 
 const Page: Collection = {
   label: 'Pages',
@@ -31,7 +33,9 @@ const Page: Collection = {
       },
       templates: [
         heroBlockSchema,
-        calloutBlockSchema,
+        pageHeaderBlockSchema,
+        locationSectionBlockSchema,
+        contactFormBlockSchema,
         eventsBlockSchema,
         servicesBlockSchema,
         ctaBlockSchema,

@@ -17,7 +17,6 @@ import { TextEffect } from '../motion-primitives/text-effect';
 import { Transition } from 'motion/react';
 import { Button } from '../ui/button';
 import { useEffect, useState } from 'react';
-import { Clock } from 'lucide-react';
 
 const transitionVariants = {
   container: {

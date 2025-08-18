@@ -28,6 +28,7 @@ export const IconOptions = {
 type IconSize = 'xs' | 'small' | 'medium' | 'large' | 'xl' | 'custom';
 type IconStyle = 'regular' | 'circle';
 type IconColor =
+  | 'primary'
   | 'blue'
   | 'teal'
   | 'green'
@@ -40,6 +41,10 @@ type IconColor =
   | 'white';
 
 const iconColorClass: Record<IconColor, { regular: string; circle: string }> = {
+  primary: {
+    regular: 'text-primary',
+    circle: 'bg-primary text-primary',
+  },
   blue: {
     regular: 'text-blue-400',
     circle: 'bg-blue-400 dark:bg-blue-500 text-blue-50',

@@ -1,30 +1,31 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
-import { PageBlocksFeatures } from '../../tina/__generated__/types';
+import { PageBlocksEvents } from '../../tina/__generated__/types';
 import type { Template } from 'tinacms';
 import { tinaField } from 'tinacms/dist/react';
 import { Card } from '../ui/card';
 import { Section } from '../layout/section';
 import { sectionBlockSchemaField } from '../layout/section';
 
-export const Events = ({ data }: { data: PageBlocksFeatures }) => {
+export const Events = ({ data }: { data: PageBlocksEvents }) => {
   return (
-    <Section background={data.background!}>
-      <div className="@container mx-auto max-w-5xl px-6">
-        <div className="text-center">
-          <h2
-            data-tina-field={tinaField(data, 'title')}
-            className="text-balance text-4xl font-semibold lg:text-5xl"
-          >
-            {data.title}
-          </h2>
-          <p data-tina-field={tinaField(data, 'description')} className="mt-4">
-            {data.description}
-          </p>
-        </div>
-        <Card className="mt-8"></Card>
+    <Section id="events" background={data.background!}>
+      <div className="text-center prose prose-lg">
+        <h2 data-tina-field={tinaField(data, 'title')}>{data.title}</h2>
+        <p data-tina-field={tinaField(data, 'description')}>
+          {data.description}
+        </p>
       </div>
+      <Card className="mt-8">
+        <iframe
+          width="100%"
+          height="840px"
+          className="border-0"
+          data-tina-field={tinaField(data, 'churchToolsLink')}
+          src={data.churchToolsLink || ''}
+        ></iframe>
+      </Card>
     </Section>
   );
 };

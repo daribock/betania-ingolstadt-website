@@ -6,6 +6,10 @@ This Next.js starter is powered by [TinaCMS](https://app.tina.io) for you and yo
 
 The content is managed through Markdown and JSON files stored in your GitHub repository, and queried through Tina GraphQL API.
 
+## TODO
+
+- [ ] Add FAQ
+
 ### Features
 
 - [Tina Headless CMS](https://app.tina.io) for authentication, content modeling, visual editing and team management.

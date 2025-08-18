@@ -11,5 +11,26 @@
   "PostsList": {
     "title": "Blog Beiträge",
     "description": "Entdecken Sie die neuesten Erkenntnisse und Tutorials zu moderner Webentwicklung, UI-Design und Komponenten-basierten Architekturen."
+  },
+  "Contact": {
+    "title": "Kontakt",
+    "Address": "Adresse",
+    "Route": "Route planen",
+    "PhoneEmail": "Telefon & E-Mail",
+    "OfficeHours": "Bürozeiten",
+    "Monday-Friday": "Montag - Freitag",
+    "Saturday": "Samstag",
+    "Sunday": "Sonntag",
+    "AfterService": "Nach Gottesdienst",
+    "ServiceTimes": "Gottesdienstzeiten",
+    "SendMessage": "Nachricht senden",
+    "FormDescription": "Füllen Sie das Formular aus und wir melden uns schnellstmöglich bei Ihnen zurück.",
+    "ContactDirectly": "Direkt kontaktieren",
+    "ContactDirectlyDescription": "Schreiben Sie uns direkt eine E-Mail, wir melden uns baldmöglichst bei Ihnen.",
+    "SendEmail": "E-Mail senden",
+    "ContactImage": "Kontakt Bild",
+    "Telefon": "Telefon",
+    "Email": "E-Mail",
+    "Services": "Gottesdienste"
   }
 }

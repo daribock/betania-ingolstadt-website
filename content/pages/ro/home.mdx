@@ -1,48 +1,48 @@
 ---
-title: Tina Cloud Starter
+title: RO
 blocks:
-  - background: ''
-    text: Support for live editing and editorial workflow
-    url: 'https://tina.io/editorial-workflow'
-    _template: callout
   - background: bg-orange-50/80
-    headline: Biblia
-    tagline: 'A place of worship, community, and spiritual growth'
+    headline: Betania Ingolstadt
+    tagline: 'Comunitate, Viață, Familie = Isus'
     actions:
-      - label: Get Started
+      - label: Următorul eveniment
         type: button
         icon:
-          name: Tina
-          color: white
-        link: /about
-      - label: Read Blog
+          name: BiCalendarAlt
+          color: black
+        link: '#events'
+      - label: Vizitează-ne
         type: link
-        link: /posts
+        icon:
+          name: BiMap
+          color: black
+          style: ''
+        link: '#visit'
     image:
-      src: ''
+      src: /uploads/church/welcome-team.png
       alt: Getting started with TinaCMS
-      videoUrl: 'https://www.youtube.com/embed/j8egYW7Jpgk'
+      videoUrl: ''
     _template: hero
-  - background: bg-zinc-50
+  - background: bg-orange-50
     title: Serviciile noastre religioase
     description: >-
       Veniți și experimentați prezența lui Dumnezeu în serviciile noastre
-      religioase.  Toată lumea este binevenită cu brațele deschise!
+      religioase. Toată lumea este binevenită cu brațele deschise!
     services:
       - title: Serviciul principal
-        time: Duminică 10:00 - 12:30
+        time: 'Duminică 10:00 - 12:30'
         description: >-
-          Serviciul nostru principal săptămânal cu închinare, predică
-          și  comuniune pentru întreaga familie.
+          Serviciul nostru principal săptămânal cu închinare, predică și
+          comuniune pentru întreaga familie.
         features:
           - Prietenos cu familiile
           - Traducere disponibilă
           - Program pentru copii
           - Atmosferă caldă
       - title: Seara de rugăciune
-        time: Miercuri 18:00 - 19:30
+        time: 'Miercuri 18:00 - 19:30'
         description: >-
-          Un serviciu mai intim în timpul săptămânii cu rugăciune, comuniune  și
+          Un serviciu mai intim în timpul săptămânii cu rugăciune, comuniune și
           învățătură biblică.
         features:
           - Timp de rugăciune
@@ -50,26 +50,34 @@ blocks:
           - Conversații personale
           - Comuniune
     _template: services
-  - title: 'Kommende Veranstaltungen'
-    description:
-      'Seien Sie dabei und erleben Sie Gemeinschaft bei unseren verschiedenen
-      Veranstaltungen. Jeder ist herzlich willkommen!'
-    churchToolsLink: ''
-    _template: events
-  - title: Start Building
+  - title: Evenimente viitoare
     description: >-
-      Get started with TinaCMS today and take your content management to the
-      next level.
+      Participați și experimentați comunitatea la diferitele noastre evenimente.
+      Toată lumea este binevenită cu brațele deschise!
+    churchToolsLink: >-
+      https://betania.church.tools/?q=churchcal&category_id=8,2,3&category_select=8,2,3&embedded=true&viewname=calView#CalView/
+    _template: events
+  - title: Vizitează-ne
+    Image: /uploads/church/church-building.jpg
+    _template: location
+  - background: bg-orange-50
+    title: Mai mult de la Betania?
+    description: |
+      Atunci urmărește-ne pe Instagram sau contactează-ne prin email!
     actions:
-      - label: Get Started
-        type: button
+      - label: Instagram
+        variant: primary
         icon:
-          name: Tina
-          color: white
-          style: ''
-        link: /
-      - label: Book Demo
-        type: link
-        link: 'https://tina.io'
+          name: BiLogoInstagram
+          color: black
+          style: float
+        link: 'https://www.instagram.com/betaniaingolstadt/'
+      - label: Contact
+        variant: secondary
+        icon:
+          name: BiMailSend
+          color: black
+          style: float
+        link: /ro/contact
     _template: cta
 ---

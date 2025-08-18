@@ -11,5 +11,26 @@
   "PostsList": {
     "title": "Articole Blog",
     "description": "Descoperiți cele mai recente perspective și tutoriale despre dezvoltarea web modernă, design UI și arhitecturi bazate pe componente."
+  },
+  "Contact": {
+    "title": "Contact",
+    "Address": "Adresă",
+    "Route": "Planificare rută",
+    "PhoneEmail": "Telefon & E-mail",
+    "OfficeHours": "Orele de birou",
+    "Monday-Friday": "Luni - Vineri",
+    "Saturday": "Sâmbătă",
+    "Sunday": "Duminică",
+    "AfterService": "După serviciu",
+    "ServiceTimes": "Orele serviciilor",
+    "SendMessage": "Trimite mesaj",
+    "FormDescription": "Completați formularul și vă vom răspunde cât mai curând posibil.",
+    "ContactDirectly": "Contactează direct",
+    "ContactDirectlyDescription": "Trimite-ne direct un e-mail, îți vom răspunde cât mai curând posibil.",
+    "SendEmail": "Trimite e-mail",
+    "ContactImage": "Imagine contact",
+    "Telefon": "Telefon",
+    "Email": "E-mail",
+    "Services": "Servicii"
   }
 }
