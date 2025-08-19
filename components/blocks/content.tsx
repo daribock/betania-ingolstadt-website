@@ -16,18 +16,19 @@ import {
 
 export const Content = ({ data }: { data: PageBlocksContent }) => {
   return (
-    <Section
-      background={data.background!}
-      className="prose prose-lg"
-      data-tina-field={tinaField(data, 'body')}
-    >
-      <TinaMarkdown
-        content={data.body}
-        components={{
-          mermaid: (props: any) => <Mermaid {...props} />,
-          scriptCopyBlock: (props: any) => <ScriptCopyBtn {...props} />,
-        }}
-      />
+    <Section background={data.background!}>
+      <div
+        data-tina-field={tinaField(data, 'body')}
+        className="prose prose-lg dark:prose-dark w-full max-w-none"
+      >
+        <TinaMarkdown
+          content={data.body}
+          components={{
+            mermaid: (props: any) => <Mermaid {...props} />,
+            scriptCopyBlock: (props: any) => <ScriptCopyBtn {...props} />,
+          }}
+        />
+      </div>
     </Section>
   );
 };

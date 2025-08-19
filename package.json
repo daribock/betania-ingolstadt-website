@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "tinacms dev -c \"next dev --turbopack\"",
+    "dev": "tinacms dev -c \"next dev --turbopack -p 3001\"",
     "tina:dev": "tinacms dev",
-    "next:dev": "next dev --turbopack",
+    "next:dev": "next dev --turbopack -p 3001",
     "build": "tinacms build && next build",
     "build-local": "tinacms build --local --skip-indexing --skip-cloud-checks && next build",
     "start": "tinacms build && next start",
