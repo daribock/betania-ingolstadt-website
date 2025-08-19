@@ -10,44 +10,32 @@ import LocaleSwitcher from './locale-switcher';
 
 export const Header = () => {
   const { globalSettings } = useLayout();
-  const header = globalSettings!.header!;
+  const { header } = globalSettings!;
 
   const [menuState, setMenuState] = React.useState(false);
+
+  if (!header) {
+    return null;
+  }
+
   return (
     <header>
       <nav
         data-state={menuState && 'active'}
-        className="bg-background/50 fixed z-20 w-full border-b backdrop-blur-3xl h-16"
+        className="bg-white/95 backdrop-blur-md border-b fixed z-20 w-full  h-16"
       >
         <div className="mx-auto max-w-6xl px-6 h-full">
           <div className="relative flex items-center justify-between h-full">
             {/* Left side: Logo + Navigation */}
             <div className="flex items-center gap-8 h-full">
               {/* Logo */}
-              <Link
-                href="/"
-                aria-label="home"
-                className="flex items-center h-full py-2"
-              >
-                {header.icon!.name === 'LIA' ? (
-                  <Image
-                    src="/images/lia-logo.png"
-                    alt="Light in Asia Logo"
-                    width={56}
-                    height={56}
-                    className="h-14 w-auto"
-                    priority
-                  />
-                ) : (
-                  <Icon
-                    parentColor={header.color!}
-                    data={{
-                      name: header.icon!.name,
-                      color: header.icon!.color,
-                      style: header.icon!.style,
-                    }}
-                  />
-                )}
+              <Link href="/">
+                <Image
+                  src="/uploads/logos/betania-logo-transparent-schwarz.png"
+                  alt="Logo"
+                  width={40}
+                  height={40}
+                />
               </Link>
 
               {/* Navigation - Desktop */}
@@ -70,10 +58,6 @@ export const Header = () => {
             {/* Right side: Language Switcher + Site Name */}
             <div className="hidden lg:flex items-center gap-4 h-full">
               <LocaleSwitcher />
-              <span className="text-sm font-medium text-muted-foreground">
-                |
-              </span>
-              <span className="text-sm font-medium">{header.name}</span>
             </div>
 
             {/* Mobile menu button */}
@@ -106,7 +90,6 @@ export const Header = () => {
                 {/* Mobile Language Switcher & Site Name */}
                 <div className="flex items-center justify-between pt-4 border-t">
                   <LocaleSwitcher />
-                  <span className="text-sm font-medium">{header.name}</span>
                 </div>
               </div>
             </div>

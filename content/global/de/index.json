@@ -1,11 +1,12 @@
 {
   "header": {
     "icon": {
-      "name": "Tina",
+      "name": "FaCross",
       "color": "orange",
       "style": "float"
     },
-    "name": "Tina Starter",
+    "name": "Betania Ingolstadt",
+    "tagline": "Gemeinschaft, Leben, Familie = Jesus",
     "color": "default",
     "nav": [
       {
@@ -17,41 +18,91 @@
         "label": "Über uns"
       },
       {
-        "href": "/de/posts",
-        "label": "Blog"
+        "href": "/de/contact",
+        "label": "Kontakt"
       }
     ]
   },
-  "footer": {
-    "social": [
-      {
-        "icon": {
-          "name": "FaLinkedin"
-        },
-        "url": "https://www.linkedin.com/company/tinacms"
-      },
-      {
-        "icon": {
-          "name": "FaGithub"
-        },
-        "url": "https://github.com/tinacms/tinacms"
-      },
-      {
-        "icon": {
-          "name": "FaYoutube"
-        },
-        "url": "https://www.youtube.com/@TinaCMS"
-      },
-      {
-        "icon": {
-          "name": "FaXTwitter"
-        },
-        "url": "https://x.com/TinaCMS"
+  "logo": "/uploads/logos/betania-logo-transparent-schwarz.png",
+  "services": [
+    {
+      "title": "Hauptgottesdienst",
+      "time": "Sonntag 10:00 - 12:30 Uhr",
+      "description": "Unser wöchentlicher Hauptgottesdienst mit Anbetung, Predigt und Gemeinschaft für die ganze Familie.",
+      "features": [
+        "Familienfreundlich",
+        "Übersetzung verfügbar",
+        "Kinder-Programm",
+        "Herzliche Atmosphäre"
+      ],
+      "icon": {
+        "name": "BiTime",
+        "color": "orange",
+        "style": "float"
       }
-    ]
+    },
+    {
+      "title": "Gebetsabend",
+      "time": "Mittwoch 18:00 - 19:30 Uhr",
+      "description": "Ein intimerer Gottesdienst unter der Woche mit Gebet, Gemeinschaft und biblischer Lehre.",
+      "features": [
+        "Gebetszeit",
+        "Biblische Lehre",
+        "Persönliche Gespräche",
+        "Gemeinschaft"
+      ],
+      "icon": {
+        "name": "BiTime",
+        "color": "orange",
+        "style": "float"
+      }
+    }
+  ],
+  "contact": {
+    "street": "Nürnbergerstraße",
+    "number": "24",
+    "ort": "85049 Ingolstadt",
+    "email": "hello@betania.de",
+    "phone": "+49 841 123456"
   },
+  "social": [
+    {
+      "icon": {
+        "name": "AiFillInstagram",
+        "color": "orange",
+        "style": "float"
+      },
+      "url": "https://www.instagram.com/betaniaingolstadt/"
+    },
+    {
+      "icon": {
+        "name": "BiLogoFacebookCircle",
+        "color": "orange",
+        "style": "float"
+      },
+      "url": "https://www.facebook.com/betaniaingostadt.de"
+    },
+    {
+      "icon": {
+        "name": "FaYoutube",
+        "color": "orange",
+        "style": "float"
+      },
+      "url": "https://www.youtube.com/@BetaniaIngolstadt"
+    }
+  ],
+  "legal": [
+    {
+      "href": "/de/data-privacy",
+      "label": "Datenschutz"
+    },
+    {
+      "href": "/de/imprint",
+      "label": "Impressum"
+    }
+  ],
   "theme": {
-    "color": "blue",
+    "color": "orange",
     "font": "sans",
     "darkMode": "light"
   }

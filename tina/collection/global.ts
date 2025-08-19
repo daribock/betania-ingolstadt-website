@@ -2,6 +2,40 @@
 import type { Collection } from 'tinacms';
 import { ColorPickerInput } from '../fields/color';
 import { iconSchema } from '../fields/icon';
+import { servicesSchema } from '@/components/blocks/services';
+
+const contactSchema = {
+  type: 'object',
+  label: 'Contact',
+  name: 'contact',
+  fields: [
+    {
+      type: 'string',
+      label: 'Street',
+      name: 'street',
+    },
+    {
+      type: 'string',
+      label: 'Number',
+      name: 'number',
+    },
+    {
+      type: 'string',
+      label: 'Ort (City)',
+      name: 'ort',
+    },
+    {
+      type: 'string',
+      label: 'Email',
+      name: 'email',
+    },
+    {
+      type: 'string',
+      label: 'Phone',
+      name: 'phone',
+    },
+  ],
+};
 
 const Global: Collection = {
   label: 'Global',
@@ -22,6 +56,11 @@ const Global: Collection = {
           type: 'string',
           label: 'Name',
           name: 'name',
+        },
+        {
+          type: 'string',
+          label: 'Tagline',
+          name: 'tagline',
         },
         {
           type: 'string',
@@ -62,28 +101,60 @@ const Global: Collection = {
       ],
     },
     {
+      type: 'image',
+      label: 'Logo',
+      name: 'logo',
+    },
+    servicesSchema as any,
+    contactSchema as any,
+    {
       type: 'object',
+      label: 'Social Links',
+      name: 'social',
+      list: true,
+      ui: {
+        itemProps: (item) => {
+          return { label: item?.icon?.name || 'undefined' };
+        },
+      },
+      fields: [
+        iconSchema as any,
+        {
+          type: 'string',
+          label: 'Url',
+          name: 'url',
+        },
+      ],
+    },
+    {
+      type: 'string',
       label: 'Footer',
       name: 'footer',
+    },
+    {
+      type: 'object',
+      label: 'Legal Links',
+      name: 'legal',
+      list: true,
+      ui: {
+        itemProps: (item) => {
+          return { label: item?.label };
+        },
+        defaultItem: {
+          href: '',
+          label: '',
+        },
+      },
       fields: [
         {
-          type: 'object',
-          label: 'Social Links',
-          name: 'social',
-          list: true,
-          ui: {
-            itemProps: (item) => {
-              return { label: item?.icon?.name || 'undefined' };
-            },
-          },
-          fields: [
-            iconSchema as any,
-            {
-              type: 'string',
-              label: 'Url',
-              name: 'url',
-            },
-          ],
+          type: 'string',
+          label: 'Link',
+          name: 'href',
+        },
+        {
+          type: 'string',
+          label: 'Label',
+          name: 'label',
         },
       ],
     },

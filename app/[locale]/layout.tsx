@@ -29,8 +29,10 @@ const lato = Lato({
 });
 
 export const metadata: Metadata = {
-  title: 'Tina',
-  description: 'Tina Cloud Starter',
+  title: 'Betania Ingolstadt',
+  description:
+    'Wir sind eine junge und moderne Gemeinde. Eine Gemeinde die voller Feuer und Liebe für den Herrn ist. Unser Herz schlägt für Jesus!',
+  icons: [{ url: '/uploads/logos/betania-logo-bg.png' }],
 };
 
 export default async function RootLayout({

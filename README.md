@@ -1,107 +1,248 @@
-# Tina Starter 🦙
+# Betania Ingolstadt Website 🏛️
 
-![tina-cloud-starter-demo](https://user-images.githubusercontent.com/103008/130587027-995ccc45-a852-4f90-b658-13e8e0517339.gif)
+![Betania Ingolstadt](https://img.shields.io/badge/Church-Betania%20Ingolstadt-orange?style=for-the-badge)
+![Next.js](https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js)
+![TinaCMS](https://img.shields.io/badge/TinaCMS-Headless%20CMS-blue?style=for-the-badge)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript)
 
-This Next.js starter is powered by [TinaCMS](https://app.tina.io) for you and your team to visually live edit the structured content of your website. ✨
+Modern, bilingual church website for Betania Ingolstadt built with Next.js,
+TinaCMS, and Tailwind CSS. Features a fully manageable content system with
+German and Romanian language support.
 
-The content is managed through Markdown and JSON files stored in your GitHub repository, and queried through Tina GraphQL API.
+## ✨ Features
 
-### Features
+### 🌐 **Multilingual Support**
 
-- [Tina Headless CMS](https://app.tina.io) for authentication, content modeling, visual editing and team management.
-- [Vercel](https://vercel.com) deployment to visually edit your site from the `/admin` route.
-- Local development workflow from the filesystem with a local GraqhQL server.
+- **German (Deutsch)** - Primary language
+- **Romanian (Română)** - Secondary language
+- Dynamic routing with `/de` and `/ro` prefixes
+- Integrated translation system using `next-intl`
 
-## Requirements
+### 📝 **Content Management**
 
-- Git, [Node.js Active LTS](https://nodejs.org/en/about/releases/), pnpm installed for local development.
-- A [TinaCMS](https://app.tina.io) account for live editing.
+- **TinaCMS** - Visual editing with live preview
+- **Markdown + JSON** content stored in Git
+- **Block-based** page building system
+- **Global settings** management per language
 
-## Local Development
+### 🎨 **Modern Design**
 
-Install the project's dependencies:
+- **Tailwind CSS** - Utility-first styling
+- **shadcn/ui** - Beautiful, accessible components
+- **Responsive design** - Mobile-first approach
+- **Orange branding** - Church identity colors
 
-> [!NOTE]  
-> [Do you know the best package manager for Node.js?](https://www.ssw.com.au/rules/best-package-manager-for-node/) Using the right package manager can greatly enhance your development workflow. We recommend using pnpm for its speed and efficient handling of dependencies. Learn more about why pnpm might be the best choice for your projects by checking out this rule from SSW.
+### 🏗️ **Page Types & Blocks**
 
+- **Home** - Hero, services, events, call-to-action
+- **About** - Church history and mission
+- **Contact** - Location, contact form, service times
+- **Blog** - Posts and articles (coming soon)
+
+### 📦 **Available Content Blocks**
+
+- `Hero` - Main landing section with actions
+- `PageHeader` - Page titles with background images
+- `Services` - Church service times and descriptions
+- `Events` - Upcoming church events integration
+- `ContactForm` - Contact information and email form
+- `LocationSection` - Address and map integration
+- `CallToAction` - Action buttons and social links
+- `Content` - Rich text and markdown content
+- `Video` - Embedded video content
+
+## TODO
+
+- [ ] Add FAQ section
+- [ ] Implement blog functionality
+- [ ] Add online donation system
+- [ ] Implement newsletter signup
+- [ ] Add sermon archive
+- [ ] Create ministry pages
+- [ ] Add photo gallery
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- **Node.js 18+** (Active LTS)
+- **npm** (recommended) or npm
+- **Git** for version control
+- **TinaCMS account** for content management
+
+### Installation
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/daribock/betania-ingolstadt-website.git
+   cd betania-ingolstadt-website
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables**
+
+   ```bash
+   cp .env.example .env
+   ```
+
+   Fill in your TinaCMS credentials:
+
+   ```env
+   NEXT_PUBLIC_TINA_CLIENT_ID=your_client_id
+   TINA_TOKEN=your_token
+   NEXT_PUBLIC_TINA_BRANCH=main
+   ```
+
+4. **Start development server**
+   ```bash
+   npm dev
+   ```
+
+### 🌐 Local Development URLs
+
+- **Website**: http://localhost:3000
+- **German**: http://localhost:3000/de
+- **Romanian**: http://localhost:3000/ro
+- **CMS Admin**: http://localhost:3000/admin
+
+## 🏗️ Project Structure
 
 ```
-pnpm install
+betania-ingolstadt-website/
+├── app/                          # Next.js app directory
+│   ├── [locale]/                 # Internationalized routes
+│   │   ├── layout.tsx           # Layout with i18n
+│   │   ├── page.tsx             # Homepage
+│   │   ├── about/               # About page
+│   │   ├── contact/             # Contact page
+│   │   └── posts/               # Blog posts
+├── components/                   # React components
+│   ├── blocks/                  # TinaCMS content blocks
+│   │   ├── hero.tsx            # Hero section
+│   │   ├── contact-form.tsx    # Contact form
+│   │   ├── services.tsx        # Service times
+│   │   └── ...                 # Other blocks
+│   ├── layout/                 # Layout components
+│   │   ├── nav/                # Navigation components
+│   │   └── section.tsx         # Section wrapper
+│   └── ui/                     # shadcn/ui components
+├── content/                     # Content files
+│   ├── global/                 # Global settings
+│   │   ├── de/index.json       # German global data
+│   │   └── ro/index.json       # Romanian global data
+│   ├── pages/                  # Page content
+│   │   ├── de/                 # German pages
+│   │   └── ro/                 # Romanian pages
+│   └── posts/                  # Blog posts
+├── messages/                    # Translation files
+│   ├── de.json                 # German translations
+│   └── ro.json                 # Romanian translations
+├── tina/                       # TinaCMS configuration
+│   ├── config.tsx              # Main Tina config
+│   ├── collection/             # Content schemas
+│   └── __generated__/          # Generated types
+└── public/                     # Static assets
 ```
 
-Run the project locally:
+## 🎯 Content Management
 
-```
-pnpm dev
-```
+### Adding New Content Blocks
 
-### Local URLs
+1. **Create the component** in `components/blocks/`
+2. **Define the schema** with TinaCMS template
+3. **Add to blocks index** in `components/blocks/index.tsx`
+4. **Register in page collection** in `tina/collection/page.ts`
+5. **Rebuild TinaCMS** with `npm build:tina`
 
-- http://localhost:3000 : browse the website
-- http://localhost:3000/admin : connect to Tina Cloud and go in edit mode
-- http://localhost:3000/exit-admin : log out of Tina Cloud
-- http://localhost:4001/altair/ : GraphQL playground to test queries and browse the API documentation
+### Global Settings
 
-## Deployment
+Global settings are managed per language in:
 
-### GitHub Pages
+- `content/global/de/index.json` - German settings
+- `content/global/ro/index.json` - Romanian settings
 
-This starter can be deployed to GitHub Pages. A GitHub Actions workflow is included that handles the build and deployment process. 
+Includes:
 
-To deploy to GitHub Pages:
+- Header navigation
+- Contact information
+- Service times
+- Social media links
+- Footer content
 
-1. In your repository settings, ensure GitHub Pages is enabled and set to deploy from the `gh-pages` branch
-2. Push changes to your main branch - the workflow will automatically build and deploy the site
+### Translations
 
-> [!NOTE]
-> When deploying to GitHub Pages, you'll need to update your secrets in Settings | Secrets and variables | Actions to include:
-> - `NEXT_PUBLIC_TINA_CLIENT_ID`
-> - `TINA_TOKEN`
->
-> You get these from your TinaCloud project - [read the docs](https://tina.io/docs/tina-cloud/deployment-options/github-pages)
+Add new translations in:
 
-> [!IMPORTANT]
-> GitHub Pages does not support server side code, so this will run as a static site. If you don't want to deploy to GitHub pages, just delete `.github/workflows/build-and-deploy.yml`
+- `messages/de.json` - German translations
+- `messages/ro.json` - Romanian translations
 
-### Building the Starter Locally (Using the hosted content API)
+Use in components:
 
-Replace the `.env.example`, with `.env`
+```tsx
+import { useTranslations } from 'next-intl';
 
-```
-NEXT_PUBLIC_TINA_CLIENT_ID=<get this from the project you create at app.tina.io>
-TINA_TOKEN=<get this from the project you create at app.tina.io>
-NEXT_PUBLIC_TINA_BRANCH=<Specify the branch with Tina configured>
+const t = useTranslations('SectionName');
+return <h1>{t('title')}</h1>;
 ```
 
-Build the project:
+## 🛠️ Development
+
+### Build Commands
 
 ```bash
-pnpm build
+# Development server
+npm dev
+
+# Build TinaCMS
+npm build:tina
+
+# Build for production
+npm build
+
+# Start production server
+npm start
+
+# Lint code
+npm lint
+
+# Type checking
+npm type-check
 ```
 
-## Getting Help
+### Adding New Languages
 
-To get help with any TinaCMS challenges you may have:
+1. **Add locale** to `i18n/routing.ts`
+2. **Create translation file** in `messages/[locale].json`
+3. **Add global settings** in `content/global/[locale]/index.json`
+4. **Create page content** in `content/pages/[locale]/`
 
-- Visit the [documentation](https://tina.io/docs/) to learn about Tina.
-- [Join our Discord](https://discord.gg/zumN63Ybpf) to share feedback.
-- Visit the [community forum](https://community.tinacms.org/) to ask questions.
-- Get support through the chat widget on the TinaCMS Dashboard
-- [Email us](mailto:support@tina.io) to schedule a call with our team and share more about your context and what you're trying to achieve.
-- [Search or open an issue](https://github.com/tinacms/tinacms/issues) if something is not working.
-- Reach out on Twitter at [@tina_cms](https://twitter.com/tina_cms).
+## 📚 Resources
 
-## Development tips
+### TinaCMS
 
-### Visual Studio Code GraphQL extension
+- [Documentation](https://tina.io/docs/)
+- [Discord Community](https://discord.gg/zumN63Ybpf)
+- [GitHub](https://github.com/tinacms/tinacms)
 
-[Install the GraphQL extension](https://marketplace.visualstudio.com/items?itemName=GraphQL.vscode-graphql) to benefit from type auto-completion.
+### Next.js
 
-### Typescript
+- [Documentation](https://nextjs.org/docs)
+- [Learn Next.js](https://nextjs.org/learn)
 
-A good way to ensure your components match the shape of your data is to leverage the auto-generated TypeScript types.
-These are rebuilt when your `tina` config changes.
+### Internationalization
 
-## LICENSE
+- [next-intl Documentation](https://next-intl-docs.vercel.app/)
+
+## 📄 License
 
 Licensed under the [Apache 2.0 license](./LICENSE).
+
+---
+
+**Built with ❤️ for Betania Ingolstadt Community**
