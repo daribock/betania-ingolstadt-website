@@ -133,6 +133,33 @@ const Global: Collection = {
     },
     {
       type: 'object',
+      label: 'Legal Links',
+      name: 'legal',
+      list: true,
+      ui: {
+        itemProps: (item) => {
+          return { label: item?.label };
+        },
+        defaultItem: {
+          href: '',
+          label: '',
+        },
+      },
+      fields: [
+        {
+          type: 'string',
+          label: 'Link',
+          name: 'href',
+        },
+        {
+          type: 'string',
+          label: 'Label',
+          name: 'label',
+        },
+      ],
+    },
+    {
+      type: 'object',
       label: 'Theme',
       name: 'theme',
       fields: [

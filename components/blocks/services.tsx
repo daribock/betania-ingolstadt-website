@@ -2,12 +2,22 @@ import type { Template } from 'tinacms';
 import { tinaField } from 'tinacms/dist/react';
 import { Section } from '../layout/section';
 import { sectionBlockSchemaField } from '../layout/section';
+import { iconSchema } from '@/tina/fields/icon';
 import { PageBlocksServices } from '@/tina/__generated__/types';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Clock } from 'lucide-react';
 import { Typography } from '../ui/Typography';
+import { Icon } from '../icon';
+import { useLayout } from '../layout/layout-context';
 
 export const Services = ({ data }: { data: PageBlocksServices }) => {
+  const { globalSettings } = useLayout();
+  const { services } = globalSettings!;
+
+  if (!services) {
+    return null;
+  }
+
   return (
     <Section background={data.background!}>
       <div className="text-center prose prose-lg">
@@ -18,14 +28,18 @@ export const Services = ({ data }: { data: PageBlocksServices }) => {
       </div>
 
       <div className="grid md:grid-cols-2 gap-8 mt-8">
-        {data.services?.map((service, index) => (
-          <Card key={index} style={{ animationDelay: `${index * 0.2}s` }}>
+        {services.map((service, index) => (
+          <Card key={index}>
             <CardHeader>
               <CardTitle
                 className="flex items-center gap-3"
                 data-tina-field={tinaField(service, 'title')}
               >
-                <Clock className="w-6 h-6" />
+                {service?.icon ? (
+                  <Icon data={service.icon} className="w-6 h-6" />
+                ) : (
+                  <Clock className="w-6 h-6" />
+                )}
                 <Typography>
                   <h4 className="!m-0">{service?.title}</h4>
                 </Typography>
@@ -78,6 +92,11 @@ export const servicesSchema = {
       time: 'Sonntag 10:00 Uhr',
       description: 'Beschreibung des Gottesdienstes',
       features: ['Feature 1', 'Feature 2'],
+      icon: {
+        name: 'BiClock',
+        color: 'orange',
+        style: 'float',
+      },
     },
   },
   fields: [
@@ -105,9 +124,12 @@ export const servicesSchema = {
       name: 'features',
       list: true,
     },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    iconSchema as any,
   ],
 };
 
+// Services are stored in globals
 export const servicesBlockSchema: Template = {
   name: 'services',
   label: 'Services',
@@ -118,32 +140,6 @@ export const servicesBlockSchema: Template = {
       title: 'Unsere Gottesdienste',
       description:
         'Kommen Sie und erleben Sie Gottes Gegenwart in unseren Gottesdiensten. Jeder ist herzlich willkommen!',
-      services: [
-        {
-          title: 'Hauptgottesdienst',
-          time: 'Sonntag 10:00 - 12:30 Uhr',
-          description:
-            'Unser wöchentlicher Hauptgottesdienst mit Anbetung, Predigt und Gemeinschaft für die ganze Familie.',
-          features: [
-            'Familienfreundlich',
-            'Übersetzung verfügbar',
-            'Kinder-Programm',
-            'Herzliche Atmosphäre',
-          ],
-        },
-        {
-          title: 'Gebetsabend',
-          time: 'Mittwoch 18:00 - 19:30 Uhr',
-          description:
-            'Ein intimerer Gottesdienst unter der Woche mit Gebet, Gemeinschaft und biblischer Lehre.',
-          features: [
-            'Gebetszeit',
-            'Biblische Lehre',
-            'Persönliche Gespräche',
-            'Gemeinschaft',
-          ],
-        },
-      ],
     },
   },
   fields: [
@@ -159,7 +155,5 @@ export const servicesBlockSchema: Template = {
       label: 'Description',
       name: 'description',
     },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    servicesSchema as any,
   ],
 };

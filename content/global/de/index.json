@@ -34,7 +34,12 @@
         "Übersetzung verfügbar",
         "Kinder-Programm",
         "Herzliche Atmosphäre"
-      ]
+      ],
+      "icon": {
+        "name": "BiTime",
+        "color": "orange",
+        "style": "float"
+      }
     },
     {
       "title": "Gebetsabend",
@@ -45,7 +50,12 @@
         "Biblische Lehre",
         "Persönliche Gespräche",
         "Gemeinschaft"
-      ]
+      ],
+      "icon": {
+        "name": "BiTime",
+        "color": "orange",
+        "style": "float"
+      }
     }
   ],
   "contact": {
@@ -81,7 +91,16 @@
       "url": "https://www.youtube.com/@BetaniaIngolstadt"
     }
   ],
-  "footer": "test",
+  "legal": [
+    {
+      "href": "/de/data-privacy",
+      "label": "Datenschutz"
+    },
+    {
+      "href": "/de/imprint",
+      "label": "Impressum"
+    }
+  ],
   "theme": {
     "color": "orange",
     "font": "sans",

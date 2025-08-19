@@ -27,25 +27,35 @@
   "services": [
     {
       "title": "Serviciul principal",
-      "time": "Duminică 10:00 - 12:30",
+      "time": "Duminică 10:00 - 12:30 Uhr",
       "description": "Serviciul nostru principal săptămânal cu închinare, predică și comuniune pentru întreaga familie.",
       "features": [
         "Prietenos cu familiile",
         "Traducere disponibilă",
         "Program pentru copii",
         "Atmosferă caldă"
-      ]
+      ],
+      "icon": {
+        "name": "BiTime",
+        "color": "orange",
+        "style": "float"
+      }
     },
     {
       "title": "Seara de rugăciune",
-      "time": "Miercuri 18:00 - 19:30",
+      "time": "Miercuri 18:00 - 19:30 Uhr",
       "description": "Un serviciu mai intim în timpul săptămânii cu rugăciune, comuniune și învățătură biblică.",
       "features": [
         "Timp de rugăciune",
         "Învățătură biblică",
         "Conversații personale",
         "Comuniune"
-      ]
+      ],
+      "icon": {
+        "name": "BiTime",
+        "color": "orange",
+        "style": "float"
+      }
     }
   ],
   "contact": {
@@ -81,7 +91,16 @@
       "url": "https://www.youtube.com/@BetaniaIngolstadt"
     }
   ],
-  "footer": "test",
+  "legal": [
+    {
+      "href": "/ro/data-privacy",
+      "label": "Confidențialitate"
+    },
+    {
+      "href": "/ro/imprint",
+      "label": "Impresii"
+    }
+  ],
   "theme": {
     "color": "orange",
     "font": "sans",

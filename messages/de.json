@@ -31,6 +31,12 @@
     "ContactImage": "Kontakt Bild",
     "Telefon": "Telefon",
     "Email": "E-Mail",
-    "Services": "Gottesdienste"
+    "Services": "Gottesdienste",
+    "quickLinks": "Schnelllinks"
+  },
+  "footer": {
+    "copyright": "© {year} Betania Ingolstadt. Alle Rechte vorbehalten.",
+    "dataPrivacy": "Datenschutz",
+    "imprint": "Impressum"
   }
 }

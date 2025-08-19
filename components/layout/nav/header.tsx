@@ -29,12 +29,14 @@ export const Header = () => {
             {/* Left side: Logo + Navigation */}
             <div className="flex items-center gap-8 h-full">
               {/* Logo */}
-              <Image
-                src="/uploads/logos/betania-logo-transparent-schwarz.png"
-                alt="Logo"
-                width={40}
-                height={40}
-              />
+              <Link href="/">
+                <Image
+                  src="/uploads/logos/betania-logo-transparent-schwarz.png"
+                  alt="Logo"
+                  width={40}
+                  height={40}
+                />
+              </Link>
 
               {/* Navigation - Desktop */}
               <div className="hidden lg:block h-full">

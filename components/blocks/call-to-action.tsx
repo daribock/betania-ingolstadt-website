@@ -10,11 +10,19 @@ import { Typography } from '../ui/Typography';
 
 export const CallToAction = ({ data }: { data: PageBlocksCta }) => {
   return (
-    <Section background={data.background!}>
+    <Section background="bg-gradient-to-l from-orange-400/80 to-orange-600/80">
       <div className=" text-center">
         <Typography>
-          <h2 data-tina-field={tinaField(data, 'title')}>{data.title}</h2>
-          <p data-tina-field={tinaField(data, 'description')}>
+          <h2
+            className="!text-white"
+            data-tina-field={tinaField(data, 'title')}
+          >
+            {data.title}
+          </h2>
+          <p
+            className="!text-white"
+            data-tina-field={tinaField(data, 'description')}
+          >
             {data.description}
           </p>
         </Typography>
@@ -27,7 +35,7 @@ export const CallToAction = ({ data }: { data: PageBlocksCta }) => {
                   asChild
                   size="lg"
                   variant={
-                    action?.variant === 'secondary' ? 'outline' : 'default'
+                    action?.variant === 'secondary' ? 'cta-outline' : 'cta'
                   }
                 >
                   <Link href={action!.link!}>

@@ -2,13 +2,15 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useLocale, useTranslations } from 'next-intl';
 import { Icon } from '../../icon';
 import { useLayout } from '../layout-context';
-import { Heart } from 'lucide-react';
 
 export const Footer = () => {
+  const t = useTranslations();
+  const locale = useLocale();
   const { globalSettings } = useLayout();
-  const { header, social, services, contact } = globalSettings!;
+  const { header, social, services, contact, legal } = globalSettings!;
 
   return (
     <footer className="bg-black text-white">
@@ -34,7 +36,7 @@ export const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-semibold mb-4">Schnelllinks</h3>
+            <h3 className="font-semibold mb-4">{t('quickLinks')}</h3>
             <ul className="space-y-2 text-gray-400">
               {header?.nav?.map((link) => (
                 <li key={link?.href}>
@@ -51,7 +53,7 @@ export const Footer = () => {
 
           {/* Service Times */}
           <div>
-            <h3 className="font-semibold mb-4">Gottesdienste</h3>
+            <h3 className="font-semibold mb-4">{t('Contact.Services')}</h3>
             <ul className="space-y-2 text-gray-400">
               {services?.map((service, index: number) => (
                 <li key={index}>{service?.time}</li>
@@ -62,7 +64,7 @@ export const Footer = () => {
           {/* Contact Info */}
           {contact && (
             <div>
-              <h3 className="font-semibold mb-4">Kontakt</h3>
+              <h3 className="font-semibold mb-4">{t('Contact.title')}</h3>
               <ul className="space-y-2 text-gray-400">
                 <>
                   {contact.street && contact.number && contact.ort && (
@@ -105,20 +107,33 @@ export const Footer = () => {
 
         {/* Bottom Section */}
         <div className="border-t border-gray-800 mt-8 pt-8">
-          <div className="flex flex-col md:flex-row md:justify-between items-center gap-4">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center justify-between">
             {/* Logo and Copyright */}
-            <div className="flex items-center gap-4">
-              <Link href="/" aria-label="go home">
-                <Icon parentColor={header!.color!} data={header!.icon} />
-              </Link>
+            <div className="flex flex-col md:flex-row  gap-4">
               <span className="text-gray-400 text-sm">
-                © {new Date().getFullYear()}{' '}
-                {header?.name || 'Betania Ingolstadt'}. Alle Rechte vorbehalten.
+                {t('footer.copyright', {
+                  year: new Date().getFullYear(),
+                })}
               </span>
+
+              {/* Legal Links */}
+              {legal && legal.length > 0 && (
+                <div className="flex items-start gap-4 text-sm">
+                  {legal.map((legal) => (
+                    <Link
+                      key={legal!.href!}
+                      href={legal!.href!}
+                      className="text-gray-400 hover:text-white transition-colors"
+                    >
+                      {legal?.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Social Links */}
-            <div className="flex justify-center gap-6">
+            <div className="flex  gap-6">
               {social?.map((link, index) => (
                 <Link
                   key={`${link!.icon}${index}`}

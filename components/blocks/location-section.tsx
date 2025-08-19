@@ -7,6 +7,7 @@ import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { tinaField } from 'tinacms/dist/react';
 import { Section } from '../layout/section';
+import { Typography } from '../ui/Typography';
 
 export const LocationSection = ({ data }: { data: PageBlocksLocation }) => {
   const contactT = useTranslations('Contact');
@@ -23,33 +24,35 @@ export const LocationSection = ({ data }: { data: PageBlocksLocation }) => {
     <Section id="visit">
       <div className="grid md:grid-cols-2 gap-12 items-center">
         <div>
-          <div className="prose prose-lg">
+          <Typography>
             <h2 data-tina-field={tinaField(data, 'title')}>{data.title}</h2>
-          </div>
+          </Typography>
           <div className="space-y-4 mt-8">
             {contact.street && contact.number && contact.ort && (
               <div className="flex items-start space-x-3">
                 <MapPin className="h-6 w-6 text-primary mt-1" />
-                <div className="prose prose-sm">
+                <Typography size="sm">
                   <h3 className="!m-0">{contactT('Address')}</h3>
-                  <Link
-                    href="https://maps.app.goo.gl/w3A3ZUWggsQTQzJb7"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {contact.street} {contact.number}
-                    <br />
-                    {contact.ort}
-                    {/* TODO: Should we add this? <br />
+                  <div data-tina-field={tinaField(globalSettings, 'contact')}>
+                    <Link
+                      href="https://maps.app.goo.gl/w3A3ZUWggsQTQzJb7"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {contact.street} {contact.number}
+                      <br />
+                      {contact.ort}
+                      {/* TODO: Should we add this? <br />
                       Deutschland */}
-                  </Link>
-                </div>
+                    </Link>
+                  </div>
+                </Typography>
               </div>
             )}
             {contact.phone && (
               <div className="flex items-start space-x-3">
                 <Phone className="h-6 w-6 text-primary mt-1" />
-                <div className="prose prose-sm">
+                <Typography size="sm">
                   <h3 className="!m-0">{contactT('Telefon')}</h3>
 
                   <Link
@@ -58,13 +61,13 @@ export const LocationSection = ({ data }: { data: PageBlocksLocation }) => {
                   >
                     {contact.phone}
                   </Link>
-                </div>
+                </Typography>
               </div>
             )}
             {contact.email && (
               <div className="flex items-start space-x-3">
                 <Mail className="h-6 w-6 text-primary mt-1" />
-                <div className="prose prose-sm">
+                <Typography size="sm">
                   <h3 className="!m-0">{contactT('Email')}</h3>
                   <Link
                     href={`mailto:${contact.email}`}
@@ -72,15 +75,15 @@ export const LocationSection = ({ data }: { data: PageBlocksLocation }) => {
                   >
                     {contact.email}
                   </Link>
-                </div>
+                </Typography>
               </div>
             )}
           </div>
           {services && (
             <div className="space-y-2 mt-8">
-              <div className="prose prose-sm">
+              <Typography size="sm">
                 <h3 className="!m-0 text-xl ">{contactT('Services')}</h3>
-              </div>
+              </Typography>
               <ul className="">
                 {services?.map((service, index: number) => (
                   <li key={index}>{service?.time}</li>

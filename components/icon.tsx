@@ -12,6 +12,7 @@ import { AiFillInstagram } from 'react-icons/ai';
 import React from 'react';
 import { useLayout } from './layout/layout-context';
 import { Maybe } from '@/tina/__generated__/types';
+import { cn } from '@/lib/utils';
 
 export const IconOptions = {
   ...BoxIcons,
@@ -87,6 +88,7 @@ const iconColorClass: Record<IconColor, { regular: string; circle: string }> = {
   },
 };
 
+// TODO: move this to tina/fields/icon.tsx and add it to the schema so that its editable
 const iconSizeClass: Record<IconSize, string> = {
   xs: 'w-6 h-6 shrink-0',
   small: 'w-8 h-8 shrink-0',
@@ -194,7 +196,9 @@ export const Icon = ({
   return (
     <IconSVG
       {...tinaProps}
-      className={`${iconSizeClasses} ${iconColorClass[finalColor].regular} ${className}`}
+      className={cn(
+        `${iconSizeClasses} ${iconColorClass[finalColor].regular} ${className}`
+      )}
     />
   );
 };
