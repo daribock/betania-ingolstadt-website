@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-'use client';
 import React from 'react';
 
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
@@ -24,7 +22,9 @@ export const Content = ({ data }: { data: PageBlocksContent }) => {
         <TinaMarkdown
           content={data.body}
           components={{
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             mermaid: (props: any) => <Mermaid {...props} />,
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             scriptCopyBlock: (props: any) => <ScriptCopyBtn {...props} />,
           }}
         />
@@ -43,6 +43,7 @@ export const contentBlockSchema: Template = {
     },
   },
   fields: [
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     sectionBlockSchemaField as any,
     {
       type: 'rich-text',

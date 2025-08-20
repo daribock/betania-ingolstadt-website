@@ -6,7 +6,7 @@
       "style": "float"
     },
     "name": "Betania Ingolstadt",
-    "tagline": "Gemeinschaft, Leben, Familie = Jesus",
+    "tagline": "Der Ort an dem sich die Freunde treffen",
     "color": "default",
     "nav": [
       {
@@ -61,9 +61,9 @@
   "contact": {
     "street": "Nürnbergerstraße",
     "number": "24",
-    "ort": "85049 Ingolstadt",
+    "ort": "85055 Ingolstadt",
     "email": "hello@betania.de",
-    "phone": "+49 841 123456"
+    "phone": "+49 (0) 841 123456"
   },
   "social": [
     {

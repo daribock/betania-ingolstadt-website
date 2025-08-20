@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-'use client';
-
 import { PageBlocksEvents } from '../../tina/__generated__/types';
 import type { Template } from 'tinacms';
 import { tinaField } from 'tinacms/dist/react';
@@ -43,6 +40,7 @@ export const eventsBlockSchema: Template = {
     },
   },
   fields: [
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     sectionBlockSchemaField as any,
     {
       type: 'string',

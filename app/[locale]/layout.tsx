@@ -1,9 +1,9 @@
 import React from 'react';
 import { Metadata } from 'next';
 import { Inter as FontSans, Lato, Nunito } from 'next/font/google';
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/next';
 import { cn } from '@/lib/utils';
-import { VideoDialogProvider } from '@/components/ui/VideoDialogContext';
-import VideoDialog from '@/components/ui/VideoDialog';
 
 import '@/styles.css';
 import { TailwindIndicator } from '@/components/ui/breakpoint-indicator';
@@ -54,11 +54,10 @@ export default async function RootLayout({
       className={cn(fontSans.variable, nunito.variable, lato.variable)}
     >
       <body className="min-h-screen bg-background font-sans antialiased">
-        <VideoDialogProvider>
-          <NextIntlClientProvider>{children}</NextIntlClientProvider>
-          <VideoDialog />
-        </VideoDialogProvider>
+        <NextIntlClientProvider>{children}</NextIntlClientProvider>
         <TailwindIndicator />
+        <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
