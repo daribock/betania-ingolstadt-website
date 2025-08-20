@@ -22,7 +22,7 @@
         "label": "Kontakt"
       },
       {
-        "href": "de/donate",
+        "href": "/de/donate",
         "label": "Spenden"
       }
     ]
