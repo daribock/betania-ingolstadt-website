@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 import { iconSchema } from '@/tina/fields/icon';
-// import Image from 'next/image';
 import Link from 'next/link';
+import Image from 'next/image';
 import type { Template } from 'tinacms';
 import { tinaField } from 'tinacms/dist/react';
 import {
@@ -13,10 +12,9 @@ import { Icon } from '../icon';
 import { Section, sectionBlockSchemaField } from '../layout/section';
 import { AnimatedGroup } from '../motion-primitives/animated-group';
 import { TextEffect } from '../motion-primitives/text-effect';
-// import HeroVideoDialog from '../ui/hero-video-dialog';
 import { Transition } from 'motion/react';
 import { Button } from '../ui/button';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 const transitionVariants = {
   container: {
@@ -114,50 +112,38 @@ export const Hero = ({ data }: { data: PageBlocksHero }) => {
 
 const ImageBlock = ({ image }: { image: PageBlocksHeroImage }) => {
   const [scrollY, setScrollY] = useState(0);
-  const speed: number = 0.5;
+  const speed: number = 0.3; // Reduced speed for smoother effect
+
+  const handleScroll = useCallback(() => {
+    // Use requestAnimationFrame for smoother scrolling
+    requestAnimationFrame(() => {
+      setScrollY(window.scrollY);
+    });
+  }, []);
 
   useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-  // FIXME: Support video URLs in the future
-  // if (image.videoUrl) {
-  //   let videoId = '';
-  //   if (image.videoUrl) {
-  //     const embedPrefix = '/embed/';
-  //     const idx = image.videoUrl.indexOf(embedPrefix);
-  //     if (idx !== -1) {
-  //       videoId = image.videoUrl
-  //         .substring(idx + embedPrefix.length)
-  //         .split('?')[0];
-  //     }
-  //   }
-  //   const thumbnailSrc = image.src
-  //     ? image.src!
-  //     : videoId
-  //     ? `https://i3.ytimg.com/vi/${videoId}/maxresdefault.jpg`
-  //     : '';
-
-  //   return (
-  //     <HeroVideoDialog
-  //       videoSrc={image.videoUrl}
-  //       thumbnailSrc={thumbnailSrc}
-  //       thumbnailAlt="Hero Video"
-  //     />
-  //   );
-  // }
+  }, [handleScroll]);
 
   if (image.src) {
     return (
-      // FIXME: Use the `Image` component from Next.js for better performance
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+      <div 
+        className="absolute inset-0 will-change-transform"
         style={{
-          backgroundImage: `url('${image.src}')`,
-          transform: `translateY(${scrollY * speed}px)`,
+          transform: `translate3d(0, ${scrollY * speed}px, 0)`,
         }}
-      />
+      >
+        <Image
+          src={image.src}
+          alt={image.alt || 'Hero background'}
+          fill
+          className="object-cover object-center"
+          priority
+          quality={90}
+          sizes="100vw"
+        />
+      </div>
     );
   }
 };
@@ -174,6 +160,7 @@ export const heroBlockSchema: Template = {
     },
   },
   fields: [
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     sectionBlockSchemaField as any,
     {
       type: 'string',
@@ -214,6 +201,7 @@ export const heroBlockSchema: Template = {
             { label: 'Link', value: 'link' },
           ],
         },
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         iconSchema as any,
         {
           label: 'Link',
@@ -236,13 +224,6 @@ export const heroBlockSchema: Template = {
           name: 'alt',
           label: 'Alt Text',
           type: 'string',
-        },
-        {
-          name: 'videoUrl',
-          label: 'Video URL',
-          type: 'string',
-          description:
-            'If using a YouTube video, make sure to use the embed version of the video URL',
         },
       ],
     },

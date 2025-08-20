@@ -25,12 +25,15 @@
     "ServiceTimes": "Orele serviciilor",
     "SendMessage": "Trimite mesaj",
     "FormDescription": "Completați formularul și vă vom răspunde cât mai curând posibil.",
-    "ContactDirectly": "Contactează direct",
-    "ContactDirectlyDescription": "Trimite-ne direct un e-mail, îți vom răspunde cât mai curând posibil.",
-    "SendEmail": "Trimite e-mail",
     "ContactImage": "Imagine contact",
     "Telefon": "Telefon",
     "Email": "E-mail",
-    "Services": "Servicii"
+    "Services": "Servicii",
+    "quickLinks": "Linkuri rapide"
+  },
+  "footer": {
+    "copyright": "© {year} Betania Ingolstadt. Toate drepturile rezervate.",
+    "dataPrivacy": "Confidențialitate",
+    "imprint": "Impresii"
   }
 }

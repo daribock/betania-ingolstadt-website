@@ -10,17 +10,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { cn } from '@/lib/utils';
 
 interface LocaleSwitcherSelectProps {
   options: { key: string; label: ReactNode; value: string }[];
   defaultValue: string;
   label: string;
+  className?: string;
 }
 
 export default function LocaleSwitcherSelect({
   options,
   defaultValue,
   label,
+  className,
 }: LocaleSwitcherSelectProps) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
@@ -45,7 +48,12 @@ export default function LocaleSwitcherSelect({
         disabled={isPending}
         onValueChange={onValueChange}
       >
-        <SelectTrigger className="w-fit text-sm text-muted-foreground border-none shadow-none bg-transparent">
+        <SelectTrigger
+          className={cn(
+            'w-fit text-sm text-muted-foreground shadow-none bg-transparent',
+            className
+          )}
+        >
           <SelectValue />
         </SelectTrigger>
         <SelectContent>

@@ -5,10 +5,10 @@ import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
 import { Icon } from '../../icon';
 import { useLayout } from '../layout-context';
+import LocaleSwitcher from './locale-switcher';
 
 export const Footer = () => {
   const t = useTranslations();
-  const locale = useLocale();
   const { globalSettings } = useLayout();
   const { header, social, services, contact, legal } = globalSettings!;
 
@@ -17,8 +17,8 @@ export const Footer = () => {
       <div className="container mx-auto px-4 py-12">
         <div className="grid md:grid-cols-4 gap-8">
           {/* Brand Section */}
-          <div>
-            <div className="flex items-center space-x-2 mb-4">
+          <div className="space-y-4">
+            <div className="flex items-center space-x-2">
               <Image
                 src="/uploads/logos/logo-transparent-weiss.png"
                 alt="Logo"
@@ -32,11 +32,12 @@ export const Footer = () => {
             {header?.tagline && (
               <p className="text-gray-400">{header.tagline!}</p>
             )}
+            <LocaleSwitcher />
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-semibold mb-4">{t('quickLinks')}</h3>
+            <h3 className="font-semibold mb-4">{t('Contact.quickLinks')}</h3>
             <ul className="space-y-2 text-gray-400">
               {header?.nav?.map((link) => (
                 <li key={link?.href}>

@@ -3,7 +3,6 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Icon } from '../../icon';
 import { useLayout } from '../layout-context';
 import { Menu, X } from 'lucide-react';
 import LocaleSwitcher from './locale-switcher';
@@ -57,7 +56,7 @@ export const Header = () => {
 
             {/* Right side: Language Switcher + Site Name */}
             <div className="hidden lg:flex items-center gap-4 h-full">
-              <LocaleSwitcher />
+              <LocaleSwitcher className='border-none' />
             </div>
 
             {/* Mobile menu button */}
@@ -71,7 +70,7 @@ export const Header = () => {
             </button>
 
             {/* Mobile navigation menu */}
-            <div className="bg-background in-data-[state=active]:block lg:in-data-[state=active]:flex mb-6 hidden w-full flex-wrap items-center justify-end space-y-8 rounded-3xl border p-6 shadow-2xl shadow-zinc-300/20 md:flex-nowrap lg:m-0 lg:hidden lg:w-fit lg:gap-6 lg:space-y-0 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none dark:shadow-none dark:lg:bg-transparent absolute top-16 left-0 right-0">
+            <div className="bg-background in-data-[state=active]:block lg:in-data-[state=active]:flex mb-6 hidden w-full flex-wrap items-center justify-end space-y-8 rounded-xl border p-6 shadow-2xl shadow-zinc-300/20 md:flex-nowrap lg:m-0 lg:hidden lg:w-fit lg:gap-6 lg:space-y-0 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none dark:shadow-none dark:lg:bg-transparent absolute top-16 left-0 right-0">
               <div className="w-full">
                 {/* Mobile Navigation */}
                 <ul className="space-y-6 text-base mb-6">
