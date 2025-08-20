@@ -1,7 +1,6 @@
 import { type Template } from 'tinacms';
 import { Mail } from 'lucide-react';
 import { useLayout } from '../layout/layout-context';
-import { useTranslations } from 'next-intl';
 import { Section } from '../layout/section';
 import { Card, CardContent } from '../ui/card';
 import { Button } from '../ui/button';
@@ -12,7 +11,6 @@ import { Typography } from '../ui/Typography';
 import { tinaField } from 'tinacms/dist/react';
 
 export const ContactForm = ({ data }: { data: PageBlocksContactForm }) => {
-  const contactT = useTranslations('Contact');
   const { globalSettings } = useLayout();
 
   if (!globalSettings || !globalSettings.contact) {
