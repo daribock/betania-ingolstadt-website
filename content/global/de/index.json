@@ -20,6 +20,10 @@
       {
         "href": "/de/contact",
         "label": "Kontakt"
+      },
+      {
+        "href": "de/donate",
+        "label": "Spenden"
       }
     ]
   },
