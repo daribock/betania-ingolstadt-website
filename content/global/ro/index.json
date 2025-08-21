@@ -20,6 +20,10 @@
       {
         "href": "/ro/contact",
         "label": "Contact"
+      },
+      {
+        "href": "/ro/donate",
+        "label": "Donație"
       }
     ]
   },
