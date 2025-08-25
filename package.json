@@ -8,7 +8,7 @@
     "next:dev": "next dev --turbopack -p 3001",
     "build": "tinacms build && next build",
     "build-local": "tinacms build --local --skip-indexing --skip-cloud-checks && next build",
-    "start": "tinacms build && next start",
+    "start": "next start",
     "export": "npm run build && next export",
     "lint": "next lint",
     "dev:build": "next build"
