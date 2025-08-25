@@ -1,0 +1,25 @@
+[phases.setup]
+nixPkgs = ["nodejs_22"] 
+[phases.install]
+cmds = [
+    "npm ci --prefer-offline --no-audit"
+]
+
+[phases.build]
+dependsOn = ["install"]
+cmds = [
+    # Increase memory limit for build process
+    "NODE_OPTIONS='--max-old-space-size=4096' npm run build"
+]
+
+[start]
+cmd = "npm run start"
+
+[variables]
+NODE_ENV = "production"
+PORT = "3000"
+TINA_PUBLIC_IS_LOCAL = "false"
+NEXT_TELEMETRY_DISABLED = "1"
+
+[ports]
+expose = "3000"
