@@ -1,9 +1,8 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
-import client from '@/tina/__generated__/client';
+import client from '@/tina/__generated__/databaseClient';
 import Layout from '@/components/layout/layout';
-import { Section } from '@/components/layout/section';
-import ClientPage from './client-page';
+import ClientPage, { PageClientPageProps } from './client-page';
 import { hasLocale } from 'next-intl';
 import { routing } from '@/i18n/routing';
 import { setRequestLocale } from 'next-intl/server';
@@ -27,28 +26,28 @@ export default async function Page({
 
   const filepath = urlSegments.join('/');
 
-  let data;
+  let res;
   try {
     // Try locale-specific content first
-    data = await client.queries.page({
+    res = await client.queries.page({
       relativePath: `${locale}/${filepath}.mdx`,
     });
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
-    // Fallback to non-locale specific content
-    try {
-      data = await client.queries.page({
-        relativePath: `${filepath}.mdx`,
-      });
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (fallbackError) {
-      notFound();
-    }
+    notFound();
   }
 
+  const PageClientPageProps: PageClientPageProps = {
+    data: JSON.parse(JSON.stringify(res.data)),
+    query: res.query,
+    variables: res.variables,
+  };
+
   return (
-    <Layout rawPageData={data}>
-      <ClientPage {...data} />
+    <Layout rawPageData={PageClientPageProps}>
+      <ClientPage // https://github.com/vercel/next.js/issues/47447
+        {...PageClientPageProps}
+      />
     </Layout>
   );
 }

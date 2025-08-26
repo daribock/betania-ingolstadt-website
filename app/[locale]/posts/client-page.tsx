@@ -15,13 +15,13 @@ import { Section } from '@/components/layout/section';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useTranslations } from 'next-intl';
 
-interface ClientPostProps {
+interface PostsClientPageProps {
   data: PostConnectionQuery;
   variables: PostConnectionQueryVariables;
   query: string;
 }
 
-export default function PostsClientPage(props: ClientPostProps) {
+export default function PostsClientPage(props: PostsClientPageProps) {
   const t = useTranslations('PostsList');
   const posts = props.data?.postConnection.edges!.map((postData) => {
     const post = postData!.node!;

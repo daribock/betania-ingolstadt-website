@@ -10,6 +10,19 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
+  // Global ignores
+  {
+    ignores: [
+      'tina/**/*',
+      'public/**/*',
+      'tina/__generated__/**/*',
+      '.tina/**/*',
+      'node_modules/**/*',
+      '.next/**/*',
+      'out/**/*',
+      'dist/**/*',
+    ],
+  },
   ...compat.extends('next/core-web-vitals', 'next/typescript'),
 ];
 

@@ -1,7 +1,7 @@
 import React from 'react';
-import client from '@/tina/__generated__/client';
+import client from '@/tina/__generated__/databaseClient';
 import Layout from '@/components/layout/layout';
-import PostClientPage from './client-page';
+import PostClientPage, { PostClientPageProps } from './client-page';
 import { hasLocale } from 'next-intl';
 import { routing } from '@/i18n/routing';
 import { setRequestLocale } from 'next-intl/server';
@@ -14,6 +14,9 @@ export default async function PostPage({
 }: {
   params: Promise<{ locale: string; urlSegments: string[] }>;
 }) {
+  // Redirect to not-found page for now
+  return notFound();
+
   const resolvedParams = await params;
   const { locale, urlSegments } = resolvedParams;
 
@@ -21,23 +24,30 @@ export default async function PostPage({
     notFound();
   }
 
+  // Enable static rendering
   setRequestLocale(locale);
 
   const filepath = `${locale}/${urlSegments.join('/')}`;
 
-  let data;
+  let res;
   try {
-    data = await client.queries.post({
+    res = await client.queries.post({
       relativePath: `${filepath}.mdx`,
     });
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
     notFound();
   }
 
+  const PostClientPageProps: PostClientPageProps = {
+    data: JSON.parse(JSON.stringify(res.data)),
+    query: res.query,
+    variables: res.variables,
+  };
+
   return (
-    <Layout rawPageData={data}>
-      <PostClientPage {...data} />
+    <Layout rawPageData={PostClientPageProps}>
+      <PostClientPage {...PostClientPageProps} />
     </Layout>
   );
 }
