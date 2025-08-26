@@ -1,28 +1,34 @@
-import { defineConfig } from 'tinacms';
+import {
+  UsernamePasswordAuthJSProvider,
+  TinaUserCollection,
+} from 'tinacms-authjs/dist/tinacms';
+import {
+  defineConfig as defineConfig,
+  LocalAuthProvider as LocalAuthProvider,
+} from 'tinacms';
 import Post from './collection/post';
 import Global from './collection/global';
 import Author from './collection/author';
 import Page from './collection/page';
 import Tag from './collection/tag';
 
-const branch: string =
+const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true';
+const branch =
   process.env.NEXT_PUBLIC_TINA_BRANCH ||
   process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF ||
-  process.env.HEAD ||
-  process.env.COOLIFY_BRANCH ||
-  'main';
+  process.env.HEAD;
+
+if (!branch) {
+  throw new Error('Branch is not defined');
+}
 
 const config = defineConfig({
-  token: process.env.TINA_TOKEN!,
-  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID!,
+  contentApiUrlOverride: '/api/tina/gql',
+  authProvider: isLocal
+    ? new LocalAuthProvider()
+    : new UsernamePasswordAuthJSProvider(),
   branch,
   media: {
-    // If you wanted cloudinary do this
-    // loadCustomStore: async () => {
-    //   const pack = await import("next-tinacms-cloudinary");
-    //   return pack.TinaCloudCloudinaryMediaStore;
-    // },
-    // this is the config for the tina cloud media store
     tina: {
       publicFolder: 'public',
       mediaRoot: 'uploads',
@@ -34,8 +40,7 @@ const config = defineConfig({
     basePath: '', // The base path of the app (could be /blog)
   },
   schema: {
-    collections: [Page, Post, Author, Tag, Global],
+    collections: [TinaUserCollection, Page, Post, Author, Tag, Global],
   },
 });
-
 export default config;

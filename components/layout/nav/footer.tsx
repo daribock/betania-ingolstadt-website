@@ -2,7 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { Icon } from '../../icon';
 import { useLayout } from '../layout-context';
 import LocaleSwitcher from './locale-switcher';

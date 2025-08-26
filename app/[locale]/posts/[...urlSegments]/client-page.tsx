@@ -24,7 +24,7 @@ const titleColorClasses = {
     'from-yellow-400 to-yellow-500 dark:from-yellow-300 dark:to-yellow-500',
 };
 
-interface ClientPostProps {
+export interface PostClientPageProps {
   data: PostQuery;
   variables: {
     relativePath: string;
@@ -32,7 +32,7 @@ interface ClientPostProps {
   query: string;
 }
 
-export default function PostClientPage(props: ClientPostProps) {
+export default function PostClientPage(props: PostClientPageProps) {
   const { theme } = useLayout();
   const { data } = useTina({ ...props });
   const post = data.post;
