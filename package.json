@@ -45,7 +45,7 @@
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
     "lucide-react": "^0.484.0",
-    "mermaid": "^11.7.0",
+    "mermaid": "^11.10.0",
     "motion": "^12.19.1",
     "next": "15.5.0",
     "next-intl": "^4.3.4",
