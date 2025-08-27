@@ -2,7 +2,6 @@ import React from 'react';
 import { notFound } from 'next/navigation';
 import client from '@/tina/__generated__/client';
 import Layout from '@/components/layout/layout';
-import { Section } from '@/components/layout/section';
 import ClientPage from './client-page';
 import { hasLocale } from 'next-intl';
 import { routing } from '@/i18n/routing';
