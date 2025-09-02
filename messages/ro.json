@@ -29,7 +29,18 @@
     "Telefon": "Telefon",
     "Email": "E-mail",
     "Services": "Servicii",
-    "quickLinks": "Linkuri rapide"
+    "quickLinks": "Linkuri rapide",
+    "reasons": {
+      "FAITH_JESUS": "Credința în Isus",
+      "SERVE": "Slujire",
+      "BAPTISM": "Botez",
+      "OTHER": "Altele"
+    },
+    "toastMessages": {
+      "success": "Mesaj trimis cu succes!",
+      "error": "Eroare la trimiterea mesajului."
+    },
+    "characterCount": "{current} / {max} caractere"
   },
   "footer": {
     "copyright": "© {year} Betania Ingolstadt. Toate drepturile rezervate.",

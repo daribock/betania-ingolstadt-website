@@ -4,6 +4,7 @@ import { Inter as FontSans, Lato, Nunito } from 'next/font/google';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from '@vercel/analytics/next';
 import { cn } from '@/lib/utils';
+import { Toaster } from '@/components/ui/sonner';
 
 import '@/styles.css';
 import { TailwindIndicator } from '@/components/ui/breakpoint-indicator';
@@ -58,6 +59,7 @@ export default async function RootLayout({
         <TailwindIndicator />
         <SpeedInsights />
         <Analytics />
+        <Toaster />
       </body>
     </html>
   );

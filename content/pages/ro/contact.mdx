@@ -8,11 +8,28 @@ blocks:
       ajutăm cu tot ceea ce vă putem sluji.
     backgroundImage: /uploads/church/welcome-team.png
     _template: pageHeader
-  - showContactForm: true
-    contactForm:
-      title: Contactează direct
-      description: 'Trimite-ne direct un e-mail, îți vom răspunde cât mai curând posibil.'
-      buttonText: Trimite e-mail
+  - background: bg-gray-50
+    title: Contactează direct
+    description: >-
+      Trimite-ne direct un e-mail, îți vom răspunde cât mai curând posibil.
+    formFields:
+      firstName: Prenume
+      lastName: Nume
+      email: E-mail
+      phone: Număr
+      reasonsField:
+        label: Motivul solicitării
+        reasons:
+          - label: Credința în Isus
+            value: FAITH_JESUS
+          - label: Slujire
+            value: SERVE
+          - label: Botez
+            value: BAPTISM
+          - label: Altele
+            value: OTHER
+      message: Mesaj
+    buttonText: Trimite e-mail
     _template: contactForm
 ---
 
