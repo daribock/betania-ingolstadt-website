@@ -1,9 +1,8 @@
 # Betania Ingolstadt Website 🏛️
 
 ![Betania Ingolstadt](https://img.shields.io/badge/Church-Betania%20Ingolstadt-orange?style=for-the-badge)
-![Next.js](https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js)
+![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)
 ![TinaCMS](https://img.shields.io/badge/TinaCMS-Headless%20CMS-blue?style=for-the-badge)
-![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript)
 
 Modern, bilingual church website for Betania Ingolstadt built with Next.js,
 TinaCMS, and Tailwind CSS. Features a fully manageable content system with
@@ -36,12 +35,12 @@ German and Romanian language support.
 
 - **Home** - Hero, services, events, call-to-action
 - **About** - Church history and mission
-- **Contact** - Location, contact form, service times
+- **Contact** - Location, contact form, and service times
 - **Blog** - Posts and articles (coming soon)
 
 ### 📦 **Available Content Blocks**
 
-- `Hero` - Main landing section with actions
+- `Hero` - Main landing section with call-to-action buttons
 - `PageHeader` - Page titles with background images
 - `Services` - Church service times and descriptions
 - `Events` - Upcoming church events integration
@@ -56,7 +55,7 @@ German and Romanian language support.
 - [ ] Add FAQ section
 - [ ] Implement blog functionality
 - [ ] Add online donation system
-- [ ] Implement newsletter signup
+- [ ] Implement newsletter sign-up
 - [ ] Add sermon archive
 - [ ] Create ministry pages
 - [ ] Add photo gallery
@@ -66,7 +65,7 @@ German and Romanian language support.
 ### Prerequisites
 
 - **Node.js 18+** (Active LTS)
-- **npm** (recommended) or npm
+- **npm**
 - **Git** for version control
 - **TinaCMS account** for content management
 
@@ -99,9 +98,9 @@ German and Romanian language support.
    NEXT_PUBLIC_TINA_BRANCH=main
    ```
 
-4. **Start development server**
+4. **Start the development server**
    ```bash
-   npm dev
+   npm run dev
    ```
 
 ### 🌐 Local Development URLs
@@ -155,10 +154,10 @@ betania-ingolstadt-website/
 ### Adding New Content Blocks
 
 1. **Create the component** in `components/blocks/`
-2. **Define the schema** with TinaCMS template
+2. **Define the schema** with the TinaCMS template
 3. **Add to blocks index** in `components/blocks/index.tsx`
-4. **Register in page collection** in `tina/collection/page.ts`
-5. **Rebuild TinaCMS** with `npm build:tina`
+4. **Register in the page collection** in `tina/collection/page.ts`
+5. **Rebuild TinaCMS** with `npm run build:tina`
 
 ### Global Settings
 
@@ -197,22 +196,22 @@ return <h1>{t('title')}</h1>;
 
 ```bash
 # Development server
-npm dev
+npm run dev
 
 # Build TinaCMS
-npm build:tina
+npm run build:tina
 
 # Build for production
-npm build
+npm run build
 
 # Start production server
-npm start
+npm run start
 
 # Lint code
-npm lint
+npm run lint
 
 # Type checking
-npm type-check
+npm run lint:tsc
 ```
 
 ### Adding New Languages
