@@ -8,13 +8,29 @@ blocks:
       und Ihnen bei allem zu helfen, womit wir Ihnen dienen können.
     backgroundImage: /uploads/church/welcome-team.png
     _template: pageHeader
-  - showContactForm: true
-    contactForm:
-      title: Direkt kontaktieren
-      description: >-
-        Schreiben Sie uns direkt eine E-Mail, wir melden uns baldmöglichst bei
-        Ihnen.
-      buttonText: E-Mail senden
+  - background: bg-gray-50
+    title: Direkt kontaktieren
+    description: >-
+      Schreiben Sie uns direkt eine E-Mail, wir melden uns baldmöglichst bei
+      Ihnen.
+    formFields:
+      firstName: Vorname
+      lastName: Nachname
+      email: E-mail
+      phone: Nummer
+      reasonsField:
+        label: Grund der Anfrage
+        reasons:
+          - label: Glaube & Jesus
+            value: FAITH_JESUS
+          - label: Dienen
+            value: SERVE
+          - label: Taufe
+            value: BAPTISM
+          - label: Sonstiges
+            value: OTHER
+      message: Nachricht
+    buttonText: E-Mail senden
     _template: contactForm
 ---
 

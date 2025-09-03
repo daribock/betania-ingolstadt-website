@@ -29,7 +29,18 @@
     "Telefon": "Telefon",
     "Email": "E-Mail",
     "Services": "Gottesdienste",
-    "quickLinks": "Schnelllinks"
+    "quickLinks": "Schnelllinks",
+    "reasons": {
+      "FAITH_JESUS": "Glaube an Jesus",
+      "SERVE": "Dienen",
+      "BAPTISM": "Taufe",
+      "OTHER": "Sonstiges"
+    },
+    "toastMessages": {
+      "success": "Nachricht erfolgreich gesendet!",
+      "error": "Fehler beim Senden der Nachricht."
+    },
+    "characterCount": "{current} / {max} Zeichen"
   },
   "footer": {
     "copyright": "© {year} Betania Ingolstadt. Alle Rechte vorbehalten.",
