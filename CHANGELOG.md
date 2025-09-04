@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.1.0](https://github.com/daribock/betania-ingolstadt-website/compare/v1.0.0...v1.1.0) (2025-09-03)
+
+
+### Features
+
+* add contact form ([9f982ca](https://github.com/daribock/betania-ingolstadt-website/commit/9f982caadb2d477d838b87d38e0f2be1506bf2bc))
+* add contact form [#28](https://github.com/daribock/betania-ingolstadt-website/issues/28) ([4f444d5](https://github.com/daribock/betania-ingolstadt-website/commit/4f444d52aad73c87ef7150d979320ee4b30dbf3a))
+* create separate server and client components ([3cb9b7d](https://github.com/daribock/betania-ingolstadt-website/commit/3cb9b7d3029440618af90536c4fb1d899f597b11))
+
 ## 1.0.0 (2025-08-27)
 
 
