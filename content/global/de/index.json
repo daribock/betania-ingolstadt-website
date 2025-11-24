@@ -31,6 +31,7 @@
   "services": [
     {
       "title": "Hauptgottesdienst",
+      "type": "service",
       "time": "Sonntag 10:00 - 12:30 Uhr",
       "description": "Unser wöchentlicher Hauptgottesdienst mit Anbetung, Predigt und Gemeinschaft für die ganze Familie.",
       "features": [
@@ -46,7 +47,25 @@
       }
     },
     {
+      "title": "Abendgottesdienst",
+      "type": "service",
+      "time": "Sonntag 17:00 - 18:30 Uhr",
+      "description": "Deutscher Gottesdienst am Sonntagabend mit Anbetung, Predigt und Gemeinschaft.",
+      "features": [
+        "Gebetszeit",
+        "Biblische Lehre",
+        "Übersetzung auf Deutsch verfügbar",
+        "Gemeinschaft"
+      ],
+      "icon": {
+        "name": "BiTime",
+        "color": "orange",
+        "style": "float"
+      }
+    },
+    {
       "title": "Gebetsabend",
+      "type": "prayer",
       "time": "Mittwoch 18:00 - 19:30 Uhr",
       "description": "Ein intimerer Gottesdienst unter der Woche mit Gebet, Gemeinschaft und biblischer Lehre.",
       "features": [

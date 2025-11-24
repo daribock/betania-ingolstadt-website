@@ -32,6 +32,7 @@
     {
       "title": "Serviciul principal",
       "time": "Duminică 10:00 - 12:30 Uhr",
+      "type": "service",
       "description": "Serviciul nostru principal săptămânal cu închinare, predică și comuniune pentru întreaga familie.",
       "features": [
         "Prietenos cu familiile",
@@ -46,8 +47,26 @@
       }
     },
     {
+      "title": "Slujba de seară",
+      "type": "service",
+      "time": "Duminică 17:00 - 18:30",
+      "description": "Slujbă în limba germană duminică seara cu închinare, predică și părtășie.",
+      "features": [
+        "Timp de rugăciune",
+        "Învățătură biblică",
+        "Traducere în germană disponibilă",
+        "Comuniune"
+      ],
+      "icon": {
+        "name": "BiTime",
+        "color": "orange",
+        "style": "float"
+      }
+    },
+    {
       "title": "Seara de rugăciune",
       "time": "Miercuri 18:00 - 19:30 Uhr",
+      "type": "prayer",
       "description": "Un serviciu mai intim în timpul săptămânii cu rugăciune, comuniune și învățătură biblică.",
       "features": [
         "Timp de rugăciune",
