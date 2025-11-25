@@ -14,8 +14,6 @@ export const LocationSection = ({ data }: { data: PageBlocksLocation }) => {
   const { globalSettings } = useLayout();
   const { services, contact } = globalSettings!;
 
-  console.log(data.Image);
-
   if (!contact) {
     return null;
   }

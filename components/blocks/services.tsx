@@ -20,66 +20,73 @@ export const Services = ({ data }: { data: PageBlocksServices }) => {
 
   return (
     <Section background={data.background!}>
-      <div className="text-center prose prose-lg">
+      <Typography className="text-center">
         <h2 data-tina-field={tinaField(data, 'title')}>{data.title}</h2>
         <p data-tina-field={tinaField(data, 'description')}>
           {data.description}
         </p>
-      </div>
+      </Typography>
 
       <div className="grid md:grid-cols-2 gap-8 mt-8">
-        {services.map((service, index) => (
-          <Card key={index}>
-            <CardHeader>
-              <CardTitle
-                className="flex items-center gap-3"
-                data-tina-field={tinaField(service, 'title')}
-              >
-                {service?.icon ? (
-                  <Icon data={service.icon} className="w-6 h-6" />
-                ) : (
-                  <Clock className="w-6 h-6" />
+        {services
+          .filter((service) => service?.type === 'service')
+          .map((service, index) => (
+            <Card key={index}>
+              <CardHeader>
+                <CardTitle
+                  className="flex items-center gap-3"
+                  data-tina-field={tinaField(service, 'title')}
+                >
+                  {service?.icon ? (
+                    <Icon data={service.icon} className="w-6 h-6" />
+                  ) : (
+                    <Clock className="w-6 h-6" />
+                  )}
+                  <Typography>
+                    <h4 className="!m-0">{service?.title}</h4>
+                  </Typography>
+                </CardTitle>
+                <p data-tina-field={tinaField(service, 'time')}>
+                  {service?.time}
+                </p>
+              </CardHeader>
+              <CardContent>
+                <p
+                  className="text-muted-foreground mb-6 leading-relaxed"
+                  data-tina-field={tinaField(service, 'description')}
+                >
+                  {service?.description}
+                </p>
+                {service?.features && service.features.length > 0 && (
+                  <div className="grid sm:grid-cols-2 gap-2">
+                    {service.features.map((feature, featureIndex) => (
+                      <div
+                        key={featureIndex}
+                        className="flex items-center gap-2 text-sm text-muted-foreground"
+                        data-tina-field={tinaField(
+                          service,
+                          'features',
+                          featureIndex
+                        )}
+                      >
+                        <div className="w-2 h-2 bg-black rounded-full"></div>
+                        {feature}
+                      </div>
+                    ))}
+                  </div>
                 )}
-                <Typography>
-                  <h4 className="!m-0">{service?.title}</h4>
-                </Typography>
-              </CardTitle>
-              <p data-tina-field={tinaField(service, 'time')}>
-                {service?.time}
-              </p>
-            </CardHeader>
-            <CardContent>
-              <p
-                className="text-muted-foreground mb-6 leading-relaxed"
-                data-tina-field={tinaField(service, 'description')}
-              >
-                {service?.description}
-              </p>
-              {service?.features && service.features.length > 0 && (
-                <div className="grid sm:grid-cols-2 gap-2">
-                  {service.features.map((feature, featureIndex) => (
-                    <div
-                      key={featureIndex}
-                      className="flex items-center gap-2 text-sm text-muted-foreground"
-                      data-tina-field={tinaField(
-                        service,
-                        'features',
-                        featureIndex
-                      )}
-                    >
-                      <div className="w-2 h-2 bg-black rounded-full"></div>
-                      {feature}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </CardContent>
-          </Card>
-        ))}
+              </CardContent>
+            </Card>
+          ))}
       </div>
     </Section>
   );
 };
+
+const serviceTypes = [
+  { label: 'Service', value: 'service' },
+  { label: 'Prayer Meeting', value: 'prayer' },
+];
 
 export const servicesSchema = {
   type: 'object',
@@ -91,6 +98,7 @@ export const servicesSchema = {
       title: 'Gottesdienst',
       time: 'Sonntag 10:00 Uhr',
       description: 'Beschreibung des Gottesdienstes',
+      type: 'service',
       features: ['Feature 1', 'Feature 2'],
       icon: {
         name: 'BiClock',
@@ -104,6 +112,12 @@ export const servicesSchema = {
       type: 'string',
       label: 'Title',
       name: 'title',
+    },
+    {
+      type: 'string',
+      label: 'Service Type',
+      name: 'type',
+      options: serviceTypes,
     },
     {
       type: 'string',
