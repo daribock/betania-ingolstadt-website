@@ -14,14 +14,15 @@ export const Events = ({ data }: { data: PageBlocksEvents }) => {
           {data.description}
         </p>
       </div>
-      <Card className="mt-8">
-        <iframe
-          width="100%"
-          height="840px"
-          className="border-0"
-          data-tina-field={tinaField(data, 'churchToolsLink')}
-          src={data.churchToolsLink || ''}
-        ></iframe>
+
+      <Card className="mt-8 w-full flex justify-center">
+        <div className="w-full aspect-video">
+          <iframe
+            className="w-full h-full border-0"
+            data-tina-field={tinaField(data, 'churchToolsLink')}
+            src={data.churchToolsLink || ''}
+          ></iframe>
+        </div>
       </Card>
     </Section>
   );
