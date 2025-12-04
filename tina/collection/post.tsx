@@ -28,7 +28,6 @@ const Post: Collection = {
       type: 'image',
       name: 'heroImg',
       label: 'Hero Image',
-      // @ts-expect-error FIXME: type mismatch
       uploadDir: () => 'posts',
     },
     {
