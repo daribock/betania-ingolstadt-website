@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.2.0](https://github.com/daribock/betania-ingolstadt-website/compare/v1.1.0...v1.2.0) (2025-12-04)
+
+
+### Features
+
+* add instagram feed ([e5ed743](https://github.com/daribock/betania-ingolstadt-website/commit/e5ed743fb3ce8f0764092d7d88ca46e5d6469e67))
+* add instagram feed ([69f4092](https://github.com/daribock/betania-ingolstadt-website/commit/69f40923028c740f3adbccf275c898f3269dfc4a))
+* update next ([2ba3c77](https://github.com/daribock/betania-ingolstadt-website/commit/2ba3c778f9e890f70b2a8da94e55031ab67111e9))
+* update next ([3315acc](https://github.com/daribock/betania-ingolstadt-website/commit/3315acc0a6757ee2f7f586b3424565d7263db92d))
+
 ## [1.1.0](https://github.com/daribock/betania-ingolstadt-website/compare/v1.0.0...v1.1.0) (2025-09-03)
 
 
