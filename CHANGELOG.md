@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.3.0](https://github.com/daribock/betania-ingolstadt-website/compare/v1.2.0...v1.3.0) (2026-02-20)
+
+
+### Features
+
+* enable or disable locale switcher via env variables ([1adf9b9](https://github.com/daribock/betania-ingolstadt-website/commit/1adf9b9eba8e6144b15a1f5eeab1a0b6c249fd2c))
+* enable or disable locale switcher via env variables ([fb6b21b](https://github.com/daribock/betania-ingolstadt-website/commit/fb6b21b5733a5434a1cf73dd2d4399c850d88cda))
+
+
+### Bug Fixes
+
+* release-please action ([e767d40](https://github.com/daribock/betania-ingolstadt-website/commit/e767d40e0b80303370609568bddf51efc3c3994d))
+* update packages and fix nextjs version ([47657de](https://github.com/daribock/betania-ingolstadt-website/commit/47657de328f8a095dbd74837b256641c47abb52a))
+* update packages and fix nextjs version ([53b9d3c](https://github.com/daribock/betania-ingolstadt-website/commit/53b9d3cc58cd72e30b26a34e3c200cc85d0d13dc))
+
 ## [1.2.0](https://github.com/daribock/betania-ingolstadt-website/compare/v1.1.0...v1.2.0) (2025-12-04)
 
 
