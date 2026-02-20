@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useLayout } from '../layout-context';
 import { Menu, X } from 'lucide-react';
 import LocaleSwitcher from './locale-switcher';
+import { cn } from '@/lib/utils';
 
 export const Header = () => {
   const { globalSettings } = useLayout();
@@ -64,7 +65,7 @@ export const Header = () => {
             {/* Mobile menu button */}
             <button
               onClick={() => setMenuState(!menuState)}
-              aria-label={menuState == true ? 'Close Menu' : 'Open Menu'}
+              aria-label={menuState ? 'Close Menu' : 'Open Menu'}
               className="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 lg:hidden h-12 w-12 flex items-center justify-center"
             >
               <Menu className="in-data-[state=active]:rotate-180 in-data-[state=active]:scale-0 in-data-[state=active]:opacity-0 m-auto size-6 duration-200" />
@@ -72,7 +73,11 @@ export const Header = () => {
             </button>
 
             {/* Mobile navigation menu */}
-            <div className="bg-background in-data-[state=active]:block lg:in-data-[state=active]:flex mb-6 hidden w-full flex-wrap items-center justify-end space-y-8 rounded-xl border p-6 shadow-2xl shadow-zinc-300/20 md:flex-nowrap lg:m-0 lg:hidden lg:w-fit lg:gap-6 lg:space-y-0 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none dark:shadow-none dark:lg:bg-transparent absolute top-16 left-0 right-0">
+            <div
+              className={cn(
+                'bg-background z-20 in-data-[state=active]:block lg:in-data-[state=active]:flex mb-6 hidden w-full flex-wrap items-center justify-end space-y-8 rounded-xl border p-6 shadow-2xl shadow-zinc-300/20 md:flex-nowrap lg:m-0 lg:hidden lg:w-fit lg:gap-6 lg:space-y-0 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none dark:shadow-none dark:lg:bg-transparent absolute top-16 left-0 right-0',
+              )}
+            >
               <div className="w-full">
                 {/* Mobile Navigation */}
                 <ul className="space-y-6 text-base mb-6">

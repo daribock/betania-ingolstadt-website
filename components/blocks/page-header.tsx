@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
+
 import React from 'react';
 import type { Template } from 'tinacms';
 import Image from 'next/image';
@@ -28,7 +29,7 @@ export const PageHeader = ({ data }: { data: PageBlocksPageHeader }) => {
       <div className="absolute inset-0 bg-gradient-to-r from-orange-400/80 to-orange-600/80 z-10" />
       
       {/* Content */}
-      <div className="relative z-20 text-center">
+      <div className="relative z-10 text-center">
         <Typography>
           <h1
             className="!text-white"

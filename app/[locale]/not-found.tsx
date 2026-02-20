@@ -18,7 +18,7 @@ export default function NotFound() {
   const t = useTranslations('NotFound');
 
   return (
-    <div className="relative text-center z-[1] pt-52 ">
+    <div className="relative text-center pt-52 ">
       <Typography>
         <h1>{t('title')}</h1>
         <p>{t('description')}</p>

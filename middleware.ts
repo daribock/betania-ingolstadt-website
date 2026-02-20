@@ -1,7 +1,22 @@
 import createMiddleware from 'next-intl/middleware';
 import { routing } from './i18n/routing';
+import { NextRequest, NextResponse } from 'next/server';
 
-export default createMiddleware(routing);
+const intlMiddleware = createMiddleware(routing);
+
+export default function middleware(request: NextRequest) {
+  // Block access to posts page (for all locales)
+  if (
+    request.nextUrl.pathname.match(/^\/[a-z]{2}\/posts/) ||
+    request.nextUrl.pathname === '/posts' ||
+    request.nextUrl.pathname.startsWith('/posts/')
+  ) {
+    return NextResponse.redirect(new URL('/', request.url));
+  }
+
+  // Continue with internationalization middleware
+  return intlMiddleware(request);
+}
 
 export const config = {
   // Match all pathnames except for
