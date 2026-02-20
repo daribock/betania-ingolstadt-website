@@ -55,9 +55,11 @@ export const Header = () => {
             </div>
 
             {/* Right side: Language Switcher + Site Name */}
-            <div className="hidden lg:flex items-center gap-4 h-full">
-              <LocaleSwitcher className='border-none' />
-            </div>
+            {process.env.ENABLE_LOCALE_SWITCHER === 'true' && (
+              <div className="hidden lg:flex items-center gap-4 h-full">
+                <LocaleSwitcher className="border-none" />
+              </div>
+            )}
 
             {/* Mobile menu button */}
             <button
@@ -87,9 +89,11 @@ export const Header = () => {
                 </ul>
 
                 {/* Mobile Language Switcher & Site Name */}
-                <div className="flex items-center justify-between pt-4 border-t">
-                  <LocaleSwitcher />
-                </div>
+                {process.env.ENABLE_LOCALE_SWITCHER === 'true' && (
+                  <div className="flex items-center justify-between pt-4 border-t">
+                    <LocaleSwitcher />
+                  </div>
+                )}
               </div>
             </div>
           </div>
