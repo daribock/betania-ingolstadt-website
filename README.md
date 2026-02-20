@@ -217,7 +217,7 @@ npm run lint:tsc
 ### Adding New Languages
 
 1. **Add locale** to `i18n/routing.ts`
-2. **Create translation file** in `messages/[locale].json`
+2. **Create translation file** in `i18n/locales/[locale].json`
 3. **Add global settings** in `content/global/[locale]/index.json`
 4. **Create page content** in `content/pages/[locale]/`
 
