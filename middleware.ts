@@ -6,11 +6,10 @@ const intlMiddleware = createMiddleware(routing);
 
 export default function middleware(request: NextRequest) {
   // Block access to posts page (for all locales)
-  if (
-    request.nextUrl.pathname.match(/^\/[a-z]{2}\/posts/) ||
-    request.nextUrl.pathname === '/posts' ||
-    request.nextUrl.pathname.startsWith('/posts/')
-  ) {
+  const pathname = request.nextUrl.pathname;
+  const isPostsPage = pathname === '/posts' || pathname.startsWith('/posts/') || pathname.match(/^\/[a-z]{2}\/posts/);
+  
+  if (isPostsPage) {
     return NextResponse.redirect(new URL('/', request.url));
   }
 
