@@ -4,39 +4,6 @@ import { ColorPickerInput } from '../fields/color';
 import { iconSchema } from '../fields/icon';
 import { servicesSchema } from '@/components/blocks/services';
 
-const contactSchema = {
-  type: 'object',
-  label: 'Contact',
-  name: 'contact',
-  fields: [
-    {
-      type: 'string',
-      label: 'Street',
-      name: 'street',
-    },
-    {
-      type: 'string',
-      label: 'Number',
-      name: 'number',
-    },
-    {
-      type: 'string',
-      label: 'Ort (City)',
-      name: 'ort',
-    },
-    {
-      type: 'string',
-      label: 'Email',
-      name: 'email',
-    },
-    {
-      type: 'string',
-      label: 'Phone',
-      name: 'phone',
-    },
-  ],
-};
-
 const Global: Collection = {
   label: 'Global',
   name: 'global',
@@ -51,7 +18,6 @@ const Global: Collection = {
       label: 'Header',
       name: 'header',
       fields: [
-        iconSchema as any,
         {
           type: 'string',
           label: 'Name',
@@ -61,15 +27,6 @@ const Global: Collection = {
           type: 'string',
           label: 'Tagline',
           name: 'tagline',
-        },
-        {
-          type: 'string',
-          label: 'Color',
-          name: 'color',
-          options: [
-            { label: 'Default', value: 'default' },
-            { label: 'Primary', value: 'primary' },
-          ],
         },
         {
           type: 'object',
@@ -106,7 +63,6 @@ const Global: Collection = {
       name: 'logo',
     },
     servicesSchema as any,
-    contactSchema as any,
     {
       type: 'object',
       label: 'Social Links',
