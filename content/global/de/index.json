@@ -1,13 +1,7 @@
 {
   "header": {
-    "icon": {
-      "name": "FaCross",
-      "color": "orange",
-      "style": "float"
-    },
     "name": "Betania Ingolstadt",
     "tagline": "Der Ort an dem sich die Freunde treffen",
-    "color": "default",
     "nav": [
       {
         "href": "/de",
@@ -81,13 +75,6 @@
       }
     }
   ],
-  "contact": {
-    "street": "Nürnbergerstraße",
-    "number": "24",
-    "ort": "85055 Ingolstadt",
-    "email": "hello@betania.de",
-    "phone": "+49 (0) 841 123456"
-  },
   "social": [
     {
       "icon": {
