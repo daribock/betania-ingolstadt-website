@@ -3,8 +3,10 @@ import client from '@/tina/__generated__/client';
 import Layout from '@/components/layout/layout';
 import ClientPage from './[...urlSegments]/client-page';
 import { notFound } from 'next/navigation';
+import { routing } from '@/i18n/routing';
 
-export const revalidate = 300;
+export const revalidate = 3600;
+export const dynamicParams = false;
 
 export default async function Home({
   params,
@@ -30,4 +32,8 @@ export default async function Home({
       <ClientPage {...data} />
     </Layout>
   );
+}
+
+export async function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
 }

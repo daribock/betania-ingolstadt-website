@@ -7,7 +7,8 @@ import { routing } from '@/i18n/routing';
 import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 
-export const revalidate = 300;
+export const revalidate = 3600;
+export const dynamicParams = false;
 
 export default async function PostPage({
   params,
@@ -62,10 +63,16 @@ export async function generateStaticParams() {
     allPosts.data.postConnection.edges.push(...posts.data.postConnection.edges);
   }
 
-  const params =
-    allPosts.data?.postConnection.edges.map((edge) => ({
-      urlSegments: edge?.node?._sys.breadcrumbs.slice(1),
-    })) || [];
+  const params = allPosts.data?.postConnection.edges
+    .flatMap((edge) => {
+      const breadcrumbs = edge?.node?._sys.breadcrumbs || [];
+      if (breadcrumbs.length < 2) return []; // Need at least [locale, ...path]
+      const locale = breadcrumbs[0];
+      const urlSegments = breadcrumbs.slice(1);
+      // Filter by enabled locales
+      if (!routing.locales.includes(locale)) return [];
+      return [{ locale, urlSegments }];
+    }) || [];
 
   return params;
 }

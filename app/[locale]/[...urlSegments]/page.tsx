@@ -7,7 +7,8 @@ import { hasLocale } from 'next-intl';
 import { routing } from '@/i18n/routing';
 import { setRequestLocale } from 'next-intl/server';
 
-export const revalidate = 300;
+export const revalidate = 3600;
+export const dynamicParams = false;
 
 export default async function Page({
   params,
@@ -73,11 +74,16 @@ export async function generateStaticParams() {
   }
 
   const params = allPages.data?.pageConnection.edges
-    .map((edge) => ({
-      urlSegments: edge?.node?._sys.breadcrumbs || [],
-    }))
-    .filter((x) => x.urlSegments.length >= 1)
-    .filter((x) => !x.urlSegments.every((x) => x === 'home')); // exclude the home page
+    .flatMap((edge) => {
+      const breadcrumbs = edge?.node?._sys.breadcrumbs || [];
+      if (breadcrumbs.length < 2) return []; // Need at least [locale, ...path]
+      const locale = breadcrumbs[0];
+      const urlSegments = breadcrumbs.slice(1);
+      // Filter by enabled locales and exclude home pages
+      if (!routing.locales.includes(locale)) return [];
+      if (urlSegments.every((s) => s === 'home')) return [];
+      return [{ locale, urlSegments }];
+    });
 
-  return params;
+  return params || [];
 }
