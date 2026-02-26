@@ -6,6 +6,7 @@ import ClientPage from './client-page';
 import { hasLocale } from 'next-intl';
 import { routing } from '@/i18n/routing';
 import { setRequestLocale } from 'next-intl/server';
+import { prefetchEventsAppointments } from '@/lib/prefetch-events';
 
 export const revalidate = 300;
 
@@ -45,9 +46,12 @@ export default async function Page({
     }
   }
 
+  // Pre-fetch appointments for Events blocks
+  const appointmentsMap = await prefetchEventsAppointments(data.data.page.blocks);
+
   return (
     <Layout rawPageData={data}>
-      <ClientPage {...data} />
+      <ClientPage {...data} appointmentsMap={appointmentsMap} />
     </Layout>
   );
 }

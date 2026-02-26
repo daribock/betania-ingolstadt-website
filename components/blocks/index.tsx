@@ -10,16 +10,22 @@ import { PageHeader } from './page-header';
 import { LocationSection } from './location-section';
 import { ContactForm } from './contact-form';
 import { InstagramSectionBlock } from './instagram-section-block';
+import type { AppointmentsMap } from '@/lib/prefetch-events';
 
-export const Blocks = (props: Omit<Page, 'id' | '_sys' | '_values'>) => {
+interface BlocksProps extends Omit<Page, 'id' | '_sys' | '_values'> {
+  appointmentsMap?: AppointmentsMap;
+}
+
+export const Blocks = ({ appointmentsMap, ...props }: BlocksProps) => {
   if (!props.blocks) return null;
 
   return (
     <>
       {props.blocks.map(function (block, i) {
+        if (!block) return null;
         return (
           <div key={i} data-tina-field={tinaField(block)}>
-            <Block {...block} />
+            <Block block={block} index={i} appointmentsMap={appointmentsMap} />
           </div>
         );
       })}
@@ -27,7 +33,13 @@ export const Blocks = (props: Omit<Page, 'id' | '_sys' | '_values'>) => {
   );
 };
 
-const Block = (block: PageBlocks) => {
+interface BlockProps {
+  block: PageBlocks;
+  index: number;
+  appointmentsMap?: AppointmentsMap;
+}
+
+const Block = ({ block, index, appointmentsMap }: BlockProps) => {
   switch (block.__typename) {
     case 'PageBlocksVideo':
       return <Video data={block} />;
@@ -40,7 +52,7 @@ const Block = (block: PageBlocks) => {
     case 'PageBlocksContent':
       return <Content data={block} />;
     case 'PageBlocksEvents':
-      return <Events data={block} />;
+      return <Events data={block} appointments={appointmentsMap?.[index]} />;
     case 'PageBlocksCta':
       return <CallToAction data={block} />;
     case 'PageBlocksLocation':

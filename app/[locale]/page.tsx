@@ -3,6 +3,7 @@ import client from '@/tina/__generated__/client';
 import Layout from '@/components/layout/layout';
 import ClientPage from './[...urlSegments]/client-page';
 import { notFound } from 'next/navigation';
+import { prefetchEventsAppointments } from '@/lib/prefetch-events';
 
 export const revalidate = 300;
 
@@ -25,9 +26,12 @@ export default async function Home({
     notFound();
   }
 
+  // Pre-fetch appointments for Events blocks
+  const appointmentsMap = await prefetchEventsAppointments(data.data.page.blocks);
+
   return (
     <Layout rawPageData={data}>
-      <ClientPage {...data} />
+      <ClientPage {...data} appointmentsMap={appointmentsMap} />
     </Layout>
   );
 }
