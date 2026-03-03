@@ -1,4 +1,5 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import client from '@/tina/__generated__/client';
 import Layout from '@/components/layout/layout';
 import PostClientPage from './client-page';
@@ -9,6 +10,48 @@ import { notFound } from 'next/navigation';
 
 export const revalidate = 3600;
 export const dynamicParams = false;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; urlSegments: string[] }>;
+}): Promise<Metadata> {
+  const { locale, urlSegments } = await params;
+  const filepath = `${locale}/${urlSegments.join('/')}`;
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://betania-ingolstadt.de';
+
+  try {
+    const data = await client.queries.post({
+      relativePath: `${filepath}.mdx`,
+    });
+
+    const post = data.data.post;
+    const title = post.title || 'Betania Ingolstadt';
+    const description = post.excerpt || 'Betania Ingolstadt - Gemeinde';
+
+    return {
+      title,
+      description,
+      alternates: {
+        canonical: `${siteUrl}/${locale}/posts/${urlSegments.join('/')}`,
+      },
+      openGraph: {
+        title,
+        description,
+        url: `${siteUrl}/${locale}/posts/${urlSegments.join('/')}`,
+        siteName: 'Betania Ingolstadt',
+        locale: locale,
+        type: 'article',
+        publishedTime: post.date,
+      },
+    };
+  } catch {
+    return {
+      title: 'Betania Ingolstadt',
+      description: 'Betania Ingolstadt - Gemeinde',
+    };
+  }
+}
 
 export default async function PostPage({
   params,
