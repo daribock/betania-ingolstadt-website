@@ -121,7 +121,7 @@ const ImageBlock = ({ image }: { image: PageBlocksHeroImage }) => {
         fill
         className="object-cover object-center"
         priority
-        quality={80}
+        quality={75}
         sizes="100vw"
       />
     </div>
