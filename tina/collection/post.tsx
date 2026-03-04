@@ -2,6 +2,7 @@ import React from 'react';
 import { videoBlockSchema } from '@/components/blocks/video';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import type { Collection } from 'tinacms';
+import { seoFieldSchema } from '@/tina/fields/seo';
 
 const Post: Collection = {
   label: 'Blog Posts',
@@ -23,17 +24,21 @@ const Post: Collection = {
       name: 'title',
       isTitle: true,
       required: true,
+      description: 'The main title of the blog post',
     },
+    seoFieldSchema,
     {
       type: 'image',
       name: 'heroImg',
       label: 'Hero Image',
+      description: 'Featured image displayed at the top of the post',
       uploadDir: () => 'posts',
     },
     {
       type: 'rich-text',
       label: 'Excerpt',
       name: 'excerpt',
+      description: 'A short summary displayed in post listings',
       overrides: {
         toolbar: ['bold', 'italic', 'link'],
       },
@@ -42,6 +47,7 @@ const Post: Collection = {
       type: 'reference',
       label: 'Author',
       name: 'author',
+      description: 'Select the author of this post',
       collections: ['author'],
       ui: {
         // @ts-expect-error FIXME: type mismatch
@@ -76,6 +82,7 @@ const Post: Collection = {
       type: 'datetime',
       label: 'Posted Date',
       name: 'date',
+      description: 'Publication date of the post',
       ui: {
         dateFormat: 'MMMM DD YYYY',
         timeFormat: 'hh:mm A',
@@ -86,6 +93,7 @@ const Post: Collection = {
       label: 'Tags',
       name: 'tags',
       list: true,
+      description: 'Categorize your post with tags',
       fields: [
         {
           type: 'reference',

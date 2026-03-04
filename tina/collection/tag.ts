@@ -12,6 +12,7 @@ const Tag: Collection = {
       name: "name",
       isTitle: true,
       required: true,
+      description: "Display name of the tag",
     },
   ],
 };

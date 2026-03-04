@@ -5,6 +5,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from '@vercel/analytics/next';
 import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/sonner';
+import { OrganizationStructuredData } from '@/components/structured-data';
 
 import '@/styles.css';
 import { TailwindIndicator } from '@/components/ui/breakpoint-indicator';
@@ -55,6 +56,9 @@ export default async function RootLayout({
       lang={locale}
       className={cn(fontSans.variable, nunito.variable, lato.variable)}
     >
+      <head>
+        <OrganizationStructuredData locale={locale} />
+      </head>
       <body className="min-h-screen bg-background font-sans antialiased">
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
         <TailwindIndicator />

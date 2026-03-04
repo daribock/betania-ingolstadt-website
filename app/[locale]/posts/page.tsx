@@ -7,7 +7,8 @@ import { routing } from '@/i18n/routing';
 import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 
-export const revalidate = 300;
+export const revalidate = 3600;
+export const dynamicParams = false;
 
 export default async function PostsPage({
   params,
@@ -70,4 +71,8 @@ export default async function PostsPage({
       <PostsClientPage {...filteredPosts} />
     </Layout>
   );
+}
+
+export async function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
 }
