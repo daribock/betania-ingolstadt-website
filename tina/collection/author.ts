@@ -12,11 +12,13 @@ const Author: Collection = {
       name: "name",
       isTitle: true,
       required: true,
+      description: "Full name of the author",
     },
     {
       type: "image",
       label: "Avatar",
       name: "avatar",
+      description: "Profile picture of the author",
       // @ts-ignore
       uploadDir: () => "authors",
     },

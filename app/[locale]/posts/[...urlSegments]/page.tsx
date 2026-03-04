@@ -26,8 +26,8 @@ export async function generateMetadata({
     });
 
     const post = data.data.post;
-    const title = post.title || 'Betania Ingolstadt';
-    const description = post.excerpt || 'Betania Ingolstadt - Gemeinde';
+    const title = post.seo?.title || post.title || 'Betania Ingolstadt';
+    const description = post.seo?.description || 'Betania Ingolstadt - Gemeinde';
 
     return {
       title,
@@ -42,7 +42,7 @@ export async function generateMetadata({
         siteName: 'Betania Ingolstadt',
         locale: locale,
         type: 'article',
-        publishedTime: post.date,
+        publishedTime: post.date ?? undefined,
       },
     };
   } catch {

@@ -26,8 +26,8 @@ export async function generateMetadata({
     });
 
     const page = data.data.page;
-    const title = page.title || 'Betania Ingolstadt';
-    const description = page.description || 'Betania Ingolstadt - Gemeinde';
+    const title = page.seo?.title || 'Betania Ingolstadt';
+    const description = page.seo?.description || 'Betania Ingolstadt - Gemeinde';
 
     return {
       title,

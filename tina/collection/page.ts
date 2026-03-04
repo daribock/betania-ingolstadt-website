@@ -1,4 +1,5 @@
 import type { Collection } from 'tinacms';
+import { seoFieldSchema } from '@/tina/fields/seo';
 import { heroBlockSchema } from '@/components/blocks/hero';
 import { contentBlockSchema } from '@/components/blocks/content';
 import { eventsBlockSchema } from '@/components/blocks/events';
@@ -24,11 +25,13 @@ const Page: Collection = {
     },
   },
   fields: [
+    seoFieldSchema,
     {
       type: 'object',
       list: true,
       name: 'blocks',
       label: 'Sections',
+      description: 'Add and arrange content blocks to build your page',
       ui: {
         visualSelector: true,
       },
