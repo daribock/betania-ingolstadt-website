@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.4.0](https://github.com/daribock/betania-ingolstadt-website/compare/v1.3.0...v1.4.0) (2026-03-04)
+
+
+### Features
+
+* **#80:** add description to every tina collection field ([3daca32](https://github.com/daribock/betania-ingolstadt-website/commit/3daca3264a1817e26dd3bbcffdccbf65f09f9e31))
+* add copliot instruction file ([1402025](https://github.com/daribock/betania-ingolstadt-website/commit/1402025057ab09a3b30a672d08e7d708c1375028))
+* add new global contact information collection ([880f039](https://github.com/daribock/betania-ingolstadt-website/commit/880f03920ddaf5e280fd0f0a0a882121187eac7f))
+* add new global contact information collection ([8e587b7](https://github.com/daribock/betania-ingolstadt-website/commit/8e587b7b04394d38375587565da6a6d33c6e6d11))
+* remove parallel effect for performance reson ([894838d](https://github.com/daribock/betania-ingolstadt-website/commit/894838d822882701c0b8a74382b967978499cb98))
+
+
+### Bug Fixes
+
+* middleware to block access to posts page and redirect to home ([ba83f2a](https://github.com/daribock/betania-ingolstadt-website/commit/ba83f2ad96afea4d28188a11bc39b07221fa859b))
+* middleware to block access to posts page and redirect to home ([e7b494a](https://github.com/daribock/betania-ingolstadt-website/commit/e7b494aa00598a5f9571af79653341aa0fa156c9))
+
 ## [1.3.0](https://github.com/daribock/betania-ingolstadt-website/compare/v1.2.0...v1.3.0) (2026-02-20)
 
 
