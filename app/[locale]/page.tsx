@@ -5,6 +5,7 @@ import Layout from '@/components/layout/layout';
 import ClientPage from './[...urlSegments]/client-page';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
+import type { SeoField } from '@/lib/types/seo';
 
 export const revalidate = 3600;
 export const dynamicParams = false;
@@ -25,6 +26,7 @@ export async function generateMetadata({
     const page = data.data.page;
     const title = page.seo?.title || 'Betania Ingolstadt';
     const description = page.seo?.description || 'Betania Ingolstadt - Gemeinde';
+    const ogImage = (page.seo as SeoField)?.ogImage;
 
     return {
       title,
@@ -34,6 +36,7 @@ export async function generateMetadata({
         languages: {
           'de': `${siteUrl}/de`,
           'ro': `${siteUrl}/ro`,
+          'x-default': `${siteUrl}/de`,
         },
       },
       openGraph: {
@@ -43,6 +46,13 @@ export async function generateMetadata({
         siteName: 'Betania Ingolstadt',
         locale: locale,
         type: 'website',
+        ...(ogImage && { images: [{ url: ogImage }] }),
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title,
+        description,
+        ...(ogImage && { images: [ogImage] }),
       },
     };
   } catch {

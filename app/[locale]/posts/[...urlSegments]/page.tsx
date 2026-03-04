@@ -7,6 +7,7 @@ import { hasLocale } from 'next-intl';
 import { routing } from '@/i18n/routing';
 import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
+import type { SeoField } from '@/lib/types/seo';
 
 export const revalidate = 3600;
 export const dynamicParams = false;
@@ -28,12 +29,16 @@ export async function generateMetadata({
     const post = data.data.post;
     const title = post.seo?.title || post.title || 'Betania Ingolstadt';
     const description = post.seo?.description || 'Betania Ingolstadt - Gemeinde';
+    const ogImage = (post.seo as SeoField)?.ogImage || post.heroImg;
 
     return {
       title,
       description,
       alternates: {
         canonical: `${siteUrl}/${locale}/posts/${urlSegments.join('/')}`,
+        languages: {
+          'x-default': `${siteUrl}/de/posts/${urlSegments.join('/')}`,
+        },
       },
       openGraph: {
         title,
@@ -43,6 +48,13 @@ export async function generateMetadata({
         locale: locale,
         type: 'article',
         publishedTime: post.date ?? undefined,
+        ...(ogImage && { images: [{ url: ogImage }] }),
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title,
+        description,
+        ...(ogImage && { images: [ogImage] }),
       },
     };
   } catch {

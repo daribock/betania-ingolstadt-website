@@ -30,11 +30,28 @@ const lato = Lato({
   weight: '400',
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://betania-ingolstadt.de';
+
 export const metadata: Metadata = {
-  title: 'Betania Ingolstadt',
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: 'Betania Ingolstadt',
+    template: '%s | Betania Ingolstadt',
+  },
   description:
     'Wir sind eine junge und moderne Gemeinde. Eine Gemeinde die voller Feuer und Liebe für den Herrn ist. Unser Herz schlägt für Jesus!',
-  icons: [{ url: '/uploads/logos/betania-logo-bg.png' }],
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
+  icons: {
+    icon: '/uploads/logos/betania-logo-bg.png',
+    apple: '/uploads/logos/betania-logo-bg.png',
+  },
 };
 
 export default async function RootLayout({
