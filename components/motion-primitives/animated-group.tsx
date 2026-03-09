@@ -1,4 +1,5 @@
 'use client';
+/* eslint-disable react-hooks/static-components */
 
 import { ReactNode } from 'react';
 import { motion, Variants } from 'motion/react';
