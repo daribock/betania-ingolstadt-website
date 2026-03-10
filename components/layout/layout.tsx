@@ -20,7 +20,7 @@ export default async function Layout({ children, rawPageData }: LayoutProps) {
   const locale = await getLocale();
 
   let globalData;
-  let contactData;
+  let globalSharedData;
 
   try {
     // Fetch locale-specific global content (no fallback needed)
@@ -37,8 +37,8 @@ export default async function Layout({ children, rawPageData }: LayoutProps) {
       },
     );
 
-    // Fetch contact information (not locale-specific)
-    contactData = await client.queries.contactInformation(
+    // Fetch shared global content (not locale-specific)
+    globalSharedData = await client.queries.globalShared(
       {
         relativePath: 'index.json',
       },
@@ -58,7 +58,7 @@ export default async function Layout({ children, rawPageData }: LayoutProps) {
   return (
     <LayoutProvider
       globalSettings={globalData.data.global}
-      contactInformation={contactData.data.contactInformation}
+      sharedGlobalSettings={globalSharedData.data.globalShared}
       pageData={rawPageData}
     >
       <Header />

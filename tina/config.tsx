@@ -1,10 +1,10 @@
 import { defineConfig } from 'tinacms';
 import Post from './collection/post';
 import Global from './collection/global';
+import GlobalShared from './collection/global-shared';
 import Author from './collection/author';
 import Page from './collection/page';
 import Tag from './collection/tag';
-import ContactInformation from './collection/contact-information';
 
 const branch: string =
   process.env.NEXT_PUBLIC_TINA_BRANCH ||
@@ -35,7 +35,7 @@ const config = defineConfig({
     basePath: '', // The base path of the app (could be /blog)
   },
   schema: {
-    collections: [Page, Post, Author, Tag, ContactInformation, Global],
+    collections: [Page, Post, Author, Tag, GlobalShared, Global],
   },
 });
 

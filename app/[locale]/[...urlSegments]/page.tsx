@@ -22,14 +22,23 @@ export async function generateMetadata({
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://betania-ingolstadt.de';
 
   try {
-    const data = await client.queries.page({
-      relativePath: `${locale}/${filepath}.mdx`,
-    });
+    const [data, globalSharedData] = await Promise.all([
+      client.queries.page({
+        relativePath: `${locale}/${filepath}.mdx`,
+      }),
+      client.queries.globalShared({
+        relativePath: 'index.json',
+      }),
+    ]);
 
     const page = data.data.page;
-    const title = page.seo?.title || 'Betania Ingolstadt';
-    const description = page.seo?.description || 'Betania Ingolstadt - Gemeinde';
-    const ogImage = (page.seo as SeoField)?.ogImage;
+    const globalSeo = globalSharedData.data.globalShared?.seo;
+    const title = page.seo?.title || globalSeo?.title || 'Betania Ingolstadt';
+    const description =
+      page.seo?.description ||
+      globalSeo?.description ||
+      'Betania Ingolstadt - Gemeinde';
+    const ogImage = (page.seo as SeoField)?.ogImage || globalSeo?.ogImage;
 
     return {
       title,
