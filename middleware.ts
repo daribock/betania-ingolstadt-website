@@ -1,15 +1,14 @@
 import createMiddleware from 'next-intl/middleware';
 import { routing } from './i18n/routing';
 import { NextRequest, NextResponse } from 'next/server';
+import { getIgnoredPaths, isPathIgnored } from '@/lib/ignored-paths';
 
 const intlMiddleware = createMiddleware(routing);
+const ignoredPaths = getIgnoredPaths();
 
 export default function middleware(request: NextRequest) {
-  // Block access to posts page (for all locales)
   const pathname = request.nextUrl.pathname;
-  const isPostsPage = pathname === '/posts' || pathname.startsWith('/posts/') || pathname.match(/^\/[a-z]{2}\/posts/);
-  
-  if (isPostsPage) {
+  if (isPathIgnored(pathname, ignoredPaths)) {
     return NextResponse.redirect(new URL('/', request.url));
   }
 

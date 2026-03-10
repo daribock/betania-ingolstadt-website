@@ -7,6 +7,7 @@ import { hasLocale } from 'next-intl';
 import { routing } from '@/i18n/routing';
 import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
+import type { SeoField } from '@/lib/types/seo';
 
 export const revalidate = 3600;
 export const dynamicParams = false;
@@ -21,19 +22,33 @@ export async function generateMetadata({
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://betania-ingolstadt.de';
 
   try {
-    const data = await client.queries.post({
-      relativePath: `${filepath}.mdx`,
-    });
+    const [data, globalSharedData] = await Promise.all([
+      client.queries.post({
+        relativePath: `${filepath}.mdx`,
+      }),
+      client.queries.globalShared({
+        relativePath: 'index.json',
+      }),
+    ]);
 
     const post = data.data.post;
-    const title = post.seo?.title || post.title || 'Betania Ingolstadt';
-    const description = post.seo?.description || 'Betania Ingolstadt - Gemeinde';
+    const globalSeo = globalSharedData.data.globalShared?.seo;
+    const title = post.seo?.title || post.title || globalSeo?.title || 'Betania Ingolstadt';
+    const description =
+      post.seo?.description ||
+      globalSeo?.description ||
+      'Betania Ingolstadt - Gemeinde';
+    const ogImage =
+      (post.seo as SeoField)?.ogImage || globalSeo?.ogImage || post.heroImg;
 
     return {
       title,
       description,
       alternates: {
         canonical: `${siteUrl}/${locale}/posts/${urlSegments.join('/')}`,
+        languages: {
+          'x-default': `${siteUrl}/de/posts/${urlSegments.join('/')}`,
+        },
       },
       openGraph: {
         title,
@@ -43,6 +58,13 @@ export async function generateMetadata({
         locale: locale,
         type: 'article',
         publishedTime: post.date ?? undefined,
+        ...(ogImage && { images: [{ url: ogImage }] }),
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title,
+        description,
+        ...(ogImage && { images: [ogImage] }),
       },
     };
   } catch {

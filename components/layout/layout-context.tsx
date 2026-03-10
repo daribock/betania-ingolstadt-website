@@ -1,19 +1,20 @@
 'use client';
 
 import React, { useState, useContext } from 'react';
-import { GlobalQuery, ContactInformationQuery } from '../../tina/__generated__/types';
+import { GlobalQuery, GlobalSharedQuery } from '../../tina/__generated__/types';
 
-// Combined type that merges Global and ContactInformation data
-type CombinedLayoutData = GlobalQuery['global'] & {
-  contact: ContactInformationQuery['contactInformation'];
-};
+type LocalizedGlobalData = NonNullable<GlobalQuery['global']>;
+type SharedGlobalData = NonNullable<GlobalSharedQuery['globalShared']>;
+
+type CombinedLayoutData = Omit<LocalizedGlobalData, '__typename'> &
+  Omit<SharedGlobalData, '__typename'>;
 
 interface LayoutState {
   globalSettings: CombinedLayoutData;
   setGlobalSettings: React.Dispatch<React.SetStateAction<CombinedLayoutData>>;
   pageData: object;
   setPageData: React.Dispatch<React.SetStateAction<object>>;
-  theme: GlobalQuery['global']['theme'];
+  theme: SharedGlobalData['theme'];
 }
 
 const LayoutContext = React.createContext<LayoutState | undefined>(undefined);
@@ -34,21 +35,21 @@ export const useLayout = () => {
 
 interface LayoutProviderProps {
   children: React.ReactNode;
-  globalSettings: GlobalQuery['global'];
-  contactInformation: ContactInformationQuery['contactInformation'];
+  globalSettings: LocalizedGlobalData;
+  sharedGlobalSettings: SharedGlobalData;
   pageData: object;
 }
 
 export const LayoutProvider: React.FC<LayoutProviderProps> = ({
   children,
   globalSettings: initialGlobalSettings,
-  contactInformation: initialContactInformation,
+  sharedGlobalSettings: initialSharedGlobalSettings,
   pageData: initialPageData,
 }) => {
-  // Combine global settings with contact information
+  // Merge locale-specific and shared global settings for a single read model.
   const combinedSettings: CombinedLayoutData = {
     ...initialGlobalSettings,
-    contact: initialContactInformation,
+    ...initialSharedGlobalSettings,
   };
 
   const [globalSettings, setGlobalSettings] = useState<CombinedLayoutData>(

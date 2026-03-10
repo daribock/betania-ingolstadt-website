@@ -21,7 +21,6 @@
       }
     ]
   },
-  "logo": "/uploads/logos/betania-logo-transparent-schwarz.png",
   "services": [
     {
       "title": "Serviciul principal",
@@ -75,32 +74,6 @@
       }
     }
   ],
-  "social": [
-    {
-      "icon": {
-        "name": "AiFillInstagram",
-        "color": "orange",
-        "style": "float"
-      },
-      "url": "https://www.instagram.com/betaniaingolstadt/"
-    },
-    {
-      "icon": {
-        "name": "BiLogoFacebookCircle",
-        "color": "orange",
-        "style": "float"
-      },
-      "url": "https://www.facebook.com/betaniaingostadt.de"
-    },
-    {
-      "icon": {
-        "name": "FaYoutube",
-        "color": "orange",
-        "style": "float"
-      },
-      "url": "https://www.youtube.com/@BetaniaIngolstadt"
-    }
-  ],
   "legal": [
     {
       "href": "/ro/data-privacy",
@@ -110,10 +83,5 @@
       "href": "/ro/imprint",
       "label": "Impresii"
     }
-  ],
-  "theme": {
-    "color": "orange",
-    "font": "sans",
-    "darkMode": "light"
-  }
+  ]
 }
