@@ -11,9 +11,10 @@ export function OrganizationStructuredData({ locale }: StructuredDataProps) {
     name: 'Betania Ingolstadt',
     url: `${siteUrl}/${locale}`,
     logo: `${siteUrl}/uploads/logos/betania-logo-bg.png`,
+    image: `${siteUrl}/opengraph-image.jpg`,
     description: locale === 'de'
-      ? 'Betania Ingolstadt - Gemeinde'
-      : 'Betania Ingolstadt - Comunitate',
+      ? 'Betania Ingolstadt – eine lebendige Pfingstgemeinde in Ingolstadt, Bayern.'
+      : 'Betania Ingolstadt – o comunitate penticostală vie în Ingolstadt, Bavaria.',
     address: {
       '@type': 'PostalAddress',
       streetAddress: 'Manchinger Str. 85',
@@ -23,9 +24,12 @@ export function OrganizationStructuredData({ locale }: StructuredDataProps) {
     },
     contactPoint: {
       '@type': 'ContactPoint',
-      contactType: 'General Inquiry',
+      contactType: 'customer support',
       email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'hello@betania.de',
     },
+    sameAs: [
+      'https://www.instagram.com/betaniaingolstadt/',
+    ],
   };
 
   return (

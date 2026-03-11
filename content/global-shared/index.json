@@ -1,0 +1,46 @@
+{
+  "logo": "/uploads/logos/betania-logo-transparent-schwarz.png",
+  "social": [
+    {
+      "icon": {
+        "name": "AiFillInstagram",
+        "color": "orange",
+        "style": "float"
+      },
+      "url": "https://www.instagram.com/betaniaingolstadt/"
+    },
+    {
+      "icon": {
+        "name": "BiLogoFacebookCircle",
+        "color": "orange",
+        "style": "float"
+      },
+      "url": "https://www.facebook.com/betaniaingostadt.de"
+    },
+    {
+      "icon": {
+        "name": "FaYoutube",
+        "color": "orange",
+        "style": "float"
+      },
+      "url": "https://www.youtube.com/@BetaniaIngolstadt"
+    }
+  ],
+  "theme": {
+    "color": "orange",
+    "font": "sans",
+    "darkMode": "light"
+  },
+  "contact": {
+    "street": "Nürnberger Straße",
+    "number": "24",
+    "ort": "85055 Ingolstadt",
+    "email": "hello@betania.de",
+    "phone": "+49 (0) 841 92 08 87"
+  },
+  "seo": {
+    "title": "Betania Ingolstadt",
+    "description": "Betania Ingolstadt - Gemeinde",
+    "ogImage": "/uploads/church/church-building.jpg"
+  }
+}

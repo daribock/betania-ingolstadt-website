@@ -17,6 +17,7 @@ export interface ClientPageProps {
 
 export default function ClientPage(props: ClientPageProps) {
   const { data } = useTina({ ...props });
+  
   return (
     <ErrorBoundary>
       <Blocks {...data?.page} />
