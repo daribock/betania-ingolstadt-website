@@ -18,7 +18,7 @@ export default async function handler(
   }
 
   // Check environment variables
-  if (!process.env.MAIL_USER || !process.env.MAIL_PASS) {
+  if (!process.env.MAIL_USER || !process.env.MAIL_PASS || !process.env.NEXT_PUBLIC_CONTACT_EMAIL) {
     console.error('Missing email configuration');
 
     return res.status(500).json({ message: 'Email service not configured' });
@@ -57,7 +57,7 @@ export default async function handler(
 
       await transporter.sendMail({
         from: `Website Contact <${process.env.MAIL_USER}>`,
-        to: 'hello@betania.de',
+        to: process.env.NEXT_PUBLIC_CONTACT_EMAIL,
         subject: `Kontaktformular: ${firstName} ${lastName} (${reason})`,
         text,
       });

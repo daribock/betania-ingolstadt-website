@@ -1,4 +1,3 @@
-'use client';
 import { iconSchema } from '@/tina/fields/icon';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -14,7 +13,6 @@ import { AnimatedGroup } from '../motion-primitives/animated-group';
 import { TextEffect } from '../motion-primitives/text-effect';
 import { Transition } from 'motion/react';
 import { Button } from '../ui/button';
-import { useEffect, useState, useCallback } from 'react';
 
 const transitionVariants = {
   container: {
@@ -68,6 +66,7 @@ export const Hero = ({ data }: { data: PageBlocksHero }) => {
               </TextEffect>
             </div>
           )}
+
           {data.tagline && (
             <div data-tina-field={tinaField(data, 'tagline')}>
               <TextEffect
@@ -83,12 +82,12 @@ export const Hero = ({ data }: { data: PageBlocksHero }) => {
             </div>
           )}
 
-          <AnimatedGroup
-            variants={transitionVariants}
-            className="mt-12 flex flex-col sm:flex-row gap-4 justify-center"
-          >
-            {data.actions &&
-              data.actions.map((action) => (
+          {data.actions && (
+            <AnimatedGroup
+              variants={transitionVariants}
+              className="mt-12 flex flex-col sm:flex-row gap-4 justify-center"
+            >
+              {data.actions.map((action) => (
                 <div key={action!.label} data-tina-field={tinaField(action)}>
                   <Button
                     asChild
@@ -103,7 +102,8 @@ export const Hero = ({ data }: { data: PageBlocksHero }) => {
                   </Button>
                 </div>
               ))}
-          </AnimatedGroup>
+            </AnimatedGroup>
+          )}
         </div>
       </div>
     </Section>
@@ -111,41 +111,21 @@ export const Hero = ({ data }: { data: PageBlocksHero }) => {
 };
 
 const ImageBlock = ({ image }: { image: PageBlocksHeroImage }) => {
-  const [scrollY, setScrollY] = useState(0);
-  const speed: number = 0.3; // Reduced speed for smoother effect
+  if (!image.src) return null;
 
-  const handleScroll = useCallback(() => {
-    // Use requestAnimationFrame for smoother scrolling
-    requestAnimationFrame(() => {
-      setScrollY(window.scrollY);
-    });
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [handleScroll]);
-
-  if (image.src) {
-    return (
-      <div 
-        className="absolute inset-0 will-change-transform"
-        style={{
-          transform: `translate3d(0, ${scrollY * speed}px, 0)`,
-        }}
-      >
-        <Image
-          src={image.src}
-          alt={image.alt || 'Hero background'}
-          fill
-          className="object-cover object-center"
-          priority
-          quality={90}
-          sizes="100vw"
-        />
-      </div>
-    );
-  }
+  return (
+    <div className="absolute inset-0">
+      <Image
+        src={image.src}
+        alt={image.alt || 'Hero background'}
+        fill
+        className="object-cover object-center"
+        priority
+        quality={75}
+        sizes="100vw"
+      />
+    </div>
+  );
 };
 
 export const heroBlockSchema: Template = {

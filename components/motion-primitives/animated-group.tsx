@@ -1,4 +1,6 @@
 'use client';
+/* eslint-disable react-hooks/static-components */
+
 import { ReactNode } from 'react';
 import { motion, Variants } from 'motion/react';
 import React from 'react';
@@ -117,17 +119,17 @@ function AnimatedGroup({
 
   const MotionComponent = React.useMemo(
     () => motion.create(as as keyof JSX.IntrinsicElements),
-    [as]
+    [as],
   );
   const MotionChild = React.useMemo(
     () => motion.create(asChild as keyof JSX.IntrinsicElements),
-    [asChild]
+    [asChild],
   );
 
   return (
     <MotionComponent
-      initial='hidden'
-      animate='visible'
+      initial="hidden"
+      animate="visible"
       variants={containerVariants}
       className={className}
     >
