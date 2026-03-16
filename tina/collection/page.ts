@@ -21,6 +21,11 @@ const Page: Collection = {
       // Custom router to prevent double locale
       const locale = document._sys.breadcrumbs[0];
       const path = document._sys.breadcrumbs.slice(1).join('/');
+
+      if (document._sys.filename === 'home') {
+        return `/${locale}`;
+      }
+
       return `${locale}/${path}`;
     },
   },

@@ -33,10 +33,7 @@ export const Services = ({ data }: { data: PageBlocksServices }) => {
           .map((service, index) => (
             <Card key={index}>
               <CardHeader>
-                <CardTitle
-                  className="flex items-center gap-3"
-                  data-tina-field={tinaField(service, 'title')}
-                >
+                <CardTitle className="flex items-center gap-3">
                   {service?.icon ? (
                     <Icon data={service.icon} className="w-6 h-6" />
                   ) : (
@@ -46,15 +43,10 @@ export const Services = ({ data }: { data: PageBlocksServices }) => {
                     <h4 className="!m-0">{service?.title}</h4>
                   </Typography>
                 </CardTitle>
-                <p data-tina-field={tinaField(service, 'time')}>
-                  {service?.time}
-                </p>
+                <p>{service?.time}</p>
               </CardHeader>
               <CardContent>
-                <p
-                  className="text-muted-foreground mb-6 leading-relaxed"
-                  data-tina-field={tinaField(service, 'description')}
-                >
+                <p className="text-muted-foreground mb-6 leading-relaxed">
                   {service?.description}
                 </p>
                 {service?.features && service.features.length > 0 && (
@@ -63,11 +55,6 @@ export const Services = ({ data }: { data: PageBlocksServices }) => {
                       <div
                         key={featureIndex}
                         className="flex items-center gap-2 text-sm text-muted-foreground"
-                        data-tina-field={tinaField(
-                          service,
-                          'features',
-                          featureIndex
-                        )}
                       >
                         <div className="w-2 h-2 bg-black rounded-full"></div>
                         {feature}
