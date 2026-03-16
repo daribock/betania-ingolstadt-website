@@ -18,7 +18,7 @@ const isAdminReferer = (referer: string | null): boolean => {
   }
 };
 
-export default function middleware(request: NextRequest) {
+export default function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
   // Don't block paths when admin is present in the path or referer —
