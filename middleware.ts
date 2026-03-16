@@ -6,9 +6,28 @@ import { getIgnoredPaths, isPathIgnored } from '@/lib/ignored-paths';
 const intlMiddleware = createMiddleware(routing);
 const ignoredPaths = getIgnoredPaths();
 
+const hasAdminSegment = (path: string) =>
+  path.split('/').some((segment) => segment === 'admin');
+
+const isAdminReferer = (referer: string | null): boolean => {
+  if (!referer) return false;
+  try {
+    return hasAdminSegment(new URL(referer).pathname);
+  } catch {
+    return false;
+  }
+};
+
 export default function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
-  if (isPathIgnored(pathname, ignoredPaths)) {
+
+  // Don't block paths when admin is present in the path or referer —
+  // this allows TinaCMS admin to access posts and locale-specific pages for editing.
+  if (
+    !hasAdminSegment(pathname) &&
+    !isAdminReferer(request.headers.get('referer')) &&
+    isPathIgnored(pathname, ignoredPaths)
+  ) {
     return NextResponse.redirect(new URL('/', request.url));
   }
 
