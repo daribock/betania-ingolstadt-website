@@ -30,7 +30,8 @@ const lato = Lato({
   weight: '400',
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://betania-ingolstadt.de';
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL || 'https://betania-ingolstadt.de';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -75,6 +76,10 @@ export default async function RootLayout({
     >
       <head>
         <OrganizationStructuredData locale={locale} />
+        <meta
+          name="google-site-verification"
+          content="kCDyDaB5jR0oqTh7YPgbrcPKYGuybnOBRosZp1j0NIc"
+        />
       </head>
       <body className="min-h-screen bg-background font-sans antialiased">
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
