@@ -1,0 +1,63 @@
+---
+title: home
+seo:
+  title: Betania Ingolstadt - Pentecostal Church
+  description: Welcome to BETANIA INGOLSTADT! We are a lively Pentecostal church in Ingolstadt. Visit our services and experience community.
+blocks:
+  - background: bg-gray-50/80
+    headline: BETANIA INGOLSTADT
+    tagline: The place where friends meet
+    actions:
+      - label: Next Event
+        type: button
+        icon:
+          name: BiCalendarAlt
+          color: white
+        link: '#events'
+      - label: Visit us
+        type: link
+        icon:
+          name: BiMap
+          color: black
+          style: ''
+        link: '#visit'
+    image:
+      src: /uploads/church/publikum-1.JPG
+      alt: Getting started with TinaCMS
+    _template: hero
+  - background: bg-gray-50
+    title: Services
+    description: Come and experience God's presence in our church services. Everyone is warmly welcome!
+    _template: services
+  - title: Upcoming Events
+    description: Join us and experience community at our various events. Everyone is warmly welcome!
+    churchToolsLink: 'https://betania.church.tools/?q=churchcal&category_id=8,2,3&category_select=8,2,3&embedded=true&viewname=calView#CalView/'
+    _template: events
+  - title: Stay up to date
+    description: Follow us on Instagram or Facebook and never miss any news or events!
+    instagramAccount: betaniaIngolstadt
+    _template: instagramFeed
+  - title: Visit us
+    Image: /uploads/church/church-building.jpg
+    _template: location
+  - background: bg-orange-50
+    title: More from Betania?
+    description: |
+      Then follow us on Instagram or contact us by email!
+    actions:
+      - label: Instagram
+        variant: primary
+        icon:
+          name: BiLogoInstagram
+          color: orange
+          style: float
+        link: 'https://www.instagram.com/betaniaingolstadt/'
+      - label: Contact
+        variant: secondary
+        icon:
+          name: BiMailSend
+          color: white
+          style: float
+        link: /en/contact
+    _template: cta
+---
