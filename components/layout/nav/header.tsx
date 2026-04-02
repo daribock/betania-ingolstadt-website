@@ -56,7 +56,7 @@ export const Header = () => {
             </div>
 
             {/* Right side: Language Switcher + Site Name */}
-            {process.env.ENABLE_LOCALE_SWITCHER === 'true' && (
+            {process.env.NEXT_PUBLIC_ENABLE_LOCALE_SWITCHER === 'true' && (
               <div className="hidden lg:flex items-center gap-4 h-full">
                 <LocaleSwitcher className="border-none" />
               </div>
@@ -94,7 +94,7 @@ export const Header = () => {
                 </ul>
 
                 {/* Mobile Language Switcher & Site Name */}
-                {process.env.ENABLE_LOCALE_SWITCHER === 'true' && (
+                {process.env.NEXT_PUBLIC_ENABLE_LOCALE_SWITCHER === 'true' && (
                   <div className="flex items-center justify-between pt-4 border-t">
                     <LocaleSwitcher />
                   </div>

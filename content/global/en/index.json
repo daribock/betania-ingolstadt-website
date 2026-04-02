@@ -1,0 +1,87 @@
+{
+  "header": {
+    "name": "Betania Ingolstadt",
+    "tagline": "The place where friends meet",
+    "nav": [
+      {
+        "href": "/en",
+        "label": "Home"
+      },
+      {
+        "href": "/en/about",
+        "label": "About Us"
+      },
+      {
+        "href": "/en/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/en/donate",
+        "label": "Donate"
+      }
+    ]
+  },
+  "services": [
+    {
+      "title": "Main Service",
+      "type": "service",
+      "time": "Sunday 10:00 - 12:30",
+      "description": "Our main weekly service with worship, preaching and communion for the whole family.",
+      "features": [
+        "Family friendly",
+        "Translation available",
+        "Children's program",
+        "Warm atmosphere"
+      ],
+      "icon": {
+        "name": "BiTime",
+        "color": "orange",
+        "style": "float"
+      }
+    },
+    {
+      "title": "Evening Service",
+      "type": "service",
+      "time": "Sunday 17:00 - 18:30",
+      "description": "Service in German on Sunday evenings with worship, preaching and fellowship.",
+      "features": [
+        "Prayer time",
+        "Bible teaching",
+        "German translation available",
+        "Communion"
+      ],
+      "icon": {
+        "name": "BiTime",
+        "color": "orange",
+        "style": "float"
+      }
+    },
+    {
+      "title": "Prayer Evening",
+      "type": "prayer",
+      "time": "Wednesday 18:00 - 19:30",
+      "description": "A more intimate weekday service with prayer, fellowship and Bible teaching.",
+      "features": [
+        "Prayer time",
+        "Bible teaching",
+        "Personal conversations",
+        "Fellowship"
+      ],
+      "icon": {
+        "name": "BiTime",
+        "color": "orange",
+        "style": "float"
+      }
+    }
+  ],
+  "legal": [
+    {
+      "href": "/en/data-privacy",
+      "label": "Data Privacy"
+    },
+    {
+      "href": "/en/imprint",
+      "label": "Imprint"
+    }
+  ]
+}

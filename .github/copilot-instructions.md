@@ -2,9 +2,9 @@
 
 ## Architecture Overview
 
-This is a **Next.js 15** + **TinaCMS** bilingual church website with German (de)
-and Romanian (ro) locales. Content is stored as MDX/JSON in Git and rendered via
-a block-based system.
+This is a **Next.js 15** + **TinaCMS** multilingual church website with German
+(de), Romanian (ro), and English (en) locales. Content is stored as MDX/JSON in
+Git and rendered via a block-based system.
 
 ### Data Flow
 
@@ -58,9 +58,9 @@ export const exampleBlockSchema: Template = {
 ## i18n / Localization
 
 - **Routing**: `next-intl` with `[locale]` dynamic segment
-- **Locales**: Controlled via `ENABLED_LOCALES` env var (comma-separated)
-- **Content**: Separate files per locale in `content/pages/{de,ro}/`
-- **UI translations**: `i18n/locales/{de,ro}.json`
+- **Locales**: Controlled via `NEXT_PUBLIC_ENABLED_LOCALES` env var (comma-separated)
+- **Content**: Separate files per locale in `content/pages/{de,ro,en}/`
+- **UI translations**: `i18n/locales/{de,ro,en}.json`
 
 ## Commands
 
@@ -78,5 +78,7 @@ export const exampleBlockSchema: Template = {
 - **Page revalidation**: Set `export const revalidate = 300` on page components
 - **Client components**: Blocks inside `ClientPage` can use `'use client'`
   directive when needed
+- **Client env vars**: In client components, only use `NEXT_PUBLIC_*` env vars
+  (for example `NEXT_PUBLIC_ENABLE_LOCALE_SWITCHER`)
 - **Type assertions**: New TinaCMS fields may need `as { fieldName?: Type }`
   until types regenerate
