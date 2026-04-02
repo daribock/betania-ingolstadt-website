@@ -6,7 +6,7 @@
   },
   "LocaleSwitcher": {
     "label": "Sprache ändern",
-    "locale": "{locale, select, de {🇩🇪 Deutsch} ro {🇷🇴 Română} other {Unbekannt}}"
+    "locale": "{locale, select, de {🇩🇪 Deutsch} ro {🇷🇴 Română} en {🇬🇧 Englisch} other {Unbekannt}}"
   },
   "PostsList": {
     "title": "Blog Beiträge",

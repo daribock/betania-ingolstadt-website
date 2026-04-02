@@ -6,7 +6,7 @@
   },
   "LocaleSwitcher": {
     "label": "Schimbă limba",
-    "locale": "{locale, select, de {🇩🇪 Germană} ro {🇷🇴 Română} other {Necunoscut}}"
+    "locale": "{locale, select, de {🇩🇪 Germană} ro {🇷🇴 Română} en {🇬🇧 Engleză} other {Necunoscut}}"
   },
   "PostsList": {
     "title": "Articole Blog",
