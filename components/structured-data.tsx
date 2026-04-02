@@ -3,7 +3,7 @@ interface StructuredDataProps {
 }
 
 export function OrganizationStructuredData({ locale }: StructuredDataProps) {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://betania-ingolstadt.de';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://betania.de';
 
   const organizationData = {
     '@context': 'https://schema.org',

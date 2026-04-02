@@ -4,7 +4,7 @@ import { routing } from '@/i18n/routing';
 import { getIgnoredPaths, isPathIgnored } from '@/lib/ignored-paths';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://betania-ingolstadt.de';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://betania.de';
   const ignoredPaths = getIgnoredPaths();
 
   const entries: MetadataRoute.Sitemap = [];
@@ -54,46 +54,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   } catch {
     // Silently skip if pages cannot be fetched
-  }
-
-  const arePostsGloballyIgnored = isPathIgnored('/posts', ignoredPaths);
-
-  // Add all posts
-  if (!arePostsGloballyIgnored) {
-    try {
-      let posts = await client.queries.postConnection();
-      const postEdges = [...(posts.data.postConnection.edges ?? [])];
-
-      while (posts.data.postConnection.pageInfo.hasNextPage) {
-        posts = await client.queries.postConnection({
-          after: posts.data.postConnection.pageInfo.endCursor,
-        });
-        if (!posts.data.postConnection.edges) break;
-        postEdges.push(...posts.data.postConnection.edges);
-      }
-
-      for (const edge of postEdges) {
-        const breadcrumbs = edge?.node?._sys.breadcrumbs ?? [];
-        if (breadcrumbs.length < 2) continue;
-        const locale = breadcrumbs[0];
-        const pathSegments = breadcrumbs.slice(1);
-
-        if (!routing.locales.includes(locale)) continue;
-
-        const localizedPostPath = `/${locale}/posts/${pathSegments.join('/')}`;
-        if (isPathIgnored(localizedPostPath, ignoredPaths)) continue;
-
-        const date = edge?.node?.date;
-        entries.push({
-          url: `${siteUrl}${localizedPostPath}`,
-          lastModified: date ? new Date(date) : undefined,
-          changeFrequency: 'monthly',
-          priority: 0.6,
-        });
-      }
-    } catch {
-      // Silently skip if posts cannot be fetched
-    }
   }
 
   return entries;

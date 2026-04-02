@@ -1,0 +1,46 @@
+{
+  "NotFound": {
+    "title": "Page not found",
+    "description": "Lost, this page is. In another system it might be.",
+    "link": "Back to home"
+  },
+  "LocaleSwitcher": {
+    "label": "Change language",
+    "locale": "{locale, select, de {🇩🇪 Deutsch} ro {🇷🇴 Română} en {🇬🇧 English} other {Unknown}}"
+  },
+  "Contact": {
+    "title": "Contact",
+    "Address": "Address",
+    "Route": "Plan route",
+    "PhoneEmail": "Phone & Email",
+    "OfficeHours": "Office hours",
+    "Monday-Friday": "Monday - Friday",
+    "Saturday": "Saturday",
+    "Sunday": "Sunday",
+    "AfterService": "After service",
+    "ServiceTimes": "Service times",
+    "SendMessage": "Send message",
+    "FormDescription": "Fill out the form and we will get back to you as soon as possible.",
+    "ContactImage": "Contact image",
+    "Telefon": "Phone",
+    "Email": "Email",
+    "Services": "Services",
+    "quickLinks": "Quick links",
+    "reasons": {
+      "FAITH_JESUS": "Faith in Jesus",
+      "SERVE": "Serve",
+      "BAPTISM": "Baptism",
+      "OTHER": "Other"
+    },
+    "toastMessages": {
+      "success": "Message sent successfully!",
+      "error": "Error sending the message."
+    },
+    "characterCount": "{current} / {max} characters"
+  },
+  "footer": {
+    "copyright": "© {year} Betania Ingolstadt. All rights reserved.",
+    "dataPrivacy": "Privacy Policy",
+    "imprint": "Imprint"
+  }
+}

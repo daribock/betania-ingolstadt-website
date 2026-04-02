@@ -6,11 +6,7 @@
   },
   "LocaleSwitcher": {
     "label": "Sprache ändern",
-    "locale": "{locale, select, de {🇩🇪 Deutsch} ro {🇷🇴 Română} other {Unbekannt}}"
-  },
-  "PostsList": {
-    "title": "Blog Beiträge",
-    "description": "Entdecken Sie die neuesten Erkenntnisse und Tutorials zu moderner Webentwicklung, UI-Design und Komponenten-basierten Architekturen."
+    "locale": "{locale, select, de {🇩🇪 Deutsch} ro {🇷🇴 Română} en {🇬🇧 Englisch} other {Unbekannt}}"
   },
   "Contact": {
     "title": "Kontakt",

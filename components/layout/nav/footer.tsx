@@ -32,7 +32,7 @@ export const Footer = () => {
             {header?.tagline && (
               <p className="text-gray-400">{header.tagline!}</p>
             )}
-            {process.env.ENABLE_LOCALE_SWITCHER === 'true' && (
+            {process.env.NEXT_PUBLIC_ENABLE_LOCALE_SWITCHER === 'true' && (
               <LocaleSwitcher />
             )}
           </div>

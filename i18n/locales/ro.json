@@ -6,11 +6,7 @@
   },
   "LocaleSwitcher": {
     "label": "Schimbă limba",
-    "locale": "{locale, select, de {🇩🇪 Germană} ro {🇷🇴 Română} other {Necunoscut}}"
-  },
-  "PostsList": {
-    "title": "Articole Blog",
-    "description": "Descoperiți cele mai recente perspective și tutoriale despre dezvoltarea web modernă, design UI și arhitecturi bazate pe componente."
+    "locale": "{locale, select, de {🇩🇪 Germană} ro {🇷🇴 Română} en {🇬🇧 Engleză} other {Necunoscut}}"
   },
   "Contact": {
     "title": "Contact",

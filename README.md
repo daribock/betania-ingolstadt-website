@@ -6,7 +6,7 @@
 
 Modern, bilingual church website for Betania Ingolstadt built with Next.js,
 TinaCMS, and Tailwind CSS. Features a fully manageable content system with
-German and Romanian language support.
+German, Romanian, and English language support.
 
 ## ✨ Features
 
@@ -14,7 +14,8 @@ German and Romanian language support.
 
 - **German (Deutsch)** - Primary language
 - **Romanian (Română)** - Secondary language
-- Dynamic routing with `/de` and `/ro` prefixes
+- **English (English)** - Additional locale
+- Dynamic routing with `/de`, `/ro`, and `/en` prefixes
 - Integrated translation system using `next-intl`
 
 ### 📝 **Content Management**
@@ -36,7 +37,6 @@ German and Romanian language support.
 - **Home** - Hero, services, events, call-to-action
 - **About** - Church history and mission
 - **Contact** - Location, contact form, and service times
-- **Blog** - Posts and articles (coming soon)
 
 ### 📦 **Available Content Blocks**
 
@@ -53,7 +53,6 @@ German and Romanian language support.
 ## TODO
 
 - [ ] Add FAQ section
-- [ ] Implement blog functionality
 - [ ] Add online donation system
 - [ ] Implement newsletter sign-up
 - [ ] Add sermon archive
@@ -96,6 +95,8 @@ German and Romanian language support.
    NEXT_PUBLIC_TINA_CLIENT_ID=your_client_id
    TINA_TOKEN=your_token
    NEXT_PUBLIC_TINA_BRANCH=main
+   NEXT_PUBLIC_ENABLED_LOCALES=de,ro,en
+   NEXT_PUBLIC_ENABLE_LOCALE_SWITCHER=true
    ```
 
 4. **Start the development server**
@@ -108,6 +109,7 @@ German and Romanian language support.
 - **Website**: http://localhost:3000
 - **German**: http://localhost:3000/de
 - **Romanian**: http://localhost:3000/ro
+- **English**: http://localhost:3000/en
 - **CMS Admin**: http://localhost:3000/admin
 
 ## 🏗️ Project Structure
@@ -119,8 +121,7 @@ betania-ingolstadt-website/
 │   │   ├── layout.tsx           # Layout with i18n
 │   │   ├── page.tsx             # Homepage
 │   │   ├── about/               # About page
-│   │   ├── contact/             # Contact page
-│   │   └── posts/               # Blog posts
+│   │   └── contact/             # Contact page
 ├── components/                   # React components
 │   ├── blocks/                  # TinaCMS content blocks
 │   │   ├── hero.tsx            # Hero section
@@ -134,11 +135,12 @@ betania-ingolstadt-website/
 ├── content/                     # Content files
 │   ├── global/                 # Global settings
 │   │   ├── de/index.json       # German global data
-│   │   └── ro/index.json       # Romanian global data
+│   │   ├── ro/index.json       # Romanian global data
+│   │   └── en/index.json       # English global data
 │   ├── pages/                  # Page content
 │   │   ├── de/                 # German pages
-│   │   └── ro/                 # Romanian pages
-│   └── posts/                  # Blog posts
+│   │   ├── ro/                 # Romanian pages
+│   │   └── en/                 # English pages
 ├── messages/                    # Translation files
 │   ├── de.json                 # German translations
 │   └── ro.json                 # Romanian translations
@@ -165,6 +167,7 @@ Global settings are managed per language in:
 
 - `content/global/de/index.json` - German settings
 - `content/global/ro/index.json` - Romanian settings
+- `content/global/en/index.json` - English settings
 
 Includes:
 
