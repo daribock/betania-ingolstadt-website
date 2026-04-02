@@ -37,7 +37,6 @@ German, Romanian, and English language support.
 - **Home** - Hero, services, events, call-to-action
 - **About** - Church history and mission
 - **Contact** - Location, contact form, and service times
-- **Blog** - Posts and articles (coming soon)
 
 ### 📦 **Available Content Blocks**
 
@@ -54,7 +53,6 @@ German, Romanian, and English language support.
 ## TODO
 
 - [ ] Add FAQ section
-- [ ] Implement blog functionality
 - [ ] Add online donation system
 - [ ] Implement newsletter sign-up
 - [ ] Add sermon archive
@@ -123,8 +121,7 @@ betania-ingolstadt-website/
 │   │   ├── layout.tsx           # Layout with i18n
 │   │   ├── page.tsx             # Homepage
 │   │   ├── about/               # About page
-│   │   ├── contact/             # Contact page
-│   │   └── posts/               # Blog posts
+│   │   └── contact/             # Contact page
 ├── components/                   # React components
 │   ├── blocks/                  # TinaCMS content blocks
 │   │   ├── hero.tsx            # Hero section
@@ -144,7 +141,6 @@ betania-ingolstadt-website/
 │   │   ├── de/                 # German pages
 │   │   ├── ro/                 # Romanian pages
 │   │   └── en/                 # English pages
-│   └── posts/                  # Blog posts
 ├── messages/                    # Translation files
 │   ├── de.json                 # German translations
 │   └── ro.json                 # Romanian translations

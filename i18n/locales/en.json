@@ -8,10 +8,6 @@
     "label": "Change language",
     "locale": "{locale, select, de {🇩🇪 Deutsch} ro {🇷🇴 Română} en {🇬🇧 English} other {Unknown}}"
   },
-  "PostsList": {
-    "title": "Blog Posts",
-    "description": "Discover the latest insights and tutorials on modern web development, UI design, and component-based architectures."
-  },
   "Contact": {
     "title": "Contact",
     "Address": "Address",

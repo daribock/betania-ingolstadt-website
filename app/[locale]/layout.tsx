@@ -31,7 +31,7 @@ const lato = Lato({
 });
 
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || 'https://betania-ingolstadt.de';
+  process.env.NEXT_PUBLIC_SITE_URL || 'https://betania.de';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

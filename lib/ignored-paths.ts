@@ -1,6 +1,6 @@
 import { routing } from '@/i18n/routing';
 
-const DEFAULT_IGNORED_PATHS = ['/posts'];
+const DEFAULT_IGNORED_PATHS: string[] = [];
 
 const normalizePath = (value: string) => {
   if (!value) return '/';
