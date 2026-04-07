@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.5.0](https://github.com/daribock/betania-ingolstadt-website/compare/v1.4.0...v1.5.0) (2026-04-02)
+
+
+### Features
+
+* **#85:** simplify service card rendering and enhance home page routing ([cca0070](https://github.com/daribock/betania-ingolstadt-website/commit/cca007079069e70ceaf38dfb8910e9e7fc653d8b))
+* add Dependabot auto-merge workflow and update schedule for depe… ([cf9f5ff](https://github.com/daribock/betania-ingolstadt-website/commit/cf9f5ff6782abf68764c6cf90a5b1fbc06313c0e))
+* add Dependabot auto-merge workflow and update schedule for dependency updates ([e2e4216](https://github.com/daribock/betania-ingolstadt-website/commit/e2e421657bce0de7251f62dccaf96426e7013a01))
+* add English locale support ([deabf1c](https://github.com/daribock/betania-ingolstadt-website/commit/deabf1caeeb5040ab5dc15e6e091becdb34d89a6))
+* add English locale support and update localization configuration ([5c4e490](https://github.com/daribock/betania-ingolstadt-website/commit/5c4e490225bed96e88f7cbcfbaba7a58178b03f2))
+* add google site verification meta tag ([4d98939](https://github.com/daribock/betania-ingolstadt-website/commit/4d989398cdbf9ad4e80c02bbce303b7b1ff4547b))
+* add ignore paths variable IGNORED_PATHS ([f4b5cfc](https://github.com/daribock/betania-ingolstadt-website/commit/f4b5cfcff61de3f4b1f086a996c6c00b56613167))
+* improve SEO with Next.js best practices ([6de8ed9](https://github.com/daribock/betania-ingolstadt-website/commit/6de8ed91dd1f95ea847499660e2f14667caeda2b))
+* migrate from middleware to proxy ([17dd3a7](https://github.com/daribock/betania-ingolstadt-website/commit/17dd3a7ae039ed9a8d284285a9a784868aa1c9df))
+* update Next.js to 16.1.6 and fix eslint config for flat config ([3d1a746](https://github.com/daribock/betania-ingolstadt-website/commit/3d1a74601ac3a5e97bb3d3348024c58903788473))
+* update TypeScript configuration and add global shared content structure ([45125a0](https://github.com/daribock/betania-ingolstadt-website/commit/45125a084250cda68494c06dfe9a70050ba14ea4))
+
 ## [1.4.0](https://github.com/daribock/betania-ingolstadt-website/compare/v1.3.0...v1.4.0) (2026-03-04)
 
 
