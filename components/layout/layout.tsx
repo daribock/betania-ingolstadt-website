@@ -23,33 +23,34 @@ export default async function Layout({ children, rawPageData }: LayoutProps) {
   let globalSharedData;
 
   try {
-    // Fetch locale-specific global content (no fallback needed)
-    globalData = await client.queries.global(
-      {
-        relativePath: `${locale}/index.json`,
-      },
-      {
-        fetchOptions: {
-          next: {
-            revalidate: 60,
+    [globalData, globalSharedData] = await Promise.all([
+      // Fetch locale-specific global content (no fallback needed)
+      client.queries.global(
+        {
+          relativePath: `${locale}/index.json`,
+        },
+        {
+          fetchOptions: {
+            next: {
+              revalidate: 60,
+            },
           },
         },
-      },
-    );
-
-    // Fetch shared global content (not locale-specific)
-    globalSharedData = await client.queries.globalShared(
-      {
-        relativePath: 'index.json',
-      },
-      {
-        fetchOptions: {
-          next: {
-            revalidate: 60,
+      ),
+      // Fetch shared global content (not locale-specific)
+      client.queries.globalShared(
+        {
+          relativePath: 'index.json',
+        },
+        {
+          fetchOptions: {
+            next: {
+              revalidate: 60,
+            },
           },
         },
-      },
-    );
+      ),
+    ]);
   } catch (error) {
     // If either global or contact data fails to load, throw error
     throw error;
