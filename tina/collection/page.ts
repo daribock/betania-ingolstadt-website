@@ -9,7 +9,6 @@ import { ctaBlockSchema } from '@/components/blocks/call-to-action';
 import { pageHeaderBlockSchema } from '@/components/blocks/page-header';
 import { locationSectionBlockSchema } from '@/components/blocks/location-section';
 import { contactFormBlockSchema } from '@/components/blocks/contact-form';
-import { instagramSectionBlockSchema } from '@/components/blocks/instagram-section-block';
 
 const Page: Collection = {
   label: 'Pages',
@@ -50,7 +49,6 @@ const Page: Collection = {
         ctaBlockSchema,
         contentBlockSchema,
         videoBlockSchema,
-        instagramSectionBlockSchema,
       ],
     },
   ],
