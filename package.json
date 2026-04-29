@@ -30,7 +30,7 @@
     "postcss": "^8.5.9",
     "postcss-import": "^16.1.1",
     "postcss-nesting": "^14.0.0",
-    "typescript": "^6.0.2"
+    "typescript": "^6.0.3"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.10",
