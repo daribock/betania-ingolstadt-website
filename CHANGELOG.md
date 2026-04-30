@@ -1,5 +1,26 @@
 # Changelog
 
+## [1.6.0](https://github.com/daribock/betania-ingolstadt-website/compare/v1.5.0...v1.6.0) (2026-04-30)
+
+
+### Features
+
+* add backgroundImageAlt text to page header ([4a0ef4d](https://github.com/daribock/betania-ingolstadt-website/commit/4a0ef4debd3f9d5f094ba7976414402798b93202))
+* add backgroundImageAlt text to page header ([e1f6138](https://github.com/daribock/betania-ingolstadt-website/commit/e1f6138b00cde6343366fa8acba904c3daad1eac))
+
+
+### Bug Fixes
+
+* update service time to 12:00 for main service in English and Romanian content ([dc51810](https://github.com/daribock/betania-ingolstadt-website/commit/dc518104b704cae2bbbbac1559813ebf131ffbb9))
+* update subtitles for about pages in English, Romanian, and German ([92b8d6f](https://github.com/daribock/betania-ingolstadt-website/commit/92b8d6f8c3ccbedff5fb996fd24853e9d95ffbfd))
+* update tagline for home page in English and Romanian content ([f953a69](https://github.com/daribock/betania-ingolstadt-website/commit/f953a69158efb5a851e55f08b6d3ba1200819a48))
+* update tagline for home page in English and Romanian content ([bdf5aa0](https://github.com/daribock/betania-ingolstadt-website/commit/bdf5aa0356da94b0deaf4078080ad284567670f2))
+
+
+### Performance Improvements
+
+* parallelize independent global data fetching in Layout ([1b042c8](https://github.com/daribock/betania-ingolstadt-website/commit/1b042c89c59c1965af18a1584729f2a683ee773a))
+
 ## [1.5.0](https://github.com/daribock/betania-ingolstadt-website/compare/v1.4.0...v1.5.0) (2026-04-02)
 
 
