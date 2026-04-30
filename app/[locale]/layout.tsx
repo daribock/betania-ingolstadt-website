@@ -9,6 +9,7 @@ import { OrganizationStructuredData } from '@/components/structured-data';
 
 import '@/styles.css';
 import { TailwindIndicator } from '@/components/ui/breakpoint-indicator';
+import { ThemeProvider } from '@/components/ui/theme-provider';
 
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
@@ -72,6 +73,7 @@ export default async function RootLayout({
   return (
     <html
       lang={locale}
+      suppressHydrationWarning
       className={cn(fontSans.variable, nunito.variable, lato.variable)}
     >
       <head>
@@ -82,11 +84,13 @@ export default async function RootLayout({
         />
       </head>
       <body className="min-h-screen bg-background font-sans antialiased">
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
-        <TailwindIndicator />
-        <SpeedInsights />
-        <Analytics />
-        <Toaster />
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <NextIntlClientProvider>{children}</NextIntlClientProvider>
+          <TailwindIndicator />
+          <SpeedInsights />
+          <Analytics />
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );

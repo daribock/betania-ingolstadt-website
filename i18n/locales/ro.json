@@ -42,5 +42,9 @@
     "copyright": "© {year} Betania Ingolstadt. Toate drepturile rezervate.",
     "dataPrivacy": "Confidențialitate",
     "imprint": "Impresii"
+  },
+  "ThemeToggle": {
+    "switchToDark": "Comutați la modul întunecat",
+    "switchToLight": "Comutați la modul luminos"
   }
 }

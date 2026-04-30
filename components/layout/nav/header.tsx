@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useLayout } from '../layout-context';
 import { Menu, X } from 'lucide-react';
 import LocaleSwitcher from './locale-switcher';
+import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { cn } from '@/lib/utils';
 
 export const Header = () => {
@@ -22,7 +23,7 @@ export const Header = () => {
     <header>
       <nav
         data-state={menuState && 'active'}
-        className="bg-white/95 backdrop-blur-md border-b fixed z-20 w-full  h-16"
+        className="bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md border-b fixed z-20 w-full  h-16"
       >
         <div className="mx-auto max-w-6xl px-6 h-full">
           <div className="relative flex items-center justify-between h-full">
@@ -35,6 +36,15 @@ export const Header = () => {
                   alt="Logo"
                   width={40}
                   height={40}
+                  loading="eager"
+                  className="dark:hidden"
+                />
+                <Image
+                  src="/uploads/logos/logo-transparent-weiss.png"
+                  alt="Logo"
+                  width={40}
+                  height={40}
+                  className="hidden dark:block"
                 />
               </Link>
 
@@ -55,12 +65,13 @@ export const Header = () => {
               </div>
             </div>
 
-            {/* Right side: Language Switcher + Site Name */}
-            {process.env.NEXT_PUBLIC_ENABLE_LOCALE_SWITCHER === 'true' && (
-              <div className="hidden lg:flex items-center gap-4 h-full">
+            {/* Right side: Language Switcher + Theme Toggle */}
+            <div className="hidden lg:flex items-center gap-2 h-full">
+              {process.env.NEXT_PUBLIC_ENABLE_LOCALE_SWITCHER === 'true' && (
                 <LocaleSwitcher className="border-none" />
-              </div>
-            )}
+              )}
+              <ThemeToggle />
+            </div>
 
             {/* Mobile menu button */}
             <button
@@ -93,12 +104,13 @@ export const Header = () => {
                   ))}
                 </ul>
 
-                {/* Mobile Language Switcher & Site Name */}
-                {process.env.NEXT_PUBLIC_ENABLE_LOCALE_SWITCHER === 'true' && (
-                  <div className="flex items-center justify-between pt-4 border-t">
+                {/* Mobile Language Switcher & Theme Toggle */}
+                <div className="flex items-center justify-between pt-4 border-t">
+                  {process.env.NEXT_PUBLIC_ENABLE_LOCALE_SWITCHER === 'true' && (
                     <LocaleSwitcher />
-                  </div>
-                )}
+                  )}
+                  <ThemeToggle />
+                </div>
               </div>
             </div>
           </div>

@@ -42,5 +42,9 @@
     "copyright": "© {year} Betania Ingolstadt. Alle Rechte vorbehalten.",
     "dataPrivacy": "Datenschutz",
     "imprint": "Impressum"
+  },
+  "ThemeToggle": {
+    "switchToDark": "Zu Dunkelmodus wechseln",
+    "switchToLight": "Zu Hellmodus wechseln"
   }
 }
