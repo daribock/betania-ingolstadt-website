@@ -35,6 +35,7 @@ export const Header = () => {
                   alt="Logo"
                   width={40}
                   height={40}
+                  loading="eager"
                 />
               </Link>
 

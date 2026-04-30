@@ -21,14 +21,15 @@ export const PageHeader = ({ data }: { data: PageBlocksPageHeader }) => {
           fill
           className="object-cover z-0"
           priority
+          loading="eager"
           sizes="100vw"
           data-tina-field={tinaField(data, 'backgroundImage')}
         />
       )}
-      
+
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-orange-400/80 to-orange-600/80 z-10" />
-      
+
       {/* Content */}
       <div className="relative z-10 text-center">
         <Typography>
@@ -88,7 +89,8 @@ export const pageHeaderBlockSchema: Template = {
       type: 'string',
       label: 'Background Image Alt Text',
       name: 'backgroundImageAlt',
-      description: 'Descriptive text for the background image (used by screen readers). Leave blank for decorative images.',
+      description:
+        'Descriptive text for the background image (used by screen readers). Leave blank for decorative images.',
     },
   ],
 };
