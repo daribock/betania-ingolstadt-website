@@ -9,7 +9,6 @@ import { CallToAction } from './call-to-action';
 import { PageHeader } from './page-header';
 import { LocationSection } from './location-section';
 import { ContactForm } from './contact-form';
-import { InstagramSectionBlock } from './instagram-section-block';
 
 export const Blocks = (props: Omit<Page, 'id' | '_sys' | '_values'>) => {
   if (!props.blocks) return null;
@@ -47,8 +46,6 @@ const Block = (block: PageBlocks) => {
       return <LocationSection data={block} />;
     case 'PageBlocksContactForm':
       return <ContactForm data={block} />;
-    case 'PageBlocksInstagramFeed':
-      return <InstagramSectionBlock data={block} />;
     default:
       return null;
   }

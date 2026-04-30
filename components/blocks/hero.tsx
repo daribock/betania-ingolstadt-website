@@ -9,38 +9,7 @@ import {
 } from '../../tina/__generated__/types';
 import { Icon } from '../icon';
 import { Section, sectionBlockSchemaField } from '../layout/section';
-import { AnimatedGroup } from '../motion-primitives/animated-group';
-import { TextEffect } from '../motion-primitives/text-effect';
-import { Transition } from 'motion/react';
 import { Button } from '../ui/button';
-
-const transitionVariants = {
-  container: {
-    visible: {
-      transition: {
-        staggerChildren: 0.05,
-        delayChildren: 0.75,
-      },
-    },
-  },
-  item: {
-    hidden: {
-      opacity: 0,
-      filter: 'blur(12px)',
-      y: 12,
-    },
-    visible: {
-      opacity: 1,
-      filter: 'blur(0px)',
-      y: 0,
-      transition: {
-        type: 'spring',
-        bounce: 0.3,
-        duration: 1.5,
-      } as Transition,
-    },
-  },
-};
 
 export const Hero = ({ data }: { data: PageBlocksHero }) => {
   return (
@@ -55,38 +24,25 @@ export const Hero = ({ data }: { data: PageBlocksHero }) => {
       <div className="relative z-10 h-full flex items-center justify-center text-center text-white">
         <div className="max-w-4xl px-4">
           {data.headline && (
-            <div data-tina-field={tinaField(data, 'headline')}>
-              <TextEffect
-                preset="fade-in-blur"
-                speedSegment={0.3}
-                as="h1"
-                className="mt-8 text-balance text-6xl md:text-7xl xl:text-[5.25rem]"
-              >
-                {data.headline!}
-              </TextEffect>
-            </div>
+            <h1
+              data-tina-field={tinaField(data, 'headline')}
+              className="mt-8 text-balance text-6xl md:text-7xl xl:text-[5.25rem]"
+            >
+              {data.headline}
+            </h1>
           )}
 
           {data.tagline && (
-            <div data-tina-field={tinaField(data, 'tagline')}>
-              <TextEffect
-                per="line"
-                preset="fade-in-blur"
-                speedSegment={0.3}
-                delay={0.5}
-                as="h2"
-                className="mx-auto mt-8 max-w-2xl text-balance text-lg"
-              >
-                {data.tagline!}
-              </TextEffect>
-            </div>
+            <h2
+              data-tina-field={tinaField(data, 'tagline')}
+              className="mx-auto mt-8 max-w-2xl text-balance text-lg"
+            >
+              {data.tagline}
+            </h2>
           )}
 
           {data.actions && (
-            <AnimatedGroup
-              variants={transitionVariants}
-              className="mt-12 flex flex-col sm:flex-row gap-4 justify-center"
-            >
+            <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
               {data.actions.map((action) => (
                 <div key={action!.label} data-tina-field={tinaField(action)}>
                   <Button
@@ -102,7 +58,7 @@ export const Hero = ({ data }: { data: PageBlocksHero }) => {
                   </Button>
                 </div>
               ))}
-            </AnimatedGroup>
+            </div>
           )}
         </div>
       </div>

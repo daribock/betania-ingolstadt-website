@@ -12,22 +12,24 @@ import { Typography } from '../ui/Typography';
 
 export const PageHeader = ({ data }: { data: PageBlocksPageHeader }) => {
   return (
-    <Section className="relative overflow-hidden pt-40 m-0 max-w-none">
+    <Section className="relative overflow-hidden pt-40 m-0 max-w-none min-h-[320px]">
       {/* Background Image */}
       {data.backgroundImage && (
         <Image
           src={data.backgroundImage}
-          alt="Church background"
+          alt={data.backgroundImageAlt || 'Church background'}
           fill
           className="object-cover z-0"
           priority
+          loading="eager"
+          sizes="100vw"
           data-tina-field={tinaField(data, 'backgroundImage')}
         />
       )}
-      
+
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-orange-400/80 to-orange-600/80 z-10" />
-      
+
       {/* Content */}
       <div className="relative z-10 text-center">
         <Typography>
@@ -82,6 +84,13 @@ export const pageHeaderBlockSchema: Template = {
       label: 'Background Image',
       name: 'backgroundImage',
       description: 'Background image with orange gradient overlay',
+    },
+    {
+      type: 'string',
+      label: 'Background Image Alt Text',
+      name: 'backgroundImageAlt',
+      description:
+        'Descriptive text for the background image (used by screen readers). Leave blank for decorative images.',
     },
   ],
 };
