@@ -143,6 +143,7 @@ export const Footer = () => {
                   href={link!.url!}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={link!.icon?.name ? `Visit our ${link!.icon.name} page` : 'Social Media Link'}
                   className="text-gray-400 hover:text-white transition-colors"
                 >
                   <Icon
