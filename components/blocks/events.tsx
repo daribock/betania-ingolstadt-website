@@ -17,10 +17,13 @@ export const Events = ({ data }: { data: PageBlocksEvents }) => {
 
       <Card className="mt-8 w-full flex justify-center">
         <div className="w-full aspect-video">
+          {/* ⚡ Bolt: Lazy load the iframe to improve initial page load performance and reduce main thread blocking. */}
           <iframe
             className="w-full h-full border-0"
             data-tina-field={tinaField(data, 'churchToolsLink')}
             src={data.churchToolsLink || ''}
+            loading="lazy"
+            title="Events calendar"
           ></iframe>
         </div>
       </Card>
