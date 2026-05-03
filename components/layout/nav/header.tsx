@@ -67,6 +67,8 @@ export const Header = () => {
             <button
               onClick={() => setMenuState(!menuState)}
               aria-label={menuState ? 'Close Menu' : 'Open Menu'}
+              aria-expanded={menuState}
+              aria-controls="mobile-menu"
               className="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 lg:hidden h-12 w-12 flex items-center justify-center"
             >
               <Menu className="in-data-[state=active]:rotate-180 in-data-[state=active]:scale-0 in-data-[state=active]:opacity-0 m-auto size-6 duration-200" />
@@ -75,6 +77,7 @@ export const Header = () => {
 
             {/* Mobile navigation menu */}
             <div
+              id="mobile-menu"
               className={cn(
                 'bg-background z-20 in-data-[state=active]:block lg:in-data-[state=active]:flex mb-6 hidden w-full flex-wrap items-center justify-end space-y-8 rounded-xl border p-6 shadow-2xl shadow-zinc-300/20 md:flex-nowrap lg:m-0 lg:hidden lg:w-fit lg:gap-6 lg:space-y-0 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none dark:shadow-none dark:lg:bg-transparent absolute top-16 left-0 right-0',
               )}
