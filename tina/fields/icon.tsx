@@ -1,9 +1,10 @@
 'use client';
 import React, { ChangeEvent } from 'react';
 import { Button, wrapFieldsWithMeta } from 'tinacms';
+import * as BoxIcons from 'react-icons/bi';
 import { BiChevronRight } from 'react-icons/bi';
 import { GoCircleSlash } from 'react-icons/go';
-import { Icon, IconOptions } from '../../components/icon';
+import { Icon, SpecificIcons } from '../../components/icon';
 import {
   Popover,
   PopoverButton,
@@ -11,6 +12,11 @@ import {
   PopoverPanel,
 } from '@headlessui/react';
 import { ColorPickerInput } from './color';
+
+export const IconOptions = {
+  ...BoxIcons,
+  ...SpecificIcons,
+};
 
 const parseIconName = (name: string) => {
   const splitName = name.split(/(?=[A-Z])/);
