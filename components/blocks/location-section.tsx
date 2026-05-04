@@ -6,7 +6,7 @@ import { useLayout } from '../layout/layout-context';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { tinaField } from 'tinacms/dist/react';
-import { Section } from '../layout/section';
+import { Section, sectionBlockSchemaField } from '../layout/section';
 import { Typography } from '../ui/Typography';
 
 export const LocationSection = ({ data }: { data: PageBlocksLocation }) => {
@@ -19,7 +19,7 @@ export const LocationSection = ({ data }: { data: PageBlocksLocation }) => {
   }
 
   return (
-    <Section id="visit">
+    <Section background={data.background || undefined} id="visit">
       <div className="grid md:grid-cols-2 gap-12 items-center">
         <div>
           <Typography>
@@ -119,6 +119,8 @@ export const locationSectionBlockSchema: Template = {
     },
   },
   fields: [
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    sectionBlockSchemaField as any,
     {
       type: 'string',
       label: 'Title',
