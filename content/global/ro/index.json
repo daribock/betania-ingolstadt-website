@@ -25,7 +25,7 @@
     {
       "title": "Serviciul principal",
       "type": "service",
-      "time": "Duminică 10:00 - 12:00 Uhr",
+      "time": "Duminică 10:00 - 12:00",
       "description": "Serviciul nostru principal săptămânal cu închinare, predică și comuniune pentru întreaga familie.",
       "features": [
         "Prietenos cu familiile",
@@ -59,7 +59,7 @@
     {
       "title": "Seara de rugăciune",
       "type": "prayer",
-      "time": "Miercuri 18:00 - 19:30 Uhr",
+      "time": "Miercuri 18:00 - 19:30",
       "description": "Un serviciu mai intim în timpul săptămânii cu rugăciune, comuniune și învățătură biblică.",
       "features": [
         "Timp de rugăciune",
