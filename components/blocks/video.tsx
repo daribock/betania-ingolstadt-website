@@ -34,7 +34,6 @@ export const videoBlockSchema: Template = {
   name: 'video',
   label: 'Video',
   ui: {
-    previewSrc: '/blocks/video.png',
     defaultItem: {
       url: 'https://www.youtube.com/watch?v=j8egYW7Jpgk',
     },

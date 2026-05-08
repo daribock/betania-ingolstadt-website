@@ -135,8 +135,6 @@ export const servicesBlockSchema: Template = {
   name: 'services',
   label: 'Services',
   ui: {
-    // TODO: update this
-    previewSrc: '/blocks/stats.png',
     defaultItem: {
       title: 'Unsere Gottesdienste',
       description:

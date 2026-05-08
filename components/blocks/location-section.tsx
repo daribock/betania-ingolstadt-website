@@ -113,7 +113,6 @@ export const locationSectionBlockSchema: Template = {
   name: 'location',
   label: 'Location',
   ui: {
-    previewSrc: '/blocks/cta.png',
     defaultItem: {
       title: 'Besuchen Sie uns',
     },

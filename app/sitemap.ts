@@ -4,7 +4,7 @@ import { routing } from '@/i18n/routing';
 import { getIgnoredPaths, isPathIgnored } from '@/lib/ignored-paths';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://betania.de';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.betania.de';
   const ignoredPaths = getIgnoredPaths();
 
   const entries: MetadataRoute.Sitemap = [];
