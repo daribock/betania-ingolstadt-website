@@ -1,16 +1,33 @@
-'use client';
-import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import { Icon } from '../../icon';
-import { useLayout } from '../layout-context';
-import LocaleSwitcher from './locale-switcher';
+import LocaleSwitcher from '../../locale-switcher/locale-switcher';
+import {
+  GlobalHeader,
+  GlobalServices,
+  GlobalLegal,
+  GlobalSharedSocial,
+  GlobalSharedContact,
+  Maybe,
+} from '../../../tina/__generated__/types';
 
-export const Footer = () => {
-  const t = useTranslations();
-  const { globalSettings } = useLayout();
-  const { header, social, services, contact, legal } = globalSettings!;
+interface FooterProps {
+  header?: Maybe<GlobalHeader>;
+  services?: Maybe<Array<Maybe<GlobalServices>>>;
+  legal?: Maybe<Array<Maybe<GlobalLegal>>>;
+  social?: Maybe<Array<Maybe<GlobalSharedSocial>>>;
+  contact?: Maybe<GlobalSharedContact>;
+}
+
+export const Footer = async ({
+  header,
+  services,
+  legal,
+  social,
+  contact,
+}: FooterProps) => {
+  const t = await getTranslations();
 
   return (
     <footer className="bg-black text-white">

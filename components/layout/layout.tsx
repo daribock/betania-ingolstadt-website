@@ -1,7 +1,7 @@
-import React, { PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 import { LayoutProvider } from './layout-context';
 import client from '../../tina/__generated__/client';
-import { Header } from './nav/header';
+import { Header } from './nav/header/header';
 import { Footer } from './nav/footer';
 import { getLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
@@ -62,9 +62,15 @@ export default async function Layout({ children, rawPageData }: LayoutProps) {
       sharedGlobalSettings={globalSharedData.data.globalShared}
       pageData={rawPageData}
     >
-      <Header />
+      <Header header={globalData.data.global.header!} />
       <main className="overflow-x-hidden">{children}</main>
-      <Footer />
+      <Footer
+        header={globalData.data.global.header}
+        services={globalData.data.global.services}
+        legal={globalData.data.global.legal}
+        social={globalSharedData.data.globalShared.social}
+        contact={globalSharedData.data.globalShared.contact}
+      />
     </LayoutProvider>
   );
 }

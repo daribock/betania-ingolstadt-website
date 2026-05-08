@@ -1,9 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import LocaleSwitcher from '../../locale-switcher';
-import { GlobalHeader } from '../../../tina/__generated__/types';
-import { HeaderMobileMenu } from './header/header-mobile-menu';
+import LocaleSwitcher from '../../../locale-switcher/locale-switcher';
+import { GlobalHeader } from '../../../../tina/__generated__/types';
+import { HeaderMobileMenu } from './header-mobile-menu';
 
 interface HeaderProps {
   header: GlobalHeader;
