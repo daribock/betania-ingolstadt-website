@@ -55,7 +55,6 @@ export const ctaBlockSchema: Template = {
   name: 'cta',
   label: 'CTA',
   ui: {
-    previewSrc: '/blocks/cta.png',
     defaultItem: {
       title: 'Start Building',
       description:

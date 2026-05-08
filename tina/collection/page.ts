@@ -3,7 +3,6 @@ import { seoFieldSchema } from '@/tina/fields/seo';
 import { heroBlockSchema } from '@/components/blocks/hero';
 import { contentBlockSchema } from '@/components/blocks/content';
 import { eventsBlockSchema } from '@/components/blocks/events';
-import { videoBlockSchema } from '@/components/blocks/video';
 import { servicesBlockSchema } from '@/components/blocks/services';
 import { ctaBlockSchema } from '@/components/blocks/call-to-action';
 import { pageHeaderBlockSchema } from '@/components/blocks/page-header';
@@ -48,7 +47,6 @@ const Page: Collection = {
         servicesBlockSchema,
         ctaBlockSchema,
         contentBlockSchema,
-        videoBlockSchema,
       ],
     },
   ],

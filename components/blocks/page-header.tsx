@@ -57,7 +57,6 @@ export const pageHeaderBlockSchema: Template = {
   name: 'pageHeader',
   label: 'Page Header',
   ui: {
-    previewSrc: '/blocks/hero.png',
     defaultItem: {
       title: 'Kontakt',
       subtitle: 'Nehmen Sie Kontakt mit uns auf',

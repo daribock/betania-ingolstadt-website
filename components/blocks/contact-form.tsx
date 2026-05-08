@@ -43,7 +43,6 @@ export const contactFormBlockSchema: Template = {
   name: 'contactForm',
   label: 'Contact Form',
   ui: {
-    previewSrc: '/blocks/contact.png',
     defaultItem: {
       title: 'Kontakt',
       description:

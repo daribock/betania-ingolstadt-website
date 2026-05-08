@@ -19,7 +19,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale, urlSegments } = await params;
   const filepath = urlSegments.join('/');
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://betania.de';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.betania.de';
 
   try {
     const [data, globalSharedData] = await Promise.all([

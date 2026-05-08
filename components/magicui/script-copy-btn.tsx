@@ -87,6 +87,8 @@ export function ScriptCopyBtn({
                           : "text-muted-foreground"
                       }`}
                       onClick={() => setPackageManager(pm)}
+                      aria-pressed={packageManager === pm}
+                      aria-label={`Use ${pm}`}
                     >
                       {pm}
                       {packageManager === pm && (
