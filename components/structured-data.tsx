@@ -3,7 +3,7 @@ interface StructuredDataProps {
 }
 
 export function OrganizationStructuredData({ locale }: StructuredDataProps) {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://betania.de';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.betania.de';
 
   const organizationData = {
     '@context': 'https://schema.org',
@@ -17,9 +17,9 @@ export function OrganizationStructuredData({ locale }: StructuredDataProps) {
       : 'Betania Ingolstadt – o comunitate penticostală vie în Ingolstadt, Bavaria.',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Manchinger Str. 85',
+      streetAddress: 'Nürnberger Str. 24',
       addressLocality: 'Ingolstadt',
-      postalCode: '85053',
+      postalCode: '85055',
       addressCountry: 'DE',
     },
     contactPoint: {

@@ -3,7 +3,6 @@ import { Page, PageBlocks } from '../../tina/__generated__/types';
 import { Hero } from './hero';
 import { Content } from './content';
 import { Events } from './events';
-import { Video } from './video';
 import { Services } from './services';
 import { CallToAction } from './call-to-action';
 import { PageHeader } from './page-header';
@@ -28,8 +27,6 @@ export const Blocks = (props: Omit<Page, 'id' | '_sys' | '_values'>) => {
 
 const Block = (block: PageBlocks) => {
   switch (block.__typename) {
-    case 'PageBlocksVideo':
-      return <Video data={block} />;
     case 'PageBlocksHero':
       return <Hero data={block} />;
     case 'PageBlocksPageHeader':
