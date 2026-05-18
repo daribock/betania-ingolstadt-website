@@ -160,7 +160,8 @@ export const Footer = async ({
                   href={link!.url!}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="text-gray-400 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 rounded-sm"
+                  aria-label={link?.icon?.name || 'Social Media'}
                 >
                   <Icon
                     data={{ ...link!.icon, size: 'small' }}
