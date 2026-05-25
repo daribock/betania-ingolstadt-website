@@ -3,7 +3,13 @@ import React, { ChangeEvent } from 'react';
 import { Button, wrapFieldsWithMeta } from 'tinacms';
 import { BiChevronRight } from 'react-icons/bi';
 import { GoCircleSlash } from 'react-icons/go';
-import { Icon, IconOptions } from '../../components/icon';
+import { Icon, StaticIcons } from '../../components/icon';
+import * as BoxIcons from 'react-icons/bi';
+
+export const IconOptions = {
+  ...BoxIcons,
+  ...StaticIcons,
+};
 import {
   Popover,
   PopoverButton,

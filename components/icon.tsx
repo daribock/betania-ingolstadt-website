@@ -1,6 +1,6 @@
 'use client';
 
-import * as BoxIcons from 'react-icons/bi';
+import dynamic from 'next/dynamic';
 import {
   FaFacebookF,
   FaGithub,
@@ -14,8 +14,7 @@ import { useLayout } from './layout/layout-context';
 import { Maybe } from '@/tina/__generated__/types';
 import { cn } from '@/lib/utils';
 
-export const IconOptions = {
-  ...BoxIcons,
+export const StaticIcons = {
   FaFacebookF,
   FaGithub,
   FaLinkedin,
@@ -23,6 +22,18 @@ export const IconOptions = {
   FaYoutube,
   AiFillInstagram,
 };
+
+// ⚡ Bolt: Prevent massive bundle size by dynamically importing 'react-icons/bi' icons only when needed.
+const DynamicBiIcon = dynamic(() =>
+  import('react-icons/bi').then((mod) => {
+    return function DynamicIcon({ iconName, ...props }: { iconName: string; [key: string]: unknown }) {
+      const IconComp = mod[iconName as keyof typeof mod];
+      if (!IconComp) return null;
+      const Component = IconComp as React.ElementType;
+      return <Component {...props} />;
+    };
+  })
+);
 
 // TODO: Define types inside of the backend (tina folder)
 // Define valid types for better type safety
@@ -115,9 +126,9 @@ interface IconProps {
 // Helper functions for safe value extraction
 const getValidIconName = (
   name?: Maybe<string>
-): keyof typeof IconOptions | null => {
+): string | null => {
   if (!name || typeof name !== 'string') return null;
-  return name in IconOptions ? (name as keyof typeof IconOptions) : null;
+  return name;
 };
 
 const getValidIconColor = (color?: Maybe<string>): IconColor => {
@@ -167,7 +178,15 @@ export const Icon = ({
     return null;
   }
 
-  const IconSVG = IconOptions[iconName];
+  const isStaticIcon = iconName in StaticIcons;
+  const isBiIcon = iconName.startsWith('Bi');
+
+  // Return null if icon name is invalid
+  if (!isStaticIcon && !isBiIcon) {
+    return null;
+  }
+
+  const IconSVG = isStaticIcon ? StaticIcons[iconName as keyof typeof StaticIcons] : null;
   const iconSizeClasses = iconSizeClass[iconSize];
 
   // Determine the final color based on parent color and theme
@@ -187,14 +206,31 @@ export const Icon = ({
         {...tinaProps}
         className={`relative z-10 inline-flex items-center justify-center shrink-0 ${iconSizeClasses} rounded-full ${iconColorClass[finalColor].circle} ${className}`}
       >
-        <IconSVG className="w-2/3 h-2/3" />
-        <IconSVG className="w-2/3 h-2/3" />
+        {IconSVG ? (
+          <>
+            <IconSVG className="w-2/3 h-2/3" />
+            <IconSVG className="w-2/3 h-2/3" />
+          </>
+        ) : (
+          <>
+            <DynamicBiIcon iconName={iconName} className="w-2/3 h-2/3" />
+            <DynamicBiIcon iconName={iconName} className="w-2/3 h-2/3" />
+          </>
+        )}
       </div>
     );
   }
 
-  return (
+  return IconSVG ? (
     <IconSVG
+      {...tinaProps}
+      className={cn(
+        `${iconSizeClasses} ${iconColorClass[finalColor].regular} ${className}`
+      )}
+    />
+  ) : (
+    <DynamicBiIcon
+      iconName={iconName}
       {...tinaProps}
       className={cn(
         `${iconSizeClasses} ${iconColorClass[finalColor].regular} ${className}`
