@@ -1,0 +1,3 @@
+## 2025-05-25 - [Accessible Dynamic CMS Icons]
+**Learning:** When rendering interactive elements that wrap dynamic icons from a CMS (like social media links), the elements often lack descriptive text for screen readers because the visual content is purely icon-based.
+**Action:** Always map the dynamic icon name property (e.g., `icon.name`) to an `aria-label` on the wrapping element (e.g., `aria-label={link?.icon?.name || 'Social Media'}`) to ensure proper screen reader accessibility.

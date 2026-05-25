@@ -161,6 +161,7 @@ export const Footer = async ({
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-400 hover:text-white transition-colors"
+                  aria-label={link?.icon?.name || 'Social Media'}
                 >
                   <Icon
                     data={{ ...link!.icon, size: 'small' }}
