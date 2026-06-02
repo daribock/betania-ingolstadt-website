@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import LocaleSwitcher from '../../../locale-switcher/locale-switcher';
+import { ThemeToggle } from '@/components/theme-toggle';
 import { GlobalHeader } from '../../../../tina/__generated__/types';
 import { HeaderMobileMenu } from './header-mobile-menu';
 
@@ -16,7 +17,7 @@ export const Header = ({ header }: HeaderProps) => {
 
   return (
     <header>
-      <nav className="bg-white/95 backdrop-blur-md border-b fixed z-20 w-full h-16">
+      <nav className="bg-white/95 dark:bg-black/95 backdrop-blur-md border-b fixed z-20 w-full h-16">
         <div className="mx-auto max-w-6xl px-6 h-full">
           <div className="relative flex items-center justify-between h-full">
             {/* Left side: Logo + Navigation */}
@@ -28,6 +29,7 @@ export const Header = ({ header }: HeaderProps) => {
                   alt="Logo"
                   width={40}
                   height={40}
+                  className="dark:invert"
                 />
               </Link>
 
@@ -48,12 +50,13 @@ export const Header = ({ header }: HeaderProps) => {
               </div>
             </div>
 
-            {/* Right side: Language Switcher */}
-            {process.env.NEXT_PUBLIC_ENABLE_LOCALE_SWITCHER === 'true' && (
-              <div className="hidden lg:flex items-center gap-4 h-full">
+            {/* Right side: Language Switcher & Theme Toggle */}
+            <div className="hidden lg:flex items-center gap-4 h-full">
+              {process.env.NEXT_PUBLIC_ENABLE_LOCALE_SWITCHER === 'true' && (
                 <LocaleSwitcher className="border-none" />
-              </div>
-            )}
+              )}
+              <ThemeToggle />
+            </div>
 
             {/* Mobile menu (client component) */}
             <HeaderMobileMenu nav={header.nav ?? null} />

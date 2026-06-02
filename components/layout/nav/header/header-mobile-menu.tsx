@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import LocaleSwitcher from '../../../locale-switcher/locale-switcher';
+import { ThemeToggle } from '@/components/theme-toggle';
 import { cn } from '@/lib/utils';
 import { GlobalHeaderNav, Maybe } from '../../../../tina/__generated__/types';
 
@@ -65,11 +66,12 @@ export const HeaderMobileMenu = ({ nav }: HeaderMobileMenuProps) => {
             ))}
           </ul>
 
-          {process.env.NEXT_PUBLIC_ENABLE_LOCALE_SWITCHER === 'true' && (
-            <div className="flex items-center justify-between pt-4 border-t">
+          <div className="flex items-center justify-between pt-4 border-t gap-4">
+            {process.env.NEXT_PUBLIC_ENABLE_LOCALE_SWITCHER === 'true' && (
               <LocaleSwitcher />
-            </div>
-          )}
+            )}
+            <ThemeToggle />
+          </div>
         </div>
       </div>
     </>
