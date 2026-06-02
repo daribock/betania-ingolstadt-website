@@ -35,12 +35,12 @@ export const Services = ({ data }: { data: PageBlocksServices }) => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-3">
                   {service?.icon ? (
-                    <Icon data={service.icon} className="w-6 h-6" />
+                    <Icon data={service.icon} className="w-6 h-6" decorative />
                   ) : (
-                    <Clock className="w-6 h-6" />
+                    <Clock className="w-6 h-6" aria-hidden="true" />
                   )}
                   <Typography>
-                    <h4 className="!m-0">{service?.title}</h4>
+                    <h3 className="m-0!">{service?.title}</h3>
                   </Typography>
                 </CardTitle>
                 <p>{service?.time}</p>
@@ -50,17 +50,17 @@ export const Services = ({ data }: { data: PageBlocksServices }) => {
                   {service?.description}
                 </p>
                 {service?.features && service.features.length > 0 && (
-                  <div className="grid sm:grid-cols-2 gap-2">
+                  <ul className="grid sm:grid-cols-2 gap-2">
                     {service.features.map((feature, featureIndex) => (
-                      <div
+                      <li
                         key={featureIndex}
                         className="flex items-center gap-2 text-sm text-muted-foreground"
                       >
-                        <div className="w-2 h-2 bg-black rounded-full"></div>
+                        <div className="w-2 h-2 bg-black rounded-full" aria-hidden="true"></div>
                         {feature}
-                      </div>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 )}
               </CardContent>
             </Card>
@@ -90,7 +90,6 @@ export const servicesSchema = {
       icon: {
         name: 'BiClock',
         color: 'orange',
-        style: 'float',
       },
     },
   },

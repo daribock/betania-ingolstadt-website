@@ -26,13 +26,13 @@ export const HeaderMobileMenu = ({ nav }: HeaderMobileMenuProps) => {
       >
         <Menu
           className={cn(
-            'm-auto size-6 duration-200',
+            'm-auto size-6 duration-200 motion-reduce:duration-0',
             isOpen && 'rotate-180 scale-0 opacity-0',
           )}
         />
         <X
           className={cn(
-            'absolute inset-0 m-auto size-6 duration-200',
+            'absolute inset-0 m-auto size-6 duration-200 motion-reduce:duration-0',
             isOpen
               ? 'rotate-0 scale-100 opacity-100'
               : '-rotate-180 scale-0 opacity-0',

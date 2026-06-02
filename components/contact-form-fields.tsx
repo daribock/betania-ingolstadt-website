@@ -15,9 +15,16 @@ interface ContactFormFieldsProps {
   onSubmit: (values: ContactFormData) => Promise<void>;
   loading: boolean;
   data: PageBlocksContactForm;
+  feedbackMessage: string;
 }
 
-export const ContactFormFields = ({ form, onSubmit, loading, data }: ContactFormFieldsProps) => {
+export const ContactFormFields = ({
+  form,
+  onSubmit,
+  loading,
+  data,
+  feedbackMessage,
+}: ContactFormFieldsProps) => {
   const contactT = useTranslations('Contact');
 
   if (!data.formFields?.email || !data.formFields?.message || !data.formFields?.phone || 
@@ -34,6 +41,10 @@ export const ContactFormFields = ({ form, onSubmit, loading, data }: ContactForm
         className="mt-6 space-y-4"
         autoComplete="on"
       >
+        <div className="sr-only" role="status" aria-live="polite" aria-atomic="true">
+          {feedbackMessage}
+        </div>
+
         {/* Honeypot field (hidden from users) */}
         <FormField
           control={form.control}
@@ -183,6 +194,8 @@ export const ContactFormFields = ({ form, onSubmit, loading, data }: ContactForm
               <div className="flex justify-between items-center">
                 <FormMessage />
                 <div
+                  aria-live="polite"
+                  aria-atomic="false"
                   className={`text-sm ${
                     field.value?.length > 180
                       ? 'text-orange-600'

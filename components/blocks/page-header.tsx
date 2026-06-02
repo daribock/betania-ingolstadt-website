@@ -12,7 +12,7 @@ import { Typography } from '../ui/Typography';
 
 export const PageHeader = ({ data }: { data: PageBlocksPageHeader }) => {
   return (
-    <Section className="relative overflow-hidden pt-40 m-0 max-w-none min-h-[320px]">
+    <Section className="relative overflow-hidden pt-40 m-0 max-w-none min-h-80">
       {/* Background Image */}
       {data.backgroundImage && (
         <Image
@@ -28,20 +28,20 @@ export const PageHeader = ({ data }: { data: PageBlocksPageHeader }) => {
       )}
 
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-orange-400/80 to-orange-600/80 z-10" />
+      <div className="absolute inset-0 bg-linear-to-r from-orange-400/80 to-orange-600/80 z-10" />
 
       {/* Content */}
       <div className="relative z-10 text-center">
         <Typography>
           <h1
-            className="!text-white"
+            className="text-white!"
             data-tina-field={tinaField(data, 'title')}
           >
             {data.title}
           </h1>
           {data.subtitle && (
             <p
-              className="!text-white"
+              className="text-white!"
               data-tina-field={tinaField(data, 'subtitle')}
             >
               {data.subtitle}
@@ -89,7 +89,22 @@ export const pageHeaderBlockSchema: Template = {
       label: 'Background Image Alt Text',
       name: 'backgroundImageAlt',
       description:
-        'Descriptive text for the background image (used by screen readers). Leave blank for decorative images.',
+        'Descriptive text for the background image (used by screen readers). Leave blank only if decorative.',
+      ui: {
+        validate: (value: string) => {
+          const trimmed = value?.trim() || '';
+          if (!trimmed) {
+            return undefined;
+          }
+
+          const generic = /^(background|church background|image|photo|picture)$/i;
+          if (generic.test(trimmed)) {
+            return 'Use descriptive alt text instead of generic text.';
+          }
+
+          return undefined;
+        },
+      },
     },
   ],
 };

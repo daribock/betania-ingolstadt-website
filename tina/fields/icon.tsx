@@ -39,7 +39,7 @@ export const IconPickerInput = wrapFieldsWithMeta(({ input }) => {
       : null;
 
   return (
-    <div className="relative z-[1000]">
+    <div className="relative z-1000">
       <input type="text" id={input.name} className="hidden" {...input} />
       <Popover>
         {({ open }) => (
@@ -61,7 +61,7 @@ export const IconPickerInput = wrapFieldsWithMeta(({ input }) => {
               </Button>
             </PopoverButton>
             <div
-              className="absolute w-full min-w-[192px] max-w-2xl -bottom-2 left-0 translate-y-full"
+              className="absolute w-full min-w-48 max-w-2xl -bottom-2 left-0 translate-y-full"
               style={{ zIndex: 1000 }}
             >
               <Transition
@@ -74,13 +74,13 @@ export const IconPickerInput = wrapFieldsWithMeta(({ input }) => {
               >
                 <PopoverPanel className="relative overflow-hidden rounded-lg shadow-lg bg-white border border-gray-150 z-50">
                   {({ close }) => (
-                    <div className="max-h-[24rem] flex flex-col w-full h-full">
+                    <div className="max-h-96 flex flex-col w-full h-full">
                       <div className="bg-gray-50 p-2 border-b border-gray-100 z-10 shadow-sm">
                         <input
                           type="text"
                           className="bg-white text-sm rounded-sm border border-gray-100 shadow-inner py-1.5 px-2.5 w-full block placeholder-gray-200"
                           onClick={(
-                            event: React.MouseEvent<HTMLInputElement>
+                            event: React.MouseEvent<HTMLInputElement>,
                           ) => {
                             event.stopPropagation();
                             event.preventDefault();
@@ -150,6 +150,11 @@ export const iconSchema = {
   type: 'object',
   label: 'Icon',
   name: 'icon',
+  ui: {
+    defaultItem: {
+      decorative: true,
+    },
+  },
   fields: [
     {
       type: 'string',
@@ -168,19 +173,28 @@ export const iconSchema = {
       },
     },
     {
-      name: 'style',
-      label: 'Style',
+      type: 'boolean',
+      label: 'Decorative Icon',
+      name: 'decorative',
+      description:
+        'Enable for purely visual icons. Disable if the icon conveys meaning that should be announced by screen readers.',
+    },
+    {
       type: 'string',
-      options: [
-        {
-          label: 'Circle',
-          value: 'circle',
+      label: 'Icon Accessibility Label',
+      name: 'ariaLabel',
+      description:
+        'Required when Decorative Icon is disabled. Example: "Open Instagram profile".',
+      ui: {
+        component: 'textarea',
+        validate: (value: string, data: { decorative?: boolean }) => {
+          if (data?.decorative === false && !value?.trim()) {
+            return 'Provide an accessibility label when the icon is not decorative.';
+          }
+
+          return undefined;
         },
-        {
-          label: 'Float',
-          value: 'float',
-        },
-      ],
+      },
     },
   ],
 };

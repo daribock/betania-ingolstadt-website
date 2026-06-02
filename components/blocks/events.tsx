@@ -22,7 +22,8 @@ export const Events = ({ data }: { data: PageBlocksEvents }) => {
             data-tina-field={tinaField(data, 'churchToolsLink')}
             src={data.churchToolsLink || ''}
             loading="lazy"
-            title="Events calendar"
+            title={data.title ? `${data.title} calendar` : 'Events calendar'}
+            aria-label={data.title ? `${data.title} calendar` : 'Events calendar'}
           ></iframe>
         </div>
       </Card>

@@ -20,6 +20,34 @@ interface FooterProps {
   contact?: Maybe<GlobalSharedContact>;
 }
 
+const getSocialLabel = (url?: string | null) => {
+  if (!url) {
+    return 'Open social media profile (opens in a new tab)';
+  }
+
+  if (url.includes('instagram.com')) {
+    return 'Open Instagram profile (opens in a new tab)';
+  }
+
+  if (url.includes('facebook.com')) {
+    return 'Open Facebook profile (opens in a new tab)';
+  }
+
+  if (url.includes('youtube.com')) {
+    return 'Open YouTube channel (opens in a new tab)';
+  }
+
+  if (url.includes('x.com') || url.includes('twitter.com')) {
+    return 'Open X profile (opens in a new tab)';
+  }
+
+  if (url.includes('linkedin.com')) {
+    return 'Open LinkedIn profile (opens in a new tab)';
+  }
+
+  return 'Open social media profile (opens in a new tab)';
+};
+
 export const Footer = async ({
   header,
   services,
@@ -160,11 +188,13 @@ export const Footer = async ({
                   href={link!.url!}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={getSocialLabel(link?.url)}
                   className="text-gray-400 hover:text-white transition-colors"
                 >
                   <Icon
                     data={{ ...link!.icon, size: 'small' }}
                     className="block"
+                    decorative
                   />
                 </Link>
               ))}

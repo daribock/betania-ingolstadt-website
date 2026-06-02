@@ -27,7 +27,6 @@ export const IconOptions = {
 // TODO: Define types inside of the backend (tina folder)
 // Define valid types for better type safety
 type IconSize = 'xs' | 'small' | 'medium' | 'large' | 'xl' | 'custom';
-type IconStyle = 'regular' | 'circle';
 type IconColor =
   | 'primary'
   | 'blue'
@@ -41,51 +40,18 @@ type IconColor =
   | 'black'
   | 'white';
 
-const iconColorClass: Record<IconColor, { regular: string; circle: string }> = {
-  primary: {
-    regular: 'text-primary',
-    circle: 'bg-primary text-primary',
-  },
-  blue: {
-    regular: 'text-blue-400',
-    circle: 'bg-blue-400 dark:bg-blue-500 text-blue-50',
-  },
-  teal: {
-    regular: 'text-teal-400',
-    circle: 'bg-teal-400 dark:bg-teal-500 text-teal-50',
-  },
-  green: {
-    regular: 'text-green-400',
-    circle: 'bg-green-400 dark:bg-green-500 text-green-50',
-  },
-  red: {
-    regular: 'text-red-400',
-    circle: 'bg-red-400 dark:bg-red-500 text-red-50',
-  },
-  pink: {
-    regular: 'text-pink-400',
-    circle: 'bg-pink-400 dark:bg-pink-500 text-pink-50',
-  },
-  purple: {
-    regular: 'text-purple-400',
-    circle: 'bg-purple-400 dark:bg-purple-500 text-purple-50',
-  },
-  orange: {
-    regular: 'text-orange-400',
-    circle: 'bg-orange-400 dark:bg-orange-500 text-orange-50',
-  },
-  yellow: {
-    regular: 'text-yellow-400',
-    circle: 'bg-yellow-400 dark:bg-yellow-500 text-yellow-50',
-  },
-  black: {
-    regular: 'text-black opacity-80',
-    circle: 'bg-black-400 dark:bg-black-500 text-black-50',
-  },
-  white: {
-    regular: 'text-white opacity-80',
-    circle: 'bg-white-400 dark:bg-white-500 text-white-50',
-  },
+const iconColorClass: Record<IconColor, string> = {
+  primary: 'text-primary',
+  blue: 'text-blue-400',
+  teal: 'text-teal-400',
+  green: 'text-green-400',
+  red: 'text-red-400',
+  pink: 'text-pink-400',
+  purple: 'text-purple-400',
+  orange: 'text-orange-400',
+  yellow: 'text-yellow-400',
+  black: 'text-black opacity-80',
+  white: 'text-white opacity-80',
 };
 
 // TODO: move this to tina/fields/icon.tsx and add it to the schema so that its editable
@@ -101,8 +67,9 @@ const iconSizeClass: Record<IconSize, string> = {
 type IconData = {
   name?: Maybe<string>;
   color?: Maybe<string>;
-  style?: Maybe<string>;
   size?: Maybe<string | number>;
+  decorative?: Maybe<boolean>;
+  ariaLabel?: Maybe<string>;
 };
 
 interface IconProps {
@@ -110,6 +77,8 @@ interface IconProps {
   parentColor?: string;
   className?: string;
   tinaField?: string;
+  decorative?: boolean;
+  ariaLabel?: string;
 }
 
 // Helper functions for safe value extraction
@@ -138,16 +107,13 @@ const getValidIconSize = (size?: Maybe<string | number>): IconSize => {
   return sizeKeys[index] || 'medium';
 };
 
-const getValidIconStyle = (style?: Maybe<string>): IconStyle => {
-  if (!style || typeof style !== 'string') return 'regular';
-  return style === 'circle' || style === 'regular' ? style : 'regular';
-};
-
 export const Icon = ({
   data,
   parentColor = '',
   className = '',
   tinaField = '',
+  decorative,
+  ariaLabel,
 }: IconProps) => {
   const { theme } = useLayout();
 
@@ -160,7 +126,6 @@ export const Icon = ({
   const iconName = getValidIconName(data.name);
   const iconColor = getValidIconColor(data.color);
   const iconSize = getValidIconSize(data.size);
-  const iconStyle = getValidIconStyle(data.style);
 
   // Return null if icon name is invalid
   if (!iconName) {
@@ -169,6 +134,10 @@ export const Icon = ({
 
   const IconSVG = IconOptions[iconName];
   const iconSizeClasses = iconSizeClass[iconSize];
+  const resolvedDecorative =
+    decorative ?? (typeof data.decorative === 'boolean' ? data.decorative : true);
+  const resolvedAriaLabel =
+    ariaLabel ?? (typeof data.ariaLabel === 'string' ? data.ariaLabel : undefined);
 
   // Determine the final color based on parent color and theme
   const finalColor: IconColor = (() => {
@@ -180,24 +149,16 @@ export const Icon = ({
 
   // Common props for tina field
   const tinaProps = tinaField ? { 'data-tina-field': tinaField } : {};
-
-  if (iconStyle === 'circle') {
-    return (
-      <div
-        {...tinaProps}
-        className={`relative z-10 inline-flex items-center justify-center shrink-0 ${iconSizeClasses} rounded-full ${iconColorClass[finalColor].circle} ${className}`}
-      >
-        <IconSVG className="w-2/3 h-2/3" />
-        <IconSVG className="w-2/3 h-2/3" />
-      </div>
-    );
-  }
+  const a11yProps = resolvedDecorative
+    ? { 'aria-hidden': true, focusable: false }
+    : { role: 'img', 'aria-label': resolvedAriaLabel || undefined };
 
   return (
     <IconSVG
       {...tinaProps}
+      {...a11yProps}
       className={cn(
-        `${iconSizeClasses} ${iconColorClass[finalColor].regular} ${className}`
+        `${iconSizeClasses} ${iconColorClass[finalColor]} ${className}`
       )}
     />
   );
