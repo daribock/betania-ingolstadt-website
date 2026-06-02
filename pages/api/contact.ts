@@ -7,12 +7,6 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  // Get the current locale
-  // const locale = await getLocale();
-  // const t = await getTranslations('ProfilePage');
-  // const {locale} = await params;
-  // const t = await getTranslations({locale, namespace: 'Metadata'});
-
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' });
   }

@@ -16,15 +16,15 @@ export const ContactForm = ({ data }: { data: PageBlocksContactForm }) => {
         <CardHeader>
           <div className="text-center">
             <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Mail className="h-8 w-8 text-primary" />
+              <Mail className="h-8 w-8 text-primary" aria-hidden="true" />
             </div>
             <Typography>
-              <h3
-                className="!text-primary"
+              <h2
+                className="text-primary!"
                 data-tina-field={tinaField(data, 'title')}
               >
                 {data.title}
-              </h3>
+              </h2>
               <p data-tina-field={tinaField(data, 'description')}>
                 {data.description}
               </p>

@@ -63,7 +63,9 @@ export default async function Layout({ children, rawPageData }: LayoutProps) {
       pageData={rawPageData}
     >
       <Header header={globalData.data.global.header!} />
-      <main className="overflow-x-hidden">{children}</main>
+      <main id="main-content" className="overflow-x-hidden">
+        {children}
+      </main>
       <Footer
         header={globalData.data.global.header}
         services={globalData.data.global.services}

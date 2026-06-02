@@ -14,23 +14,23 @@ export const CallToAction = ({ data }: { data: PageBlocksCta }) => {
       <div className=" text-center">
         <Typography>
           <h2
-            className="!text-white"
+            className="text-white!"
             data-tina-field={tinaField(data, 'title')}
           >
             {data.title}
           </h2>
           <p
-            className="!text-white"
+            className="text-white!"
             data-tina-field={tinaField(data, 'description')}
           >
             {data.description}
           </p>
         </Typography>
 
-        <div className="mt-12 flex flex-wrap justify-center gap-4">
+        <ul className="mt-12 flex flex-wrap justify-center gap-4">
           {data.actions &&
             data.actions.map((action) => (
-              <div key={action!.label} data-tina-field={tinaField(action)}>
+              <li key={action!.label} data-tina-field={tinaField(action)}>
                 <Button
                   asChild
                   size="lg"
@@ -39,13 +39,13 @@ export const CallToAction = ({ data }: { data: PageBlocksCta }) => {
                   }
                 >
                   <Link href={action!.link!}>
-                    {action?.icon && <Icon data={action?.icon} />}
+                    {action?.icon && <Icon data={action?.icon} decorative />}
                     <span className="text-nowrap">{action!.label}</span>
                   </Link>
                 </Button>
-              </div>
+              </li>
             ))}
-        </div>
+        </ul>
       </div>
     </Section>
   );

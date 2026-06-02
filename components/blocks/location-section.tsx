@@ -13,6 +13,7 @@ export const LocationSection = ({ data }: { data: PageBlocksLocation }) => {
   const contactT = useTranslations('Contact');
   const { globalSettings } = useLayout();
   const { services, contact } = globalSettings!;
+  const imageAlt = (data as PageBlocksLocation & { imageAlt?: string }).imageAlt;
 
   if (!contact) {
     return null;
@@ -25,17 +26,18 @@ export const LocationSection = ({ data }: { data: PageBlocksLocation }) => {
           <Typography>
             <h2 data-tina-field={tinaField(data, 'title')}>{data.title}</h2>
           </Typography>
-          <div className="space-y-4 mt-8">
+          <ul className="space-y-4 mt-8">
             {contact.street && contact.number && contact.ort && (
-              <div className="flex items-start space-x-3">
-                <MapPin className="h-6 w-6 text-primary mt-1" />
+              <li className="flex items-start space-x-3">
+                <MapPin className="h-6 w-6 text-primary mt-1" aria-hidden="true" />
                 <Typography size="sm">
-                  <h3 className="!m-0">{contactT('Address')}</h3>
+                  <h3 className="m-0!">{contactT('Address')}</h3>
                   <div data-tina-field={tinaField(globalSettings, 'contact')}>
                     <Link
                       href="https://maps.app.goo.gl/w3A3ZUWggsQTQzJb7"
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`${contactT('Address')} (opens in a new tab)`}
                     >
                       {contact.street} {contact.number}
                       <br />
@@ -45,13 +47,13 @@ export const LocationSection = ({ data }: { data: PageBlocksLocation }) => {
                     </Link>
                   </div>
                 </Typography>
-              </div>
+              </li>
             )}
             {contact.phone && (
-              <div className="flex items-start space-x-3">
-                <Phone className="h-6 w-6 text-primary mt-1" />
+              <li className="flex items-start space-x-3">
+                <Phone className="h-6 w-6 text-primary mt-1" aria-hidden="true" />
                 <Typography size="sm">
-                  <h3 className="!m-0">{contactT('Telefon')}</h3>
+                  <h3 className="m-0!">{contactT('Telefon')}</h3>
 
                   <Link
                     href={`tel:${contact.phone}`}
@@ -60,13 +62,13 @@ export const LocationSection = ({ data }: { data: PageBlocksLocation }) => {
                     {contact.phone}
                   </Link>
                 </Typography>
-              </div>
+              </li>
             )}
             {contact.email && (
-              <div className="flex items-start space-x-3">
-                <Mail className="h-6 w-6 text-primary mt-1" />
+              <li className="flex items-start space-x-3">
+                <Mail className="h-6 w-6 text-primary mt-1" aria-hidden="true" />
                 <Typography size="sm">
-                  <h3 className="!m-0">{contactT('Email')}</h3>
+                  <h3 className="m-0!">{contactT('Email')}</h3>
                   <Link
                     href={`mailto:${contact.email}`}
                     className=" transition-colors"
@@ -74,13 +76,13 @@ export const LocationSection = ({ data }: { data: PageBlocksLocation }) => {
                     {contact.email}
                   </Link>
                 </Typography>
-              </div>
+              </li>
             )}
-          </div>
+          </ul>
           {services && (
             <div className="space-y-2 mt-8">
               <Typography size="sm">
-                <h3 className="!m-0 text-xl ">{contactT('Services')}</h3>
+                <h3 className="m-0! text-xl">{contactT('Services')}</h3>
               </Typography>
               <ul className="">
                 {services?.map((service, index: number) => (
@@ -97,7 +99,7 @@ export const LocationSection = ({ data }: { data: PageBlocksLocation }) => {
           >
             <Image
               src={data.Image}
-              alt="Karte zu Betania Ingolstadt"
+              alt={imageAlt || 'Location map'}
               width={600}
               height={400}
               className="w-full h-full object-cover"
@@ -129,6 +131,32 @@ export const locationSectionBlockSchema: Template = {
       name: 'Image',
       label: 'Image Source',
       type: 'image',
+    },
+    {
+      name: 'imageAlt',
+      label: 'Image Alt Text',
+      type: 'string',
+      description:
+        'Describe this image for screen readers. If the image is decorative, leave this empty.',
+      ui: {
+        validate: (value: string, data: { Image?: string }) => {
+          if (!data?.Image) {
+            return undefined;
+          }
+
+          const trimmed = value?.trim() || '';
+          if (!trimmed) {
+            return 'Provide alt text when an image is set.';
+          }
+
+          const generic = /^(map|image|photo|picture|location map)$/i;
+          if (generic.test(trimmed)) {
+            return 'Use descriptive alt text instead of generic terms.';
+          }
+
+          return undefined;
+        },
+      },
     },
   ],
 };

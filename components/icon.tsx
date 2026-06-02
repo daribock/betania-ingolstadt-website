@@ -68,6 +68,8 @@ type IconData = {
   name?: Maybe<string>;
   color?: Maybe<string>;
   size?: Maybe<string | number>;
+  decorative?: Maybe<boolean>;
+  ariaLabel?: Maybe<string>;
 };
 
 interface IconProps {
@@ -75,6 +77,8 @@ interface IconProps {
   parentColor?: string;
   className?: string;
   tinaField?: string;
+  decorative?: boolean;
+  ariaLabel?: string;
 }
 
 // Helper functions for safe value extraction
@@ -108,6 +112,8 @@ export const Icon = ({
   parentColor = '',
   className = '',
   tinaField = '',
+  decorative,
+  ariaLabel,
 }: IconProps) => {
   const { theme } = useLayout();
 
@@ -128,6 +134,10 @@ export const Icon = ({
 
   const IconSVG = IconOptions[iconName];
   const iconSizeClasses = iconSizeClass[iconSize];
+  const resolvedDecorative =
+    decorative ?? (typeof data.decorative === 'boolean' ? data.decorative : true);
+  const resolvedAriaLabel =
+    ariaLabel ?? (typeof data.ariaLabel === 'string' ? data.ariaLabel : undefined);
 
   // Determine the final color based on parent color and theme
   const finalColor: IconColor = (() => {
@@ -139,10 +149,14 @@ export const Icon = ({
 
   // Common props for tina field
   const tinaProps = tinaField ? { 'data-tina-field': tinaField } : {};
+  const a11yProps = resolvedDecorative
+    ? { 'aria-hidden': true, focusable: false }
+    : { role: 'img', 'aria-label': resolvedAriaLabel || undefined };
 
   return (
     <IconSVG
       {...tinaProps}
+      {...a11yProps}
       className={cn(
         `${iconSizeClasses} ${iconColorClass[finalColor]} ${className}`
       )}

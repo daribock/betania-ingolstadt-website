@@ -33,18 +33,18 @@ export const Hero = ({ data }: { data: PageBlocksHero }) => {
           )}
 
           {data.tagline && (
-            <h2
+            <p
               data-tina-field={tinaField(data, 'tagline')}
               className="mx-auto mt-8 max-w-2xl text-balance text-lg"
             >
               {data.tagline}
-            </h2>
+            </p>
           )}
 
           {data.actions && (
-            <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
+            <ul className="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
               {data.actions.map((action) => (
-                <div key={action!.label} data-tina-field={tinaField(action)}>
+                <li key={action!.label} data-tina-field={tinaField(action)}>
                   <Button
                     asChild
                     size="lg"
@@ -52,13 +52,13 @@ export const Hero = ({ data }: { data: PageBlocksHero }) => {
                     className=" px-5 text-base"
                   >
                     <Link href={action!.link!}>
-                      {action?.icon && <Icon data={action?.icon} />}
+                      {action?.icon && <Icon data={action?.icon} decorative />}
                       <span className="text-nowrap">{action!.label}</span>
                     </Link>
                   </Button>
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           )}
         </div>
       </div>
@@ -160,6 +160,23 @@ export const heroBlockSchema: Template = {
           name: 'alt',
           label: 'Alt Text',
           type: 'string',
+          description:
+            'Describe the image for screen readers. Leave empty only if the image is decorative.',
+          ui: {
+            validate: (value: string) => {
+              const trimmed = value?.trim() || '';
+              if (!trimmed) {
+                return undefined;
+              }
+
+              const generic = /^(hero|background|image|photo|picture)$/i;
+              if (generic.test(trimmed)) {
+                return 'Use descriptive alt text, not generic words like "image" or "background".';
+              }
+
+              return undefined;
+            },
+          },
         },
       ],
     },
