@@ -90,7 +90,6 @@ export const servicesSchema = {
       icon: {
         name: 'BiClock',
         color: 'orange',
-        style: 'float',
       },
     },
   },

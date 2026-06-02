@@ -80,7 +80,7 @@ export const IconPickerInput = wrapFieldsWithMeta(({ input }) => {
                           type="text"
                           className="bg-white text-sm rounded-sm border border-gray-100 shadow-inner py-1.5 px-2.5 w-full block placeholder-gray-200"
                           onClick={(
-                            event: React.MouseEvent<HTMLInputElement>
+                            event: React.MouseEvent<HTMLInputElement>,
                           ) => {
                             event.stopPropagation();
                             event.preventDefault();
@@ -166,21 +166,6 @@ export const iconSchema = {
       ui: {
         component: ColorPickerInput,
       },
-    },
-    {
-      name: 'style',
-      label: 'Style',
-      type: 'string',
-      options: [
-        {
-          label: 'Circle',
-          value: 'circle',
-        },
-        {
-          label: 'Float',
-          value: 'float',
-        },
-      ],
     },
   ],
 };

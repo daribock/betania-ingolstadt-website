@@ -4,24 +4,21 @@
     {
       "icon": {
         "name": "AiFillInstagram",
-        "color": "orange",
-        "style": "float"
+        "color": "orange"
       },
       "url": "https://www.instagram.com/betaniaingolstadt/"
     },
     {
       "icon": {
         "name": "BiLogoFacebookCircle",
-        "color": "orange",
-        "style": "float"
+        "color": "orange"
       },
       "url": "https://www.facebook.com/betaniaingostadt.de"
     },
     {
       "icon": {
         "name": "FaYoutube",
-        "color": "orange",
-        "style": "float"
+        "color": "orange"
       },
       "url": "https://www.youtube.com/@BetaniaIngolstadt"
     }

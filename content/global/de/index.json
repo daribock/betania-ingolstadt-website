@@ -35,8 +35,7 @@
       ],
       "icon": {
         "name": "BiTime",
-        "color": "orange",
-        "style": "float"
+        "color": "orange"
       }
     },
     {
@@ -52,8 +51,7 @@
       ],
       "icon": {
         "name": "BiTime",
-        "color": "orange",
-        "style": "float"
+        "color": "orange"
       }
     },
     {
@@ -69,8 +67,7 @@
       ],
       "icon": {
         "name": "BiTime",
-        "color": "orange",
-        "style": "float"
+        "color": "orange"
       }
     }
   ],
