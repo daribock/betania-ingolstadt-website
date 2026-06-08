@@ -1,28 +1,10 @@
 'use client';
 
-import * as BoxIcons from 'react-icons/bi';
-import {
-  FaFacebookF,
-  FaGithub,
-  FaLinkedin,
-  FaXTwitter,
-  FaYoutube,
-} from 'react-icons/fa6';
-import { AiFillInstagram } from 'react-icons/ai';
 import React from 'react';
+import dynamic from 'next/dynamic';
 import { useLayout } from './layout/layout-context';
 import { Maybe } from '@/tina/__generated__/types';
 import { cn } from '@/lib/utils';
-
-export const IconOptions = {
-  ...BoxIcons,
-  FaFacebookF,
-  FaGithub,
-  FaLinkedin,
-  FaXTwitter,
-  FaYoutube,
-  AiFillInstagram,
-};
 
 // TODO: Define types inside of the backend (tina folder)
 // Define valid types for better type safety
@@ -81,12 +63,54 @@ interface IconProps {
   ariaLabel?: string;
 }
 
+// ⚡ Bolt: Lazy loading icon sets to prevent massive bundle bloat.
+// Full namespaces are moved to tina/fields/icon.tsx (CMS only).
+/* eslint-disable @typescript-eslint/no-explicit-any */
+const dynamicIconLoaders: Record<string, React.ComponentType<any>> = {
+  Bi: dynamic(() =>
+    import('react-icons/bi').then((mod) => {
+      const BiIconLoader = (props: any) => {
+        const Component = (mod as any)[props.name] as React.ElementType;
+        return Component ? <Component {...props} /> : null;
+      };
+      BiIconLoader.displayName = 'BiIconLoader';
+      return BiIconLoader;
+    })
+  ),
+  Fa: dynamic(() =>
+    import('react-icons/fa6').then((mod) => {
+      const FaIconLoader = (props: any) => {
+        const Component = (mod as any)[props.name] as React.ElementType;
+        return Component ? <Component {...props} /> : null;
+      };
+      FaIconLoader.displayName = 'FaIconLoader';
+      return FaIconLoader;
+    })
+  ),
+  Ai: dynamic(() =>
+    import('react-icons/ai').then((mod) => {
+      const AiIconLoader = (props: any) => {
+        const Component = (mod as any)[props.name] as React.ElementType;
+        return Component ? <Component {...props} /> : null;
+      };
+      AiIconLoader.displayName = 'AiIconLoader';
+      return AiIconLoader;
+    })
+  ),
+};
+/* eslint-enable @typescript-eslint/no-explicit-any */
+
+const getIconPrefix = (name: string): string | null => {
+  if (name.startsWith('Bi')) return 'Bi';
+  if (name.startsWith('Fa')) return 'Fa';
+  if (name.startsWith('Ai')) return 'Ai';
+  return null;
+};
+
 // Helper functions for safe value extraction
-const getValidIconName = (
-  name?: Maybe<string>
-): keyof typeof IconOptions | null => {
+const getValidIconName = (name?: Maybe<string>): string | null => {
   if (!name || typeof name !== 'string') return null;
-  return name in IconOptions ? (name as keyof typeof IconOptions) : null;
+  return name;
 };
 
 const getValidIconColor = (color?: Maybe<string>): IconColor => {
@@ -132,7 +156,13 @@ export const Icon = ({
     return null;
   }
 
-  const IconSVG = IconOptions[iconName];
+  const iconPrefix = getIconPrefix(iconName);
+  const IconSVG = iconPrefix ? dynamicIconLoaders[iconPrefix] : null;
+
+  if (!IconSVG) {
+    return null;
+  }
+
   const iconSizeClasses = iconSizeClass[iconSize];
   const resolvedDecorative =
     decorative ?? (typeof data.decorative === 'boolean' ? data.decorative : true);
@@ -155,6 +185,7 @@ export const Icon = ({
 
   return (
     <IconSVG
+      name={iconName}
       {...tinaProps}
       {...a11yProps}
       className={cn(
