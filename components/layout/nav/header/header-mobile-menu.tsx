@@ -56,7 +56,7 @@ export const HeaderMobileMenu = ({ nav }: HeaderMobileMenuProps) => {
               <li key={index}>
                 <Link
                   href={item!.href!}
-                  className="text-muted-foreground hover:text-accent-foreground block duration-150"
+                  className="text-muted-foreground hover:text-accent-foreground block duration-150 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-hidden rounded-sm"
                   onClick={() => setIsOpen(false)}
                 >
                   <span>{item!.label}</span>

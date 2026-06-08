@@ -89,7 +89,7 @@ export const Footer = async ({
               {header?.nav?.map((link) => (
                 <li key={link?.href}>
                   <Link
-                    className="hover:text-white transition-colors"
+                    className="hover:text-white transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-hidden rounded-sm"
                     href={link!.href!}
                   >
                     <span className="text-nowrap">{link?.label}</span>
@@ -119,7 +119,7 @@ export const Footer = async ({
                     <li>
                       <Link
                         href="https://maps.app.goo.gl/w3A3ZUWggsQTQzJb7"
-                        className="hover:text-white transition-colors"
+                        className="hover:text-white transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-hidden rounded-sm"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -131,7 +131,7 @@ export const Footer = async ({
                     <li>
                       <Link
                         href={`tel:${contact.phone}`}
-                        className="hover:text-white transition-colors"
+                        className="hover:text-white transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-hidden rounded-sm"
                       >
                         {contact.phone}
                       </Link>
@@ -141,7 +141,7 @@ export const Footer = async ({
                     <li>
                       <Link
                         href={`mailto:${contact.email}`}
-                        className="hover:text-white transition-colors"
+                        className="hover:text-white transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-hidden rounded-sm"
                       >
                         {contact.email}
                       </Link>
@@ -171,7 +171,7 @@ export const Footer = async ({
                     <Link
                       key={legal!.href!}
                       href={legal!.href!}
-                      className="text-gray-400 hover:text-white transition-colors"
+                      className="text-gray-400 hover:text-white transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-hidden rounded-sm"
                     >
                       {legal?.label}
                     </Link>
@@ -189,7 +189,7 @@ export const Footer = async ({
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={getSocialLabel(link?.url)}
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="text-gray-400 hover:text-white transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-hidden rounded-sm"
                 >
                   <Icon
                     data={{ ...link!.icon, size: 'small' }}
