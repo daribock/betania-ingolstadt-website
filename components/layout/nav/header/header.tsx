@@ -38,7 +38,7 @@ export const Header = ({ header }: HeaderProps) => {
                     <li key={index} className="h-full flex items-center">
                       <Link
                         href={item!.href!}
-                        className="text-muted-foreground hover:text-accent-foreground flex duration-150 h-full items-center"
+                        className="text-muted-foreground hover:text-accent-foreground flex duration-150 h-full items-center focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-hidden rounded-sm"
                       >
                         <span>{item!.label}</span>
                       </Link>
