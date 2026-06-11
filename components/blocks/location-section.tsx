@@ -42,8 +42,8 @@ export const LocationSection = ({ data }: { data: PageBlocksLocation }) => {
                       {contact.street} {contact.number}
                       <br />
                       {contact.ort}
-                      {/* TODO: Should we add this? <br />
-                      Deutschland */}
+                      <br />
+                      Deutschland
                     </Link>
                   </div>
                 </Typography>
