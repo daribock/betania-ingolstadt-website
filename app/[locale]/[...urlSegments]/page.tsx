@@ -119,7 +119,8 @@ export default async function Page({
 }
 
 export async function generateStaticParams() {
-  let pages = await client.queries.pageConnection();
+  // ⚡ Bolt: Increase batch size with `first: 100` to speed up build time fetching.
+  let pages = await client.queries.pageConnection({ first: 100 });
   const allPages = pages;
 
   if (!allPages.data.pageConnection.edges) {
@@ -127,7 +128,9 @@ export async function generateStaticParams() {
   }
 
   while (pages.data.pageConnection.pageInfo.hasNextPage) {
+    // ⚡ Bolt: Fetch more results per batch to minimize sequential query round-trips.
     pages = await client.queries.pageConnection({
+      first: 100,
       after: pages.data.pageConnection.pageInfo.endCursor,
     });
 

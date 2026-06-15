@@ -23,11 +23,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Add all content pages
   try {
-    let pages = await client.queries.pageConnection();
+    // ⚡ Bolt: Use `first: 100` to optimize TinaCMS sequential fetching and reduce N+1 queries.
+    let pages = await client.queries.pageConnection({ first: 100 });
     const pageEdges = [...(pages.data.pageConnection.edges ?? [])];
 
     while (pages.data.pageConnection.pageInfo.hasNextPage) {
+      // ⚡ Bolt: Increase batch size with `first: 100` for faster sequential fetching.
       pages = await client.queries.pageConnection({
+        first: 100,
         after: pages.data.pageConnection.pageInfo.endCursor,
       });
       if (!pages.data.pageConnection.edges) break;
