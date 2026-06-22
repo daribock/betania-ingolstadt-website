@@ -22,7 +22,10 @@ export const Header = ({ header }: HeaderProps) => {
             {/* Left side: Logo + Navigation */}
             <div className="flex items-center gap-8 h-full">
               {/* Logo */}
-              <Link href="/">
+              <Link
+                href="/"
+                className="focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-hidden rounded-sm inline-block"
+              >
                 <Image
                   src="/uploads/logos/betania-logo-transparent-schwarz.svg"
                   alt="Logo"

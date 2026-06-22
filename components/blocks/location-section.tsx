@@ -38,6 +38,7 @@ export const LocationSection = ({ data }: { data: PageBlocksLocation }) => {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${contactT('Address')} (opens in a new tab)`}
+                      className="focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-hidden rounded-sm"
                     >
                       {contact.street} {contact.number}
                       <br />
@@ -57,7 +58,7 @@ export const LocationSection = ({ data }: { data: PageBlocksLocation }) => {
 
                   <Link
                     href={`tel:${contact.phone}`}
-                    className=" transition-colors"
+                    className="transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-hidden rounded-sm"
                   >
                     {contact.phone}
                   </Link>
@@ -71,7 +72,7 @@ export const LocationSection = ({ data }: { data: PageBlocksLocation }) => {
                   <h3 className="m-0!">{contactT('Email')}</h3>
                   <Link
                     href={`mailto:${contact.email}`}
-                    className=" transition-colors"
+                    className="transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-hidden rounded-sm"
                   >
                     {contact.email}
                   </Link>
