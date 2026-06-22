@@ -1,28 +1,35 @@
+/* eslint-disable react-hooks/static-components */
 'use client';
 
-import * as BoxIcons from 'react-icons/bi';
-import {
-  FaFacebookF,
-  FaGithub,
-  FaLinkedin,
-  FaXTwitter,
-  FaYoutube,
-} from 'react-icons/fa6';
-import { AiFillInstagram } from 'react-icons/ai';
 import React from 'react';
+import dynamic from 'next/dynamic';
+
+const iconCache: Record<string, React.ElementType> = {};
+
+export function getIconComponent(name: string): React.ElementType | null {
+  if (iconCache[name]) return iconCache[name];
+
+  let Comp: React.ElementType | null = null;
+  if (name.startsWith('Bi')) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    Comp = dynamic(() => import('react-icons/bi').then((mod) => mod[name as keyof typeof mod] as any));
+  } else if (name.startsWith('Fa')) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    Comp = dynamic(() => import('react-icons/fa6').then((mod) => mod[name as keyof typeof mod] as any));
+  } else if (name.startsWith('Ai')) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    Comp = dynamic(() => import('react-icons/ai').then((mod) => mod[name as keyof typeof mod] as any));
+  }
+
+  if (Comp) {
+    iconCache[name] = Comp;
+  }
+  return Comp;
+}
+
 import { useLayout } from './layout/layout-context';
 import { Maybe } from '@/tina/__generated__/types';
 import { cn } from '@/lib/utils';
-
-export const IconOptions = {
-  ...BoxIcons,
-  FaFacebookF,
-  FaGithub,
-  FaLinkedin,
-  FaXTwitter,
-  FaYoutube,
-  AiFillInstagram,
-};
 
 // TODO: Define types inside of the backend (tina folder)
 // Define valid types for better type safety
@@ -84,9 +91,9 @@ interface IconProps {
 // Helper functions for safe value extraction
 const getValidIconName = (
   name?: Maybe<string>
-): keyof typeof IconOptions | null => {
+): string | null => {
   if (!name || typeof name !== 'string') return null;
-  return name in IconOptions ? (name as keyof typeof IconOptions) : null;
+  return name;
 };
 
 const getValidIconColor = (color?: Maybe<string>): IconColor => {
@@ -132,7 +139,13 @@ export const Icon = ({
     return null;
   }
 
-  const IconSVG = IconOptions[iconName];
+
+  const IconSVG = getIconComponent(iconName);
+
+  if (!IconSVG) {
+    return null;
+  }
+
   const iconSizeClasses = iconSizeClass[iconSize];
   const resolvedDecorative =
     decorative ?? (typeof data.decorative === 'boolean' ? data.decorative : true);

@@ -3,7 +3,27 @@ import React, { ChangeEvent } from 'react';
 import { Button, wrapFieldsWithMeta } from 'tinacms';
 import { BiChevronRight } from 'react-icons/bi';
 import { GoCircleSlash } from 'react-icons/go';
-import { Icon, IconOptions } from '../../components/icon';
+import { Icon } from '../../components/icon';
+import * as BoxIcons from 'react-icons/bi';
+import {
+  FaFacebookF,
+  FaGithub,
+  FaLinkedin,
+  FaXTwitter,
+  FaYoutube,
+} from 'react-icons/fa6';
+import { AiFillInstagram } from 'react-icons/ai';
+
+export const IconOptions = {
+  ...BoxIcons,
+  FaFacebookF,
+  FaGithub,
+  FaLinkedin,
+  FaXTwitter,
+  FaYoutube,
+  AiFillInstagram,
+};
+
 import {
   Popover,
   PopoverButton,
