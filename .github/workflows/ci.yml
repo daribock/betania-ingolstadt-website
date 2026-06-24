@@ -52,7 +52,7 @@ jobs:
           cache: 'npm'
 
       - name: Restore Next.js build cache
-        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
+        uses: actions/cache@2c8a9bd7457de244a408f35966fab2fb45fda9c8 # v6.0.0
         with:
           path: .next/cache
           # Der Key basiert auf der OS-Version und dem Hash der Lock-Files
