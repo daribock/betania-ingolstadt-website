@@ -22,7 +22,7 @@ export const HeaderMobileMenu = ({ nav }: HeaderMobileMenuProps) => {
         aria-label={isOpen ? 'Close Menu' : 'Open Menu'}
         aria-expanded={isOpen}
         aria-controls="mobile-nav-menu"
-        className="relative z-20 -m-2.5 -mr-4 cursor-pointer p-2.5 lg:hidden h-12 w-12 flex items-center justify-center"
+        className="relative z-20 -m-2.5 -mr-4 cursor-pointer p-2.5 lg:hidden h-12 w-12 flex items-center justify-center focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-hidden rounded-sm"
       >
         <Menu
           className={cn(
