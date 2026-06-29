@@ -1,6 +1,5 @@
 'use client';
 
-import * as BoxIcons from 'react-icons/bi';
 import {
   FaFacebookF,
   FaGithub,
@@ -9,20 +8,24 @@ import {
   FaYoutube,
 } from 'react-icons/fa6';
 import { AiFillInstagram } from 'react-icons/ai';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
+import dynamic from 'next/dynamic';
 import { useLayout } from './layout/layout-context';
 import { Maybe } from '@/tina/__generated__/types';
 import { cn } from '@/lib/utils';
 
-export const IconOptions = {
-  ...BoxIcons,
-  FaFacebookF,
-  FaGithub,
-  FaLinkedin,
-  FaXTwitter,
-  FaYoutube,
-  AiFillInstagram,
-};
+// We dynamically load all `bi` icons globally but we need to type them somehow.
+// For performance we use an outer dynamic wrapper that returns the specific icon.
+const DynamicBiIcon = dynamic(() =>
+  import('react-icons/bi').then((mod) => {
+    return function BiIconWrapper({ iconName, ...props }: { iconName: string; [key: string]: any }) {
+      const IconComp = (mod as any)[iconName] as React.ElementType;
+      if (!IconComp) return null;
+      return <IconComp {...props} />;
+    };
+  })
+);
 
 // TODO: Define types inside of the backend (tina folder)
 // Define valid types for better type safety
@@ -84,9 +87,9 @@ interface IconProps {
 // Helper functions for safe value extraction
 const getValidIconName = (
   name?: Maybe<string>
-): keyof typeof IconOptions | null => {
+): string | null => {
   if (!name || typeof name !== 'string') return null;
-  return name in IconOptions ? (name as keyof typeof IconOptions) : null;
+  return name;
 };
 
 const getValidIconColor = (color?: Maybe<string>): IconColor => {
@@ -132,7 +135,6 @@ export const Icon = ({
     return null;
   }
 
-  const IconSVG = IconOptions[iconName];
   const iconSizeClasses = iconSizeClass[iconSize];
   const resolvedDecorative =
     decorative ?? (typeof data.decorative === 'boolean' ? data.decorative : true);
@@ -153,13 +155,29 @@ export const Icon = ({
     ? { 'aria-hidden': true, focusable: false }
     : { role: 'img', 'aria-label': resolvedAriaLabel || undefined };
 
-  return (
-    <IconSVG
-      {...tinaProps}
-      {...a11yProps}
-      className={cn(
-        `${iconSizeClasses} ${iconColorClass[finalColor]} ${className}`
-      )}
-    />
+  const combinedClassName = cn(
+    `${iconSizeClasses} ${iconColorClass[finalColor]} ${className}`
   );
+
+  // Fallbacks to specific imported icons to prevent tree-shaking loss for ai and fa6
+  if (iconName === 'FaFacebookF') return <FaFacebookF {...tinaProps} {...a11yProps} className={combinedClassName} />;
+  if (iconName === 'FaGithub') return <FaGithub {...tinaProps} {...a11yProps} className={combinedClassName} />;
+  if (iconName === 'FaLinkedin') return <FaLinkedin {...tinaProps} {...a11yProps} className={combinedClassName} />;
+  if (iconName === 'FaXTwitter') return <FaXTwitter {...tinaProps} {...a11yProps} className={combinedClassName} />;
+  if (iconName === 'FaYoutube') return <FaYoutube {...tinaProps} {...a11yProps} className={combinedClassName} />;
+  if (iconName === 'AiFillInstagram') return <AiFillInstagram {...tinaProps} {...a11yProps} className={combinedClassName} />;
+
+  // Default bi icons are lazily loaded
+  if (iconName.startsWith('Bi')) {
+    return (
+      <DynamicBiIcon
+        iconName={iconName}
+        {...tinaProps}
+        {...a11yProps}
+        className={combinedClassName}
+      />
+    );
+  }
+
+  return null;
 };

@@ -3,7 +3,16 @@ import React, { ChangeEvent } from 'react';
 import { Button, wrapFieldsWithMeta } from 'tinacms';
 import { BiChevronRight } from 'react-icons/bi';
 import { GoCircleSlash } from 'react-icons/go';
-import { Icon, IconOptions } from '../../components/icon';
+import * as BoxIcons from 'react-icons/bi';
+import {
+  FaFacebookF,
+  FaGithub,
+  FaLinkedin,
+  FaXTwitter,
+  FaYoutube,
+} from 'react-icons/fa6';
+import { AiFillInstagram } from 'react-icons/ai';
+import { Icon } from '../../components/icon';
 import {
   Popover,
   PopoverButton,
@@ -11,6 +20,16 @@ import {
   PopoverPanel,
 } from '@headlessui/react';
 import { ColorPickerInput } from './color';
+
+export const IconOptions = {
+  ...BoxIcons,
+  FaFacebookF,
+  FaGithub,
+  FaLinkedin,
+  FaXTwitter,
+  FaYoutube,
+  AiFillInstagram,
+};
 
 const parseIconName = (name: string) => {
   const splitName = name.split(/(?=[A-Z])/);

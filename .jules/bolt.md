@@ -1,3 +1,3 @@
-## 2024-05-01 - [Iframe Lazy Loading]
-**Learning:** Missing comments for performance optimization was flagged during Code Review.
-**Action:** Always ensure to explicitly add a comment like `// ⚡ Bolt: ...` around the optimization logic to fulfill the rule requirement.
+## 2024-05-16 - Tree-shaking and dynamic imports for icon libraries
+**Learning:** Statically importing an entire namespace from an icon library (`import * as BoxIcons from 'react-icons/bi'`) completely breaks tree-shaking, resulting in the entire library being bundled, massively bloating the client bundle size. When icons are defined dynamically via CMS, we must balance tree-shaking with dynamic requirements.
+**Action:** Always avoid `import * as` for UI libraries. Use explicit imports for known icons (e.g. social icons) to allow Webpack to tree-shake. For dynamically specified icons where the exact name is not known at build time, isolate the import using a higher-order wrapper via `next/dynamic` so the entire namespace is split out of the initial bundle and loaded lazily.
