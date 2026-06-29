@@ -39,22 +39,6 @@
       }
     },
     {
-      "title": "Abendgottesdienst",
-      "type": "service",
-      "time": "Sonntag 17:00 - 18:30 Uhr",
-      "description": "Deutscher Gottesdienst am Sonntagabend mit Anbetung, Predigt und Gemeinschaft.",
-      "features": [
-        "Gebetszeit",
-        "Biblische Lehre",
-        "Übersetzung auf Deutsch verfügbar",
-        "Gemeinschaft"
-      ],
-      "icon": {
-        "name": "BiTime",
-        "color": "orange"
-      }
-    },
-    {
       "title": "Gebetsabend",
       "type": "prayer",
       "time": "Mittwoch 18:00 - 19:30 Uhr",
