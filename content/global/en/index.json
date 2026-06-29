@@ -39,22 +39,6 @@
       }
     },
     {
-      "title": "Evening Service",
-      "type": "service",
-      "time": "Sunday 17:00 - 18:30",
-      "description": "Service in German on Sunday evenings with worship, preaching and fellowship.",
-      "features": [
-        "Prayer time",
-        "Bible teaching",
-        "German translation available",
-        "Communion"
-      ],
-      "icon": {
-        "name": "BiTime",
-        "color": "orange"
-      }
-    },
-    {
       "title": "Prayer Evening",
       "type": "prayer",
       "time": "Wednesday 18:00 - 19:30",
