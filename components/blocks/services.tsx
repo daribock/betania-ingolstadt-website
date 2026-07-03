@@ -9,6 +9,7 @@ import { Clock } from 'lucide-react';
 import { Typography } from '../ui/Typography';
 import { Icon } from '../icon';
 import { useLayout } from '../layout/layout-context';
+import { cn } from '@/lib/utils';
 
 export const Services = ({ data }: { data: PageBlocksServices }) => {
   const { globalSettings } = useLayout();
@@ -17,6 +18,12 @@ export const Services = ({ data }: { data: PageBlocksServices }) => {
   if (!services) {
     return null;
   }
+
+  const sundayServices = services.filter(
+    (service) => service?.type === 'service',
+  );
+
+  console.log(sundayServices.length);
 
   return (
     <Section background={data.background!}>
@@ -27,44 +34,51 @@ export const Services = ({ data }: { data: PageBlocksServices }) => {
         </p>
       </Typography>
 
-      <div className="grid md:grid-cols-2 gap-8 mt-8">
-        {services
-          .filter((service) => service?.type === 'service')
-          .map((service, index) => (
-            <Card key={index}>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-3">
-                  {service?.icon ? (
-                    <Icon data={service.icon} className="w-6 h-6" decorative />
-                  ) : (
-                    <Clock className="w-6 h-6" aria-hidden="true" />
-                  )}
-                  <Typography>
-                    <h3 className="m-0!">{service?.title}</h3>
-                  </Typography>
-                </CardTitle>
-                <p>{service?.time}</p>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
-                  {service?.description}
-                </p>
-                {service?.features && service.features.length > 0 && (
-                  <ul className="grid sm:grid-cols-2 gap-2">
-                    {service.features.map((feature, featureIndex) => (
-                      <li
-                        key={featureIndex}
-                        className="flex items-center gap-2 text-sm text-muted-foreground"
-                      >
-                        <div className="w-2 h-2 bg-black rounded-full" aria-hidden="true"></div>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
+      <div
+        className={cn(
+          sundayServices.length === 1
+            ? 'mt-8'
+            : 'grid md:grid-cols-2 gap-8 mt-8 ',
+        )}
+      >
+        {sundayServices.map((service, index) => (
+          <Card key={index}>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-3">
+                {service?.icon ? (
+                  <Icon data={service.icon} className="w-6 h-6" decorative />
+                ) : (
+                  <Clock className="w-6 h-6" aria-hidden="true" />
                 )}
-              </CardContent>
-            </Card>
-          ))}
+                <Typography>
+                  <h3 className="m-0!">{service?.title}</h3>
+                </Typography>
+              </CardTitle>
+              <p>{service?.time}</p>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground mb-6 leading-relaxed">
+                {service?.description}
+              </p>
+              {service?.features && service.features.length > 0 && (
+                <ul className="grid sm:grid-cols-2 gap-2">
+                  {service.features.map((feature, featureIndex) => (
+                    <li
+                      key={featureIndex}
+                      className="flex items-center gap-2 text-sm text-muted-foreground"
+                    >
+                      <div
+                        className="w-2 h-2 bg-black rounded-full"
+                        aria-hidden="true"
+                      ></div>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </CardContent>
+          </Card>
+        ))}
       </div>
     </Section>
   );

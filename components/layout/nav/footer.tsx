@@ -11,6 +11,7 @@ import {
   GlobalSharedContact,
   Maybe,
 } from '../../../tina/__generated__/types';
+import { Section } from '../section';
 
 interface FooterProps {
   header?: Maybe<GlobalHeader>;
@@ -59,7 +60,7 @@ export const Footer = async ({
 
   return (
     <footer className="bg-black text-white">
-      <div className="mx-auto px-4 py-12">
+      <Section fullWidth className="mx-auto px-4 py-12">
         <div className="grid md:grid-cols-4 gap-8">
           {/* Brand Section */}
           <div className="space-y-4">
@@ -201,7 +202,7 @@ export const Footer = async ({
             </div>
           </div>
         </div>
-      </div>
+      </Section>
     </footer>
   );
 };
