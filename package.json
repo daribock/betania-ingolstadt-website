@@ -25,7 +25,7 @@
     "@types/react": "^18.3.31",
     "@types/styled-components": "^5.1.36",
     "autoprefixer": "^10.5.2",
-    "eslint": "^9.39.4",
+    "eslint": "^10.6.0",
     "eslint-config-next": "^16.2.10",
     "postcss": "^8.5.16",
     "postcss-import": "^16.1.1",
