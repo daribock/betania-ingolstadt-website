@@ -16,7 +16,7 @@
     "dev:build": "next build"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.3.5",
+    "@eslint/eslintrc": "^3.3.6",
     "@svgr/webpack": "^8.1.0",
     "@tinacms/cli": "^2.5.5",
     "@types/js-cookie": "^3.0.6",
