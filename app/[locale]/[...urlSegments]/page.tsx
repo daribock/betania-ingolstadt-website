@@ -119,7 +119,8 @@ export default async function Page({
 }
 
 export async function generateStaticParams() {
-  let pages = await client.queries.pageConnection();
+  // ⚡ Bolt: Increase batch size to reduce sequential network requests
+  let pages = await client.queries.pageConnection({ first: 100 });
   const allPages = pages;
 
   if (!allPages.data.pageConnection.edges) {
@@ -129,6 +130,8 @@ export async function generateStaticParams() {
   while (pages.data.pageConnection.pageInfo.hasNextPage) {
     pages = await client.queries.pageConnection({
       after: pages.data.pageConnection.pageInfo.endCursor,
+      // ⚡ Bolt: Increase batch size to reduce sequential network requests
+      first: 100,
     });
 
     if (!pages.data.pageConnection.edges) {
