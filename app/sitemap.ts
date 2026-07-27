@@ -23,12 +23,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Add all content pages
   try {
-    let pages = await client.queries.pageConnection();
+    let pages = await client.queries.pageConnection({ first: 100 });
     const pageEdges = [...(pages.data.pageConnection.edges ?? [])];
 
     while (pages.data.pageConnection.pageInfo.hasNextPage) {
       pages = await client.queries.pageConnection({
         after: pages.data.pageConnection.pageInfo.endCursor,
+        first: 100,
       });
       if (!pages.data.pageConnection.edges) break;
       pageEdges.push(...pages.data.pageConnection.edges);
