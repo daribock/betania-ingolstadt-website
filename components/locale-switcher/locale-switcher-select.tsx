@@ -42,13 +42,13 @@ export default function LocaleSwitcherSelect({
 
   return (
     <div className="relative">
-      <span className="sr-only">{label}</span>
       <Select
         defaultValue={defaultValue}
         disabled={isPending}
         onValueChange={onValueChange}
       >
         <SelectTrigger
+          aria-label={label}
           className={cn(
             'w-fit text-sm text-muted-foreground shadow-none bg-transparent',
             className
