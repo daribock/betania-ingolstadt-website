@@ -26,7 +26,7 @@
     "@types/styled-components": "^5.1.36",
     "autoprefixer": "^10.5.4",
     "eslint": "^9.39.4",
-    "eslint-config-next": "^16.2.10",
+    "eslint-config-next": "^16.2.12",
     "postcss": "^8.5.25",
     "postcss-import": "^16.1.1",
     "postcss-nesting": "^14.0.1",
