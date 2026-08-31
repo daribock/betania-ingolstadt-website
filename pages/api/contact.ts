@@ -3,6 +3,33 @@ import nodemailer from 'nodemailer';
 import { contactSchema } from '@/lib/validations/contact';
 import { z } from 'zod';
 
+const rateLimit = new Map<string, { count: number; timestamp: number }>();
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const windowMs = 15 * 60 * 1000; // 15 minutes
+  const limit = 5; // 5 requests per 15 minutes
+
+  // Prevent memory leak
+  if (rateLimit.size > 10000) {
+    rateLimit.clear();
+  }
+
+  const record = rateLimit.get(ip);
+  if (!record) {
+    rateLimit.set(ip, { count: 1, timestamp: now });
+    return true;
+  }
+
+  if (now - record.timestamp > windowMs) {
+    rateLimit.set(ip, { count: 1, timestamp: now });
+    return true;
+  }
+
+  record.count += 1;
+  return record.count <= limit;
+}
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -11,14 +38,17 @@ export default async function handler(
     return res.status(405).json({ message: 'Method not allowed' });
   }
 
+  const ip = (req.headers['x-forwarded-for'] as string) || req.socket.remoteAddress || 'unknown';
+  if (!checkRateLimit(ip)) {
+    return res.status(429).json({ message: 'Too many requests, please try again later.' });
+  }
+
   // Check environment variables
   if (!process.env.MAIL_USER || !process.env.MAIL_PASS || !process.env.NEXT_PUBLIC_CONTACT_EMAIL) {
     console.error('Missing email configuration');
 
     return res.status(500).json({ message: 'Email service not configured' });
   }
-
-  console.log(req.body);
 
   // Validate request body with Zod
   try {
