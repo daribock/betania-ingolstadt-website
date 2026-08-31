@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.7.0](https://github.com/daribock/betania-ingolstadt-website/compare/v1.6.0...v1.7.0) (2026-08-31)
+
+
+### Features
+
+* add auto merge action ([e8e7512](https://github.com/daribock/betania-ingolstadt-website/commit/e8e7512d8011a4f8b42a9bb45807408d833a5570))
+* add rate limiting to contact API ([#318](https://github.com/daribock/betania-ingolstadt-website/issues/318)) ([09b4df8](https://github.com/daribock/betania-ingolstadt-website/commit/09b4df848bff083a3e451ecf0f787767f9763eda))
+* basic accessibility improvement ([4dc09ae](https://github.com/daribock/betania-ingolstadt-website/commit/4dc09ae2fe653f6eb625239b86212ced1e51ecbd))
+* clean up empty code change sections in the changes log ([f485786](https://github.com/daribock/betania-ingolstadt-website/commit/f485786af232dbb92bf51119dce2cdf33ec54d16))
+* Improve keyboard navigation focus states on links ([73bee57](https://github.com/daribock/betania-ingolstadt-website/commit/73bee57fdb81cf7d89afa9e476e1a71cbd043c7a))
+
+
+### Bug Fixes
+
+* **a11y:** improve locale switcher screen reader accessibility ([6878c82](https://github.com/daribock/betania-ingolstadt-website/commit/6878c82959b92427fdac4bd05aaa22fd0c4974a9))
+* Refactor code structure for improved readability and maintainability ([68f1e89](https://github.com/daribock/betania-ingolstadt-website/commit/68f1e8937a424417b5855917d3489bee4f8135ea))
+* **remove:** commented-out address line ([#317](https://github.com/daribock/betania-ingolstadt-website/issues/317)) ([a8daeff](https://github.com/daribock/betania-ingolstadt-website/commit/a8daeff57dd44a7d459019d8744cd6ebbcdeb113))
+
 ## [1.6.0](https://github.com/daribock/betania-ingolstadt-website/compare/v1.5.0...v1.6.0) (2026-04-30)
 
 
