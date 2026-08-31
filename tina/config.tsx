@@ -8,6 +8,8 @@ const branch: string =
   process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF ||
   process.env.HEAD ||
   process.env.COOLIFY_BRANCH ||
+  process.env.GITHUB_REF_NAME ||
+  process.env.GITHUB_HEAD_REF ||
   'main';
 
 const config = defineConfig({
