@@ -13,6 +13,7 @@ import React from 'react';
 import { useLayout } from './layout/layout-context';
 import { Maybe } from '@/tina/__generated__/types';
 import { cn } from '@/lib/utils';
+import { IconSize, iconSizeClass } from '@/tina/fields/icon';
 
 export const IconOptions = {
   ...BoxIcons,
@@ -26,7 +27,6 @@ export const IconOptions = {
 
 // TODO: Define types inside of the backend (tina folder)
 // Define valid types for better type safety
-type IconSize = 'xs' | 'small' | 'medium' | 'large' | 'xl' | 'custom';
 type IconColor =
   | 'primary'
   | 'blue'
@@ -52,16 +52,6 @@ const iconColorClass: Record<IconColor, string> = {
   yellow: 'text-yellow-400',
   black: 'text-black opacity-80',
   white: 'text-white opacity-80',
-};
-
-// TODO: move this to tina/fields/icon.tsx and add it to the schema so that its editable
-const iconSizeClass: Record<IconSize, string> = {
-  xs: 'w-6 h-6 shrink-0',
-  small: 'w-8 h-8 shrink-0',
-  medium: 'w-12 h-12 shrink-0',
-  large: 'w-14 h-14 shrink-0',
-  xl: 'w-16 h-16 shrink-0',
-  custom: '',
 };
 
 type IconData = {

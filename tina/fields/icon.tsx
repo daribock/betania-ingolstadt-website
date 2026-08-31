@@ -12,6 +12,17 @@ import {
 } from '@headlessui/react';
 import { ColorPickerInput } from './color';
 
+export type IconSize = 'xs' | 'small' | 'medium' | 'large' | 'xl' | 'custom';
+
+export const iconSizeClass: Record<IconSize, string> = {
+  xs: 'w-6 h-6 shrink-0',
+  small: 'w-8 h-8 shrink-0',
+  medium: 'w-12 h-12 shrink-0',
+  large: 'w-14 h-14 shrink-0',
+  xl: 'w-16 h-16 shrink-0',
+  custom: '',
+};
+
 const parseIconName = (name: string) => {
   const splitName = name.split(/(?=[A-Z])/);
   if (splitName.length > 1) {
@@ -171,6 +182,12 @@ export const iconSchema = {
       ui: {
         component: ColorPickerInput,
       },
+    },
+    {
+      type: 'string',
+      label: 'Size',
+      name: 'size',
+      options: Object.keys(iconSizeClass),
     },
     {
       type: 'boolean',
