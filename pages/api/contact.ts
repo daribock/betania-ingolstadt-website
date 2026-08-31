@@ -18,8 +18,6 @@ export default async function handler(
     return res.status(500).json({ message: 'Email service not configured' });
   }
 
-  console.log(req.body);
-
   // Validate request body with Zod
   try {
     const validatedData = contactSchema.parse(req.body);
