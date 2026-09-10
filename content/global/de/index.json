@@ -38,16 +38,15 @@
       }
     },
     {
-      "title": "Gottesdienst",
+      "title": "Gottesdienst - DE",
       "type": "service",
-      "time": "Sonntag 10:00 Uhr",
-      "description": "Beschreibung des Gottesdienstes",
+      "time": "Sonntag 11:30 - 13:00 Uhr",
+      "description": "Unser wöchentlicher, Gottesdienst auf deutscher Sprache mit Anbetung, Predigt und Gemeinschaft.",
       "features": [
-        "Feature 1",
-        "Feature 2"
+        "Übersetzung auf rumänisch ist verfügbar"
       ],
       "icon": {
-        "name": "BiClock",
+        "name": "BiChurch",
         "color": "orange"
       }
     },
