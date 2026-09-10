@@ -23,18 +23,31 @@
   },
   "services": [
     {
-      "title": "Hauptgottesdienst",
+      "title": "Gottesdienst - RO",
       "type": "service",
-      "time": "Sonntag 10:00 - 12:00 Uhr",
-      "description": "Unser wöchentlicher Hauptgottesdienst mit Anbetung, Predigt und Gemeinschaft für die ganze Familie.",
+      "time": "Sonntag 09:30 - 11:00 Uhr",
+      "description": "Unser wöchentlicher, Gottesdienst auf rumänsicher Sprache mit Anbetung, Predigt und Gemeinschaft für die ganze Familie.",
       "features": [
         "Familienfreundlich",
         "Übersetzung auf Deutsch verfügbar",
-        "Kinder-Programm",
-        "Herzliche Atmosphäre"
+        "Kinder-Programm"
       ],
       "icon": {
-        "name": "BiTime",
+        "name": "BiChurch",
+        "color": "orange"
+      }
+    },
+    {
+      "title": "Gottesdienst",
+      "type": "service",
+      "time": "Sonntag 10:00 Uhr",
+      "description": "Beschreibung des Gottesdienstes",
+      "features": [
+        "Feature 1",
+        "Feature 2"
+      ],
+      "icon": {
+        "name": "BiClock",
         "color": "orange"
       }
     },
