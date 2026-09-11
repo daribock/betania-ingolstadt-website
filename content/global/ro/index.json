@@ -23,18 +23,30 @@
   },
   "services": [
     {
-      "title": "Serviciul principal",
+      "title": "Serviciu divin - RO",
       "type": "service",
-      "time": "Duminică 10:00 - 12:00",
-      "description": "Serviciul nostru principal săptămânal cu închinare, predică și comuniune pentru întreaga familie.",
+      "time": "Duminică 09:30 - 11:00",
+      "description": "Serviciul nostru divin săptămânal în limba română cu închinare, predică și comuniune pentru întreaga familie.",
       "features": [
         "Prietenos cu familiile",
-        "Traducere disponibilă",
-        "Program pentru copii",
-        "Atmosferă caldă"
+        "Traducere în germană disponibilă",
+        "Program pentru copii"
       ],
       "icon": {
-        "name": "BiTime",
+        "name": "BiChurch",
+        "color": "orange"
+      }
+    },
+    {
+      "title": "Serviciu divin - DE",
+      "type": "service",
+      "time": "Duminică 11:30 - 13:00",
+      "description": "Serviciul nostru divin săptămânal în limba germană cu închinare, predică și comuniune.",
+      "features": [
+        "Traducere în română disponibilă"
+      ],
+      "icon": {
+        "name": "BiChurch",
         "color": "orange"
       }
     },

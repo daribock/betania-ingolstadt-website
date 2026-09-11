@@ -23,18 +23,30 @@
   },
   "services": [
     {
-      "title": "Main Service",
+      "title": "Main Service - RO",
       "type": "service",
-      "time": "Sunday 10:00 - 12:00",
-      "description": "Our main weekly service with worship, preaching and communion for the whole family.",
+      "time": "Sunday 09:30 - 11:00",
+      "description": "Our weekly main service in Romanian language with worship, preaching and communion for the whole family.",
       "features": [
         "Family friendly",
         "Translation to German available",
-        "Children's program",
-        "Warm atmosphere"
+        "Children's program"
       ],
       "icon": {
-        "name": "BiTime",
+        "name": "BiChurch",
+        "color": "orange"
+      }
+    },
+    {
+      "title": "Main Service - DE",
+      "type": "service",
+      "time": "Sunday 11:30 - 13:00",
+      "description": "Our weekly main service in German language with worship, preaching and communion.",
+      "features": [
+        "Translation to Romanian available"
+      ],
+      "icon": {
+        "name": "BiChurch",
         "color": "orange"
       }
     },
