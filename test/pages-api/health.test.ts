@@ -1,7 +1,7 @@
 // @vitest-environment node
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import handler from '../health';
+import handler from '@/pages/api/health';
 
 function createMocks(method = 'GET') {
   const req = { method } as unknown as NextApiRequest;

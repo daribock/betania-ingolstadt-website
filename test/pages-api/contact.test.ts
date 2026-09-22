@@ -1,7 +1,7 @@
 // @vitest-environment node
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import handler from '../contact';
+import handler from '@/pages/api/contact';
 
 const sendMail = vi.fn();
 vi.mock('nodemailer', () => ({
