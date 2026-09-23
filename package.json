@@ -30,7 +30,7 @@
     "@types/react": "^18.3.31",
     "@types/styled-components": "^5.1.36",
     "@vitejs/plugin-react": "^4.7.0",
-    "autoprefixer": "^10.5.4",
+    "autoprefixer": "^10.6.1",
     "eslint": "^9.39.4",
     "eslint-config-next": "^16.3.3",
     "jsdom": "^29.1.1",
