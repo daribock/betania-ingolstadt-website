@@ -12,17 +12,22 @@ export const reasonKeys = Object.keys(ContactReason) as Array<
   keyof typeof ContactReason
 >;
 
-// Zod schema for request body validation
+const LINK_PATTERN = /https?:\/\/|www\.|\[url=/i;
+const noLinks = (val: string) => !LINK_PATTERN.test(val);
+
+// Error messages are keys under `Contact.validation` in i18n/locales/*.json
 export const contactSchema = z.object({
   firstName: z
     .string()
-    .min(1, 'First name is required')
-    .max(50, 'First name too long'),
+    .min(1, 'firstNameRequired')
+    .max(50, 'firstNameTooLong')
+    .refine(noLinks, 'linksNotAllowed'),
   lastName: z
     .string()
-    .min(1, 'Last name is required')
-    .max(50, 'Last name too long'),
-  email: z.string().email('Invalid email format'),
+    .min(1, 'lastNameRequired')
+    .max(50, 'lastNameTooLong')
+    .refine(noLinks, 'linksNotAllowed'),
+  email: z.email('emailInvalid'),
   number: z
     .string()
     .optional()
@@ -30,15 +35,32 @@ export const contactSchema = z.object({
       if (!val || !val.trim()) return true; // Optional field
       const cleanedNumber = val.replace(/[\s\-\(\)\+]/g, '');
       return /^\d{6,15}$/.test(cleanedNumber);
-    }, 'Invalid phone number format'),
+    }, 'phoneInvalid'),
   reason: z.enum(reasonKeys, {
-    message: 'Please select a valid reason',
+    message: 'reasonInvalid',
   }),
   message: z
     .string()
-    .min(1, 'Message is required')
-    .max(200, 'Message too long (max 200 characters)'),
-  botField: z.string().optional(),
+    .min(1, 'messageRequired')
+    .max(200, 'messageTooLong')
+    .refine(noLinks, 'linksNotAllowed'),
+  // Honeypot: hidden from humans, bots fill it.
+  website: z.string().optional(),
+  // Epoch ms when the form was opened.
+  startedAt: z.number().optional(),
 });
 
 export type ContactFormData = z.infer<typeof contactSchema>;
+
+/** Number of gibberish signals (0-3) in a submission. */
+export function spamSignals(data: ContactFormData): number {
+  const gmailDots =
+    /^[^@]*@gmail\.com$/i.test(data.email) &&
+    (data.email.split('@')[0].match(/\./g)?.length ?? 0) >= 3;
+  const oddCaps = [data.firstName, data.lastName].some((n) =>
+    /\p{Ll}\p{Lu}/u.test(n),
+  );
+  const longNoSpace = data.message.length >= 12 && !/\s/.test(data.message);
+
+  return [gmailDots, oddCaps, longNoSpace].filter(Boolean).length;
+}

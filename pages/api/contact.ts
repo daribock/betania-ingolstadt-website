@@ -1,34 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import nodemailer from 'nodemailer';
-import { contactSchema } from '@/lib/validations/contact';
+import { contactSchema, spamSignals } from '@/lib/validations/contact';
 import { z } from 'zod';
 
-const rateLimit = new Map<string, { count: number; timestamp: number }>();
-
-function checkRateLimit(ip: string): boolean {
-  const now = Date.now();
-  const windowMs = 15 * 60 * 1000; // 15 minutes
-  const limit = 5; // 5 requests per 15 minutes
-
-  // Prevent memory leak
-  if (rateLimit.size > 10000) {
-    rateLimit.clear();
-  }
-
-  const record = rateLimit.get(ip);
-  if (!record) {
-    rateLimit.set(ip, { count: 1, timestamp: now });
-    return true;
-  }
-
-  if (now - record.timestamp > windowMs) {
-    rateLimit.set(ip, { count: 1, timestamp: now });
-    return true;
-  }
-
-  record.count += 1;
-  return record.count <= limit;
-}
+const MIN_FILL_MS = 3_000;
+const MAX_AGE_MS = 24 * 60 * 60 * 1000;
 
 export default async function handler(
   req: NextApiRequest,
@@ -36,11 +12,6 @@ export default async function handler(
 ) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' });
-  }
-
-  const ip = (req.headers['x-forwarded-for'] as string) || req.socket.remoteAddress || 'unknown';
-  if (!checkRateLimit(ip)) {
-    return res.status(429).json({ message: 'Too many requests, please try again later.' });
   }
 
   // Check environment variables
@@ -53,12 +24,18 @@ export default async function handler(
   // Validate request body with Zod
   try {
     const validatedData = contactSchema.parse(req.body);
-    const { firstName, lastName, email, number, reason, message, botField } =
+    const { firstName, lastName, email, number, reason, message, website, startedAt } =
       validatedData;
 
-    // Honeypot spam protection
-    if (botField) {
-      return res.status(400).json({ message: 'Spam detected.' });
+    // Fake success so bots don't learn what tripped the filter
+    const elapsed = startedAt === undefined ? NaN : Date.now() - startedAt;
+    const signals = spamSignals(validatedData);
+    if (
+      website ||
+      !(elapsed >= MIN_FILL_MS && elapsed <= MAX_AGE_MS) ||
+      signals >= 2
+    ) {
+      return res.status(200).json({ message: 'Email sent successfully' });
     }
 
     // Send email
@@ -82,7 +59,7 @@ export default async function handler(
       await transporter.sendMail({
         from: `Website Contact <${process.env.MAIL_USER}>`,
         to: process.env.NEXT_PUBLIC_CONTACT_EMAIL,
-        subject: `Kontaktformular: ${firstName} ${lastName} (${reason})`,
+        subject: `${signals === 1 ? '[SPAM?] ' : ''}Kontaktformular: ${firstName} ${lastName} (${reason})`,
         text,
       });
 

@@ -1,9 +1,9 @@
 'use client';
 
-import { useForm } from 'react-hook-form';
+import { useForm, type Resolver } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { contactSchema, type ContactFormData } from '@/lib/validations/contact';
 import { ContactFormFields } from './contact-form-fields';
@@ -14,8 +14,20 @@ export const ContactFormClient = ({ data }: { data: PageBlocksContactForm }) => 
   const [feedbackMessage, setFeedbackMessage] = useState('');
   const contactT = useTranslations('Contact');
 
+  const baseResolver = zodResolver(contactSchema) as Resolver<ContactFormData>;
+  // Schema errors are translation keys; translate them for display.
+  const resolver: Resolver<ContactFormData> = async (values, ctx, opts) => {
+    const result = await baseResolver(values, ctx, opts);
+    for (const error of Object.values(result.errors)) {
+      if (error && 'message' in error && error.message) {
+        error.message = contactT(`validation.${error.message}`);
+      }
+    }
+    return result;
+  };
+
   const form = useForm<ContactFormData>({
-    resolver: zodResolver(contactSchema),
+    resolver,
     defaultValues: {
       firstName: '',
       lastName: '',
@@ -23,20 +35,17 @@ export const ContactFormClient = ({ data }: { data: PageBlocksContactForm }) => 
       number: '',
       reason: undefined,
       message: '',
-      botField: '',
+      website: '',
     },
   });
 
+  useEffect(() => {
+    form.setValue('startedAt', Date.now());
+  }, [form]);
+
   const onSubmit = async (values: ContactFormData) => {
-    console.log('Form values:', values); // Debug log to check form values
     setLoading(true);
     setFeedbackMessage('');
-
-    // Honeypot spam protection
-    if (values.botField) {
-      setLoading(false);
-      return;
-    }
 
     try {
       const res = await fetch('/api/contact', {
@@ -45,10 +54,9 @@ export const ContactFormClient = ({ data }: { data: PageBlocksContactForm }) => 
         body: JSON.stringify(values),
       });
 
-      console.log('Response:', res); // Debug log to check response
-
       if (res.ok) {
         form.reset();
+        form.setValue('startedAt', Date.now());
         const message = contactT('toastMessages.success');
         toast.success(message);
         setFeedbackMessage(message);

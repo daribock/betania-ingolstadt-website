@@ -45,20 +45,21 @@ export const ContactFormFields = ({
           {feedbackMessage}
         </div>
 
-        {/* Honeypot field (hidden from users) */}
-        <FormField
-          control={form.control}
-          name="botField"
-          render={({ field }) => (
-            <input
-              type="text"
-              {...field}
-              style={{ display: 'none' }}
-              tabIndex={-1}
-              autoComplete="off"
-            />
-          )}
-        />
+        {/* Honeypot: off-screen instead of display:none, which bots skip */}
+        <div className="absolute -left-[9999px]" aria-hidden="true">
+          <FormField
+            control={form.control}
+            name="website"
+            render={({ field }) => (
+              <input
+                type="text"
+                {...field}
+                tabIndex={-1}
+                autoComplete="off"
+              />
+            )}
+          />
+        </div>
 
         <div className="flex gap-4">
           <FormField
