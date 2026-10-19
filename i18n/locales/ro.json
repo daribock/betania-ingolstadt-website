@@ -36,7 +36,19 @@
       "success": "Mesaj trimis cu succes!",
       "error": "Eroare la trimiterea mesajului."
     },
-    "characterCount": "{current} / {max} caractere"
+    "characterCount": "{current} / {max} caractere",
+    "validation": {
+      "firstNameRequired": "Prenumele este obligatoriu",
+      "firstNameTooLong": "Prenumele este prea lung",
+      "lastNameRequired": "Numele este obligatoriu",
+      "lastNameTooLong": "Numele este prea lung",
+      "emailInvalid": "Adresă de e-mail invalidă",
+      "phoneInvalid": "Număr de telefon invalid",
+      "reasonInvalid": "Vă rugăm să selectați un motiv",
+      "messageRequired": "Mesajul este obligatoriu",
+      "messageTooLong": "Mesajul este prea lung (max. 200 de caractere)",
+      "linksNotAllowed": "Linkurile nu sunt permise"
+    }
   },
   "footer": {
     "copyright": "© {year} Betania Ingolstadt. Toate drepturile rezervate.",

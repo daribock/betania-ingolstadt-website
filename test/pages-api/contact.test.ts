@@ -35,6 +35,7 @@ const validBody = {
   email: 'jane@example.com',
   reason: 'FAITH_JESUS',
   message: 'Hello there',
+  startedAt: Date.now() - 10_000,
 };
 
 describe('POST /api/contact', () => {
@@ -56,7 +57,7 @@ describe('POST /api/contact', () => {
 
   it('returns 500 when email is not configured', async () => {
     delete process.env.MAIL_USER;
-    const { req, res, status, json } = createMocks({ body: validBody, ip: '10.0.0.1' });
+    const { req, res, status, json } = createMocks({ body: validBody });
 
     await handler(req, res);
 
@@ -67,7 +68,6 @@ describe('POST /api/contact', () => {
   it('returns 400 on invalid request data', async () => {
     const { req, res, status, json } = createMocks({
       body: { ...validBody, email: 'not-an-email' },
-      ip: '10.0.0.2',
     });
 
     await handler(req, res);
@@ -78,21 +78,76 @@ describe('POST /api/contact', () => {
     );
   });
 
-  it('returns 400 when the honeypot field is filled', async () => {
+  it('silently drops submissions with the honeypot filled', async () => {
+    const { req, res, status } = createMocks({ body: { ...validBody, website: 'bot' } });
+
+    await handler(req, res);
+
+    expect(status).toHaveBeenCalledWith(200);
+    expect(sendMail).not.toHaveBeenCalled();
+  });
+
+  it.each([
+    ['too fast', { startedAt: Date.now() - 1_000 }],
+    ['stale', { startedAt: Date.now() - 25 * 60 * 60 * 1000 }],
+    ['without a start time', { startedAt: undefined }],
+  ])('silently drops submissions that are %s', async (_name, override) => {
+    const { req, res, status } = createMocks({ body: { ...validBody, ...override } });
+
+    await handler(req, res);
+
+    expect(status).toHaveBeenCalledWith(200);
+    expect(sendMail).not.toHaveBeenCalled();
+  });
+
+  it('rejects links in the message with a translation key', async () => {
     const { req, res, status, json } = createMocks({
-      body: { ...validBody, botField: 'bot' },
-      ip: '10.0.0.3',
+      body: { ...validBody, message: 'visit www.spam.example' },
     });
 
     await handler(req, res);
 
     expect(status).toHaveBeenCalledWith(400);
-    expect(json).toHaveBeenCalledWith({ message: 'Spam detected.' });
+    expect(json).toHaveBeenCalledWith(
+      expect.objectContaining({ errors: ['linksNotAllowed'] }),
+    );
+  });
+
+  it('silently drops submissions with two gibberish signals', async () => {
+    const { req, res, status } = createMocks({
+      body: {
+        ...validBody,
+        firstName: 'Qqau',
+        lastName: 'Vgetemb',
+        email: 'aj.i.vot.e.22.3@gmail.com',
+        number: '6181639905',
+        message: 'HEFtdUnfEmWDTxYGuj',
+      },
+    });
+
+    await handler(req, res);
+
+    expect(status).toHaveBeenCalledWith(200);
+    expect(sendMail).not.toHaveBeenCalled();
+  });
+
+  it('tags submissions with one gibberish signal', async () => {
+    sendMail.mockResolvedValue({ response: 'ok' });
+    const { req, res, status } = createMocks({
+      body: { ...validBody, message: 'Gottesdienstzeitenbitte' },
+    });
+
+    await handler(req, res);
+
+    expect(status).toHaveBeenCalledWith(200);
+    expect(sendMail).toHaveBeenCalledWith(
+      expect.objectContaining({ subject: expect.stringMatching(/^\[SPAM\?\] /) }),
+    );
   });
 
   it('sends the email and returns 200 on success', async () => {
     sendMail.mockResolvedValue({ response: 'ok' });
-    const { req, res, status, json } = createMocks({ body: validBody, ip: '10.0.0.4' });
+    const { req, res, status, json } = createMocks({ body: validBody });
 
     await handler(req, res);
 
@@ -108,29 +163,11 @@ describe('POST /api/contact', () => {
 
   it('returns 500 when sending the email fails', async () => {
     sendMail.mockRejectedValue(new Error('smtp down'));
-    const { req, res, status, json } = createMocks({ body: validBody, ip: '10.0.0.5' });
+    const { req, res, status, json } = createMocks({ body: validBody });
 
     await handler(req, res);
 
     expect(status).toHaveBeenCalledWith(500);
     expect(json).toHaveBeenCalledWith({ message: 'Failed to send email' });
-  });
-
-  it('rate limits after 5 requests from the same IP', async () => {
-    sendMail.mockResolvedValue({ response: 'ok' });
-    const ip = '10.0.0.6';
-
-    for (let i = 0; i < 5; i++) {
-      const { req, res } = createMocks({ body: validBody, ip });
-      await handler(req, res);
-    }
-
-    const { req, res, status, json } = createMocks({ body: validBody, ip });
-    await handler(req, res);
-
-    expect(status).toHaveBeenCalledWith(429);
-    expect(json).toHaveBeenCalledWith({
-      message: 'Too many requests, please try again later.',
-    });
   });
 });

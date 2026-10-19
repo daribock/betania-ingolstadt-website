@@ -36,7 +36,19 @@
       "success": "Nachricht erfolgreich gesendet!",
       "error": "Fehler beim Senden der Nachricht."
     },
-    "characterCount": "{current} / {max} Zeichen"
+    "characterCount": "{current} / {max} Zeichen",
+    "validation": {
+      "firstNameRequired": "Vorname ist erforderlich",
+      "firstNameTooLong": "Vorname ist zu lang",
+      "lastNameRequired": "Nachname ist erforderlich",
+      "lastNameTooLong": "Nachname ist zu lang",
+      "emailInvalid": "Ungültige E-Mail-Adresse",
+      "phoneInvalid": "Ungültige Telefonnummer",
+      "reasonInvalid": "Bitte wählen Sie einen Grund aus",
+      "messageRequired": "Nachricht ist erforderlich",
+      "messageTooLong": "Nachricht ist zu lang (max. 200 Zeichen)",
+      "linksNotAllowed": "Links sind nicht erlaubt"
+    }
   },
   "footer": {
     "copyright": "© {year} Betania Ingolstadt. Alle Rechte vorbehalten.",
