@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useMemo } from 'react';
 import { GlobalQuery, GlobalSharedQuery } from '../../tina/__generated__/types';
 
 type LocalizedGlobalData = NonNullable<GlobalQuery['global']>;
@@ -59,15 +59,14 @@ export const LayoutProvider: React.FC<LayoutProviderProps> = ({
 
   const theme = globalSettings.theme;
 
+  const value = useMemo(
+    () => ({ globalSettings, setGlobalSettings, pageData, setPageData, theme }),
+    [globalSettings, pageData, theme],
+  );
+
   return (
     <LayoutContext.Provider
-      value={{
-        globalSettings,
-        setGlobalSettings,
-        pageData,
-        setPageData,
-        theme,
-      }}
+      value={value}
     >
       {children}
     </LayoutContext.Provider>

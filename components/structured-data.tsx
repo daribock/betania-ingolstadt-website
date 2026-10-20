@@ -35,7 +35,7 @@ export function OrganizationStructuredData({ locale }: StructuredDataProps) {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationData) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationData).replace(/</g, '\\u003c') }}
     />
   );
 }

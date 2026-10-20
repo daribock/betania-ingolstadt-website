@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Check, Copy } from "lucide-react";
-import { motion } from "motion/react";
+import { LazyMotion, domMax, m } from "motion/react";
 import { useTheme } from "next-themes";
 import { HTMLAttributes, useEffect, useState } from "react";
 import type { Template } from "tinacms";
@@ -34,6 +34,8 @@ export function ScriptCopyBtn({
   const command = commands.find((line) => line.startsWith(packageManager))?.split("|")[1] || '';
 
   useEffect(() => {
+    let cancelled = false;
+
     async function loadHighlightedCode() {
       try {
         const { codeToHtml } = await import("shiki");
@@ -45,14 +47,17 @@ export function ScriptCopyBtn({
           },
           defaultColor: theme === "dark" ? "dark" : "light",
         });
-        setHighlightedCode(highlighted);
+        if (!cancelled) setHighlightedCode(highlighted);
       } catch (error) {
         console.error("Error highlighting code:", error);
-        setHighlightedCode(`<pre>${command}</pre>`);
+        if (!cancelled) setHighlightedCode(`<pre>${command}</pre>`);
       }
     }
 
     loadHighlightedCode();
+    return () => {
+      cancelled = true;
+    };
   }, [command, theme, codeLanguage, lightTheme, darkTheme]);
 
   const copyToClipboard = () => {
@@ -62,91 +67,93 @@ export function ScriptCopyBtn({
   };
 
   return (
-    <div
-      className={cn(
-        "flex w-full no-prose",
-        className,
-      )}
-    >
-      <div className="w-full">
-        <div className="flex items-center justify-between">
-          {showMultiplePackageOptions && (
-            <div className="relative">
-              <div className="inline-flex overflow-hidden rounded-md border border-border text-xs">
-                {packageManagers.map((pm, index) => (
-                  <div key={pm} className="flex items-center">
-                    {index > 0 && (
-                      <div className="h-4 w-px bg-border" aria-hidden="true" />
-                    )}
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className={`relative rounded-none bg-background px-2 py-1 hover:bg-background ${
-                        packageManager === pm
-                          ? "text-primary"
-                          : "text-muted-foreground"
-                      }`}
-                      onClick={() => setPackageManager(pm)}
-                      aria-pressed={packageManager === pm}
-                      aria-label={`Use ${pm}`}
-                    >
-                      {pm}
-                      {packageManager === pm && (
-                        <motion.div
-                          className="absolute inset-x-0 bottom-[1px] mx-auto h-0.5 w-[90%] bg-primary"
-                          layoutId="activeTab"
-                          initial={false}
-                          transition={{
-                            type: "spring",
-                            stiffness: 500,
-                            damping: 30,
-                          }}
-                        />
+    <LazyMotion features={domMax}>
+      <div
+        className={cn(
+          "flex w-full no-prose",
+          className,
+        )}
+      >
+        <div className="w-full">
+          <div className="flex items-center justify-between">
+            {showMultiplePackageOptions && (
+              <div className="relative">
+                <div className="inline-flex overflow-hidden rounded-md border border-border text-xs">
+                  {packageManagers.map((pm, index) => (
+                    <div key={pm} className="flex items-center">
+                      {index > 0 && (
+                        <div className="h-4 w-px bg-border" aria-hidden="true" />
                       )}
-                    </Button>
-                  </div>
-                ))}
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className={`relative rounded-none bg-background px-2 py-1 hover:bg-background ${
+                          packageManager === pm
+                            ? "text-primary"
+                            : "text-muted-foreground"
+                        }`}
+                        onClick={() => setPackageManager(pm)}
+                        aria-pressed={packageManager === pm}
+                        aria-label={`Use ${pm}`}
+                      >
+                        {pm}
+                        {packageManager === pm && (
+                          <m.div
+                            className="absolute inset-x-0 bottom-[1px] mx-auto h-0.5 w-[90%] bg-primary"
+                            layoutId="activeTab"
+                            initial={false}
+                            transition={{
+                              type: "spring",
+                              stiffness: 500,
+                              damping: 30,
+                            }}
+                          />
+                        )}
+                      </Button>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          )}
-        </div>
-        <div className="relative flex items-center">
-          <div className="min-w-[300px] grow font-mono not-prose">
-            {highlightedCode ? (
-              <div
-                className={`[&>pre]:overflow-x-auto [&>pre]:rounded-md [&>pre]:p-2 [&>pre]:px-4 [&>pre]:font-mono ${
-                  theme === "dark" ? "dark" : "light"
-                }`}
-                dangerouslySetInnerHTML={{ __html: highlightedCode }}
-              />
-            ) : (
-              <pre className="rounded-md border border-border bg-white p-2 px-4 font-mono dark:bg-black">
-                {command}
-              </pre>
             )}
           </div>
-          <Button
-            variant="outline"
-            size="icon"
-            className="relative ml-2 rounded-md"
-            onClick={copyToClipboard}
-            aria-label={copied ? "Copied" : "Copy to clipboard"}
-          >
-            <span className="sr-only">{copied ? "Copied" : "Copy"}</span>
-            <Copy
-              className={`h-4 w-4 transition-all duration-300 ${
-                copied ? "scale-0" : "scale-100"
-              }`}
-            />
-            <Check
-              className={`absolute inset-0 m-auto h-4 w-4 transition-all duration-300 ${
-                copied ? "scale-100" : "scale-0"
-              }`}
-            />
-          </Button>
+          <div className="relative flex items-center">
+            <div className="min-w-[300px] grow font-mono not-prose">
+              {highlightedCode ? (
+                <div
+                  className={`[&>pre]:overflow-x-auto [&>pre]:rounded-md [&>pre]:p-2 [&>pre]:px-4 [&>pre]:font-mono ${
+                    theme === "dark" ? "dark" : "light"
+                  }`}
+                  dangerouslySetInnerHTML={{ __html: highlightedCode }}
+                />
+              ) : (
+                <pre className="rounded-md border border-border bg-white p-2 px-4 font-mono dark:bg-black">
+                  {command}
+                </pre>
+              )}
+            </div>
+            <Button
+              variant="outline"
+              size="icon"
+              className="relative ml-2 rounded-md"
+              onClick={copyToClipboard}
+              aria-label={copied ? "Copied" : "Copy to clipboard"}
+            >
+              <span className="sr-only">{copied ? "Copied" : "Copy"}</span>
+              <Copy
+                className={`h-4 w-4 transition-all duration-300 ${
+                  copied ? "scale-0" : "scale-100"
+                }`}
+              />
+              <Check
+                className={`absolute inset-0 m-auto h-4 w-4 transition-all duration-300 ${
+                  copied ? "scale-100" : "scale-0"
+                }`}
+              />
+            </Button>
+          </div>
         </div>
       </div>
-    </div>
+    </LazyMotion>
   );
 }
 
