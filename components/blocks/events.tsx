@@ -22,6 +22,7 @@ export const Events = ({ data }: { data: PageBlocksEvents }) => {
             data-tina-field={tinaField(data, 'churchToolsLink')}
             src={data.churchToolsLink || ''}
             loading="lazy"
+            sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
             title={data.title ? `${data.title} calendar` : 'Events calendar'}
             aria-label={data.title ? `${data.title} calendar` : 'Events calendar'}
           ></iframe>
