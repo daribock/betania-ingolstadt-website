@@ -30,11 +30,20 @@ const lato = Lato({
   weight: '400',
 });
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || 'https://www.betania.de';
+const DEFAULT_SITE_URL = 'https://www.betania.de';
+
+function parseSiteUrl(value: string | undefined): URL {
+  try {
+    return new URL(value || DEFAULT_SITE_URL);
+  } catch {
+    return new URL(DEFAULT_SITE_URL);
+  }
+}
+
+const siteUrl = parseSiteUrl(process.env.NEXT_PUBLIC_SITE_URL);
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: siteUrl,
   title: {
     default: 'Betania Ingolstadt',
     template: '%s | Betania Ingolstadt',
