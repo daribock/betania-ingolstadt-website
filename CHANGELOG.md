@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.1](https://github.com/daribock/betania-ingolstadt-website/compare/v1.7.0...v1.7.1) (2026-10-29)
+
+
+### Bug Fixes
+
+* address React Doctor findings ([#361](https://github.com/daribock/betania-ingolstadt-website/issues/361)) ([c3d8bb9](https://github.com/daribock/betania-ingolstadt-website/commit/c3d8bb99f621021463b895c1781d348e679cb232))
+
 ## [1.7.0](https://github.com/daribock/betania-ingolstadt-website/compare/v1.6.0...v1.7.0) (2026-10-19)
 
 
