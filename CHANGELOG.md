@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.8.0](https://github.com/daribock/betania-ingolstadt-website/compare/v1.7.0...v1.8.0) (2026-11-10)
+
+
+### Features
+
+* **contact:** add privacy consent checkbox and update related validations ([#389](https://github.com/daribock/betania-ingolstadt-website/issues/389)) ([9a74f47](https://github.com/daribock/betania-ingolstadt-website/commit/9a74f4783678468f13e12aab832410d587ac1930))
+
+
+### Bug Fixes
+
+* address React Doctor findings ([#361](https://github.com/daribock/betania-ingolstadt-website/issues/361)) ([c3d8bb9](https://github.com/daribock/betania-ingolstadt-website/commit/c3d8bb99f621021463b895c1781d348e679cb232))
+* remove unused devDependencies from package.json ([#391](https://github.com/daribock/betania-ingolstadt-website/issues/391)) ([06b8977](https://github.com/daribock/betania-ingolstadt-website/commit/06b8977159a8def09a514ac3cb8e9cc07a65a287))
+
 ## [1.7.0](https://github.com/daribock/betania-ingolstadt-website/compare/v1.6.0...v1.7.0) (2026-10-19)
 
 
