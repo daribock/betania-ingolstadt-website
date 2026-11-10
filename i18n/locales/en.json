@@ -37,6 +37,7 @@
       "error": "Error sending the message."
     },
     "characterCount": "{current} / {max} characters",
+    "privacyConsent": "I have read the <link>privacy policy</link> and consent to my details being processed to handle my request.",
     "validation": {
       "firstNameRequired": "First name is required",
       "firstNameTooLong": "First name is too long",
@@ -47,7 +48,8 @@
       "reasonInvalid": "Please select a reason",
       "messageRequired": "Message is required",
       "messageTooLong": "Message is too long (max 200 characters)",
-      "linksNotAllowed": "Links are not allowed"
+      "linksNotAllowed": "Links are not allowed",
+      "privacyRequired": "Please agree to the privacy policy"
     }
   },
   "footer": {

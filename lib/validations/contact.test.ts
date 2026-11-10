@@ -13,6 +13,7 @@ const valid: ContactFormData = {
   number: '',
   reason: 'FAITH_JESUS',
   message: 'Hello there',
+  privacy: true,
 };
 
 const errorsFor = (override: Record<string, unknown>) => {
@@ -39,6 +40,7 @@ describe('contactSchema', () => {
     [{ reason: 'BOGUS' }, 'reasonInvalid'],
     [{ message: '' }, 'messageRequired'],
     [{ message: 'a '.repeat(101) }, 'messageTooLong'],
+    [{ privacy: false }, 'privacyRequired'],
   ])('reports %j as %s', (override, key) => {
     expect(errorsFor(override)).toContain(key);
   });

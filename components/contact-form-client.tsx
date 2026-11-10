@@ -35,6 +35,7 @@ export const ContactFormClient = ({ data }: { data: PageBlocksContactForm }) => 
       number: '',
       reason: undefined,
       message: '',
+      privacy: false,
       website: '',
     },
   });

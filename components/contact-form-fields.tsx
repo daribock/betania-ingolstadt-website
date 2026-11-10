@@ -8,7 +8,8 @@ import { tinaField } from 'tinacms/dist/react';
 import { UseFormReturn } from 'react-hook-form';
 import { ContactFormData } from '@/lib/validations/contact';
 import { PageBlocksContactForm } from '@/tina/__generated__/types';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
+import Link from 'next/link';
 
 interface ContactFormFieldsProps {
   form: UseFormReturn<ContactFormData>;
@@ -26,6 +27,7 @@ export const ContactFormFields = ({
   feedbackMessage,
 }: ContactFormFieldsProps) => {
   const contactT = useTranslations('Contact');
+  const locale = useLocale();
 
   if (!data.formFields?.email || !data.formFields?.message || !data.formFields?.phone || 
       !data.formFields?.firstName || !data.formFields?.lastName || 
@@ -209,6 +211,41 @@ export const ContactFormFields = ({
                   })}
                 </div>
               </div>
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="privacy"
+          render={({ field }) => (
+            <FormItem>
+              <div className="flex items-start gap-2">
+                <FormControl>
+                  <input
+                    type="checkbox"
+                    className="mt-1 h-4 w-4"
+                    checked={field.value === true}
+                    onChange={(e) => field.onChange(e.target.checked)}
+                    onBlur={field.onBlur}
+                    ref={field.ref}
+                  />
+                </FormControl>
+                <FormLabel className="font-normal">
+                  {contactT.rich('privacyConsent', {
+                    link: (chunks) => (
+                      <Link
+                        href={`/${locale}/data-privacy`}
+                        target="_blank"
+                        className="underline"
+                      >
+                        {chunks}
+                      </Link>
+                    ),
+                  })}
+                </FormLabel>
+              </div>
+              <FormMessage />
             </FormItem>
           )}
         />

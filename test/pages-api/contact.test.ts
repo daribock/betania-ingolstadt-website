@@ -35,6 +35,7 @@ const validBody = {
   email: 'jane@example.com',
   reason: 'FAITH_JESUS',
   message: 'Hello there',
+  privacy: true,
   startedAt: Date.now() - 10_000,
 };
 
