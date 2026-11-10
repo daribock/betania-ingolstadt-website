@@ -37,6 +37,7 @@
       "error": "Eroare la trimiterea mesajului."
     },
     "characterCount": "{current} / {max} caractere",
+    "privacyConsent": "Am citit <link>declarația de confidențialitate</link> și sunt de acord cu prelucrarea datelor mele pentru a răspunde solicitării mele.",
     "validation": {
       "firstNameRequired": "Prenumele este obligatoriu",
       "firstNameTooLong": "Prenumele este prea lung",
@@ -47,7 +48,8 @@
       "reasonInvalid": "Vă rugăm să selectați un motiv",
       "messageRequired": "Mesajul este obligatoriu",
       "messageTooLong": "Mesajul este prea lung (max. 200 de caractere)",
-      "linksNotAllowed": "Linkurile nu sunt permise"
+      "linksNotAllowed": "Linkurile nu sunt permise",
+      "privacyRequired": "Vă rugăm să acceptați declarația de confidențialitate"
     }
   },
   "footer": {

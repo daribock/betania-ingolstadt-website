@@ -37,6 +37,7 @@
       "error": "Fehler beim Senden der Nachricht."
     },
     "characterCount": "{current} / {max} Zeichen",
+    "privacyConsent": "Ich habe die <link>Datenschutzerklärung</link> gelesen und willige in die Verarbeitung meiner Angaben zur Bearbeitung meiner Anfrage ein.",
     "validation": {
       "firstNameRequired": "Vorname ist erforderlich",
       "firstNameTooLong": "Vorname ist zu lang",
@@ -47,7 +48,8 @@
       "reasonInvalid": "Bitte wählen Sie einen Grund aus",
       "messageRequired": "Nachricht ist erforderlich",
       "messageTooLong": "Nachricht ist zu lang (max. 200 Zeichen)",
-      "linksNotAllowed": "Links sind nicht erlaubt"
+      "linksNotAllowed": "Links sind nicht erlaubt",
+      "privacyRequired": "Bitte stimmen Sie der Datenschutzerklärung zu"
     }
   },
   "footer": {

@@ -44,6 +44,7 @@ export const contactSchema = z.object({
     .min(1, 'messageRequired')
     .max(200, 'messageTooLong')
     .refine(noLinks, 'linksNotAllowed'),
+  privacy: z.boolean().refine((v) => v, 'privacyRequired'),
   // Honeypot: hidden from humans, bots fill it.
   website: z.string().optional(),
   // Epoch ms when the form was opened.
